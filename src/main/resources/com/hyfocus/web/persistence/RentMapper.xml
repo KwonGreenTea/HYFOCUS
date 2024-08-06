@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyfocus.web.persistence.RentMapper">
+
+	<resultMap type="com.hyfocus.web.domain.RentVO"
+		id="rentResultMap">
+
+		<id property="rentNo" column="Rent_NO" />
+		<result property="camName" column="CAM_NAME" />
+		<result property="lensName" column="LENS_NAME" />
+		<result property="bag" column="BAG" />
+		<result property="tripod" column="TRIPOD" />
+		<result property="stuInfo" column="STU_INFO" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="rentChk" column="RENT_CHK" />
+		<result property="returnChk" column="RETURN_CHK" />
+	</resultMap>
+
+	<select id="getAllData" resultMap="rentResultMap">
+		SELECT * FROM RENT 
+		ORDER BY RENT_NO ASC
+	</select>
+	
+	<select id="getAllDataByRentNo" resultMap="rentResultMap">
+		SELECT * FROM RENT WHERE RENT_NO = #{rentNo}
+	</select>
+	
+	<select id="selectListByPagination" resultMap="rentResultMap">
+			SELECT * 
+			FROM (
+			    SELECT ROW_NUMBER() OVER (ORDER BY RENT_NO ASC) AS RN, RENT.*
+			    FROM RENT     
+			<choose>
+				<when test="keyword != null and keyword.trim() != ''">
+					WHERE STU_INFO LIKE '%' || #{keyword} || '%'
+				</when>
+				<when test="rentChk == 'X'.toString()">
+					WHERE RENT_CHK = #{rentChk}
+				</when>
+				<when test="returnChk == 'X'.toString()">
+					WHERE RETURN_CHK = #{returnChk}
+				</when>
+			</choose>
+			) 
+			WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*)
+		TOTAL_COUNT FROM RENT
+			<choose>
+				<when test="keyword != null and keyword.trim() != ''">
+					WHERE STU_INFO LIKE '%' || #{keyword} || '%'
+				</when>
+				<when test="rentChk == 'X'.toString()">
+					WHERE RENT_CHK = #{rentChk}
+				</when>
+				<when test="returnChk == 'X'.toString()">
+					WHERE RETURN_CHK = #{returnChk}
+				</when>
+			</choose>	
+	</select>
+
+	<insert id="insert">
+		INSERT INTO RENT (Rent_NO, CAM_NAME, LENS_NAME, BAG, TRIPOD, STU_INFO)
+		VALUES (RENT_SEQ.NEXTVAL, #{camera, jdbcType=VARCHAR}, #{lens,
+		jdbcType=VARCHAR}, #{bag, jdbcType=VARCHAR}, #{tripod,
+		jdbcType=VARCHAR}, #{stuInfo, jdbcType=VARCHAR})
+	</insert>
+
+	<update id="rent">
+		UPDATE RENT SET RENT_CHK = 'O' WHERE RENT_NO = #{rentNo}
+	</update>
+
+	<update id="returnRent">
+		UPDATE RENT SET RETURN_CHK = 'O' WHERE RENT_NO = #{rentNo}
+	</update>
+
+	<delete id="delete">
+		DELETE RENT WHERE RENT_NO = #{rentNo}
+	</delete>
+	
+</mapper>

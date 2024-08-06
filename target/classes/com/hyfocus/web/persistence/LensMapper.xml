@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyfocus.web.persistence.LensMapper">
+
+	<resultMap type="com.hyfocus.web.domain.LensVO"
+		id="lensResultMap">
+		
+		<id property="lensNo" column="LENS_NO" />
+		<result property="lensName" column="LENS_NAME" /> 
+		<result property="lensCount" column="LENS_COUNT" />
+		<result property="lensType" column="LENS_TYPE" />
+		
+	</resultMap>
+	
+   <select id="selectAllDataCanon" resultMap="lensResultMap">
+   		SELECT * FROM LENS_LIST WHERE LENS_TYPE = 1
+   </select>
+   
+   <select id="selectAllDataTamron" resultMap="lensResultMap">
+   		SELECT * FROM LENS_LIST WHERE LENS_TYPE = 2
+   </select>
+   
+   <select id="selectAllDataSigma" resultMap="lensResultMap">
+   		SELECT * FROM LENS_LIST WHERE LENS_TYPE = 3
+   </select>
+   
+   <select id="getCount" resultType="int">
+   		SELECT LENS_COUNT FROM LENS_LIST WHERE LENS_NAME LIKE #{lens} || '%'
+   </select>
+   
+   <update id="updateCount">
+   		UPDATE LENS_LIST SET LENS_COUNT = #{count} WHERE LENS_NAME LIKE #{lens} || '%'
+   </update>
+   
+</mapper>

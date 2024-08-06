@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	background-color: #f0f2f5;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	color: #333;
+}
+
+#container {
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: center;
+}
+
+.btn-group {
+    margin: 0 20px; 
+}
+
+#container button {
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

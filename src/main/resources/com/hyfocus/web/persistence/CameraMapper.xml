@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyfocus.web.persistence.CameraMapper">
+
+	<resultMap type="com.hyfocus.web.domain.CameraVO"
+		id="cameraResultMap">
+		
+		<id property="camNo" column="CAM_NO" />
+		<result property="camName" column="CAM_NAME" /> 
+		<result property="camCount" column="CAM_COUNT" />
+		<result property="camType" column="CAM_TYPE" />
+		
+	</resultMap>
+   
+   <select id="selectAllDataDSLR" resultMap="cameraResultMap">
+   		SELECT * FROM CAMERA_LIST WHERE CAM_TYPE = 1
+   </select>
+   
+   <select id="selectAllDataFilmM" resultMap="cameraResultMap">
+   		SELECT * FROM CAMERA_LIST WHERE CAM_TYPE = 2
+   </select>
+   
+   <select id="selectAllDataFilmA" resultMap="cameraResultMap">
+   		SELECT * FROM CAMERA_LIST WHERE CAM_TYPE = 3
+   </select>
+   
+   <select id="selectAllDataMirrorLess" resultMap="cameraResultMap">
+   		SELECT * FROM CAMERA_LIST WHERE CAM_TYPE = 4
+   </select>
+   
+   <select id="getCount" resultType="int">
+   		SELECT CAM_COUNT FROM CAMERA_LIST WHERE CAM_NAME LIKE #{camera} || '%'
+   </select>
+   
+   <update id="updateCount">
+   		UPDATE CAMERA_LIST SET CAM_COUNT = #{count} WHERE CAM_NAME LIKE #{camera} || '%'
+   </update>
+   
+</mapper>
