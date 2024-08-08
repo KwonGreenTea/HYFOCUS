@@ -212,6 +212,7 @@
 
 	</dependencies>
 	<build>
+		<finalName>HYFOCUS</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -253,7 +254,6 @@
 				<version>3.4.0</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<finalName>HYFOCUS</finalName>
 				</configuration>
 			</plugin>
 		</plugins>
