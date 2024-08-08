@@ -15,6 +15,11 @@ public class LensServiceImple implements LensService {
 	private LensMapper lensMapper;
 
 	@Override
+	public ArrayList<LensVO> selectAllData() {
+		return lensMapper.selectAllData();
+	}
+	
+	@Override
 	public ArrayList<LensVO> selectAllDataCanon() {
 		return lensMapper.selectAllDataCanon();
 	}
@@ -28,10 +33,17 @@ public class LensServiceImple implements LensService {
 	public ArrayList<LensVO> selectAllDataSigma() {
 		return lensMapper.selectAllDataSigma();
 	}
+	
+	@Override
+	public LensVO selectAllDataByName(String data) {
+		return lensMapper.selectAllDataByName(data);
+	}
 
 	@Override
 	public int chkCntByName(String data) {
 		return lensMapper.getCount(data);
 	}
+
+	
 
 }

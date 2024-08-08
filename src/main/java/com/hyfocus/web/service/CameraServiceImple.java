@@ -15,6 +15,11 @@ public class CameraServiceImple implements CameraService {
 	private CameraMapper cameraMapper;
 
 	@Override
+	public ArrayList<CameraVO> selectAllData() { 
+		return cameraMapper.selectAllData();
+	}
+	
+	@Override
 	public ArrayList<CameraVO> selectAllDataDSLR() { 
 		return cameraMapper.selectAllDataDSLR();
 	}
@@ -32,6 +37,11 @@ public class CameraServiceImple implements CameraService {
 	@Override
 	public ArrayList<CameraVO> selectAllDataMirrorLess() { 
 		return cameraMapper.selectAllDataMirrorLess();
+	}
+	
+	@Override
+	public CameraVO selectAllDataByName(String data) { 
+		return cameraMapper.selectAllDataByName(data);
 	}
 
 	@Override

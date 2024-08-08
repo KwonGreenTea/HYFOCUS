@@ -18,6 +18,11 @@ public class ExtraServiceImple implements ExtraService {
 	public ArrayList<ExtraVO> selectAllData() {
 		return extraMapper.selectAllData();
 	}
+	
+	@Override
+	public ExtraVO selectAllDataByName(String data) {
+		return extraMapper.selectAllDataByName(data);
+	}
 
 	@Override
 	public int chtCntByBag(String data) {
@@ -28,5 +33,7 @@ public class ExtraServiceImple implements ExtraService {
 	public int chkCntByTripod(String data) {
 		return extraMapper.getTripodCount(data);
 	}
+
+	
 
 }

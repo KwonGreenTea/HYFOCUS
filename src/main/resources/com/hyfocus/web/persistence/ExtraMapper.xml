@@ -18,6 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		SELECT * FROM EXTRA_LIST
    </select>
    
+   <select id="selectAllDataByName" resultMap="extraResultMap">
+   		SELECT * FROM EXTRA_LIST WHERE EXTRA_NAME = #{data}
+   </select>
+   
    <select id="getBagCount" resultType="int">
    		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME LIKE #{bag} || '%'
    </select>

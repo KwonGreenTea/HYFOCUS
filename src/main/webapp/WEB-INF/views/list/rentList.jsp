@@ -13,11 +13,26 @@
 	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="resources/js/MainForm.js"></script>
 </head>
 <body>
 	<div id="container">
-		<button class="btn btn-outline-primary" id="homeBtn">홈으로</button>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse" id="navbarColor04">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item"><a class="nav-link" id="homeBtn">대여
+								목록 </a></li>
+						<li class="nav-item"><a class="nav-link" id="modifyList">장비 수정</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+					
+					
+					</ul>
+				</div>
+			</div>
+		</nav>
 		<h2>카메라 대여 목록</h2>
 		<br>
 
@@ -32,10 +47,10 @@
 
 		<div class="button-container">
 			<div class="btn-group" id="listBtn">
-				<button type="button" class="btn btn-secondary" id="notRentBtn">대여
-					X</button>
-				<button type="button" class="btn btn-secondary" id="notReturnBtn">반납
-					X</button>
+					<button type="button" class="btn btn-secondary" id="notRentBtn">대여
+						X</button>
+					<button type="button" class="btn btn-secondary" id="notReturnBtn">반납
+						X</button>
 			</div>
 		</div>
 		<br>
@@ -120,7 +135,7 @@
 				name="rentChk"> <input type="hidden" name="returnChk">
 		</form>
 
-		<script>
+		<script type="text/javascript">
 			$(document).ready(function() {
 				$('.table tbody tr').click(function() {
 					var rentNo = $(this).attr('id');
@@ -255,7 +270,11 @@
 							});
 
 			$("#homeBtn").on("click", function() {
-				window.location.href="rentList";
+				window.location.href = "rentList";
+			});
+			
+			$("#modifyList").on("click", function() {
+				window.location.href = "modifyList";
 			});
 		</script>
 	</div>

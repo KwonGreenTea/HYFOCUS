@@ -7,10 +7,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 // servlet-context.xml과 동일
-@EnableWebSocket
 @Configuration // Spring Container에서 관리하는 설정 클래스
 @EnableWebMvc // Spring MVC 기능 사용
 @ComponentScan(basePackages = { "com.hyfocus.web" }) // component scan 설정

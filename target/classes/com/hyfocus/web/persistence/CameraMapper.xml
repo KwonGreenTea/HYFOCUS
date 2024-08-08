@@ -15,6 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</resultMap>
    
+   <select id="selectAllData" resultMap="cameraResultMap">
+   		SELECT * FROM CAMERA_LIST
+   </select>
+   
    <select id="selectAllDataDSLR" resultMap="cameraResultMap">
    		SELECT * FROM CAMERA_LIST WHERE CAM_TYPE = 1
    </select>
@@ -29,6 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <select id="selectAllDataMirrorLess" resultMap="cameraResultMap">
    		SELECT * FROM CAMERA_LIST WHERE CAM_TYPE = 4
+   </select>
+   
+   <select id="selectAllDataByName" resultMap="cameraResultMap">
+   		SELECT * FROM CAMERA_LIST WHERE CAM_NAME = #{data}
    </select>
    
    <select id="getCount" resultType="int">

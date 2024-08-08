@@ -14,8 +14,11 @@ public interface ExtraMapper {
 
 	int getBagCount(@Param("bag") String bag);
 	int updateBagCount(@Param("bag") String bag, @Param("count") int count);
-
+	ExtraVO selectAllDataByName(@Param("data") String data);
+	
 	int getTripodCount(@Param("tripod") String tripod);
 	int updateTripodCount(@Param("tripod") String tripod, @Param("count") int count);
+
+	
 
 }
