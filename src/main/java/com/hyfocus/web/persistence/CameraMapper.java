@@ -20,6 +20,7 @@ public interface CameraMapper {
 	int selectCamCount(String camName);
 	int getCount(@Param("camera") String camera);
 	int updateCount(@Param("camera") String camera, @Param("count") int count);
+	int modifyCameraCnt(@Param("camera") String camera, @Param("count") int count);
 	
 	
 	

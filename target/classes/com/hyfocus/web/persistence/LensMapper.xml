@@ -43,5 +43,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE LENS_LIST SET LENS_COUNT = #{count} WHERE LENS_NAME LIKE #{lens} ||
 		'%'
 	</update>
+	
+	<update id="modifyLensCnt">
+		UPDATE LENS_LIST SET LENS_COUNT = #{count} WHERE LENS_NAME = #{lens}
+	</update>
 
 </mapper>

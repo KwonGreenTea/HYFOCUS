@@ -1,4 +1,17 @@
+		// 가방 라벨 클릭시 체크박스 선택
+		function bagCheck() {
+			const checkbox = document.getElementById('bagCheck');
+    		checkbox.checked = !checkbox.checked;
+		}
+		
+		// 삼각대 라벨 클릭시 체크박스 선택
+		function tripodCheck() {
+			const checkbox = document.getElementById('tripodCheck');
+    		checkbox.checked = !checkbox.checked;
+		}
+			
 		$(document).ready(function() {
+		
 		    // 카메라 선택창 변경 시, 다른 카메라 선택창 숨김 및 값 초기화
 		    $('#cameraSelectDiv .form-select').change(function() {
 		        var selectedValue = $(this).val();

@@ -47,4 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		UPDATE CAMERA_LIST SET CAM_COUNT = #{count} WHERE CAM_NAME LIKE #{camera} || '%'
    </update>
    
+   <update id="modifyCameraCnt">
+   		UPDATE CAMERA_LIST SET CAM_COUNT = #{count} WHERE CAM_NAME = #{camera}
+   </update>
+   
 </mapper>

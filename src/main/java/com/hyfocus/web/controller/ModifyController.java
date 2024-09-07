@@ -53,31 +53,56 @@ public class ModifyController {
 
 		return "modify/modifyList";
 	}
-	
-	@PostMapping("/camData")
-    public ResponseEntity<CameraVO> camDataPost(@RequestParam("data") String data) {
-		log.info("camDataPost()");
+
+	@PostMapping("/modifyListData")
+	public String modifyListDataPost(@RequestParam(value = "camSelect", required = false) String camSelect,
+			@RequestParam(value = "camCnt", required = false) Integer camCnt,
+			@RequestParam(value = "lensSelect", required = false) String lensSelect,
+			@RequestParam(value = "lensCnt", required = false) Integer lensCnt,
+			@RequestParam(value = "extraSelect", required = false) String extraSelect,
+			@RequestParam(value = "extraCnt", required = false) Integer extraCnt) {
+		log.info("modifyListDataPost()");
 		
+		if (camSelect != null && !camSelect.isEmpty()) {
+		    log.info(cameraService.modifyCameraCnt(camSelect, camCnt) + "행 카메라 갯수 수정완료");
+		}
+
+		if (lensSelect != null && !lensSelect.isEmpty()) {
+		    log.info(lensService.modifyLensCnt(lensSelect, lensCnt) + "행 렌즈 갯수 수정완료");
+		}
+
+		if (extraSelect != null && !extraSelect.isEmpty()) {
+		    log.info(extraService.modifyExtraCnt(extraSelect, extraCnt) + "행 부가물품 갯수 수정완료");
+		}
+
+
+		return "modify/modifyList";
+	}
+
+	@PostMapping("/camData")
+	public ResponseEntity<CameraVO> camDataPost(@RequestParam("data") String data) {
+		log.info("camDataPost()");
+
 		CameraVO cameraVO = cameraService.selectAllDataByName(data);
 
 		return new ResponseEntity<CameraVO>(cameraVO, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/lensData")
-    public ResponseEntity<LensVO> lensDataPost(@RequestParam("data") String data) {
+	public ResponseEntity<LensVO> lensDataPost(@RequestParam("data") String data) {
 		log.info("lensDataPost()");
-		
+
 		LensVO lensVO = lensService.selectAllDataByName(data);
-		
+
 		return new ResponseEntity<LensVO>(lensVO, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/extraData")
-    public ResponseEntity<ExtraVO> extraDataPost(@RequestParam("data") String data) {
+	public ResponseEntity<ExtraVO> extraDataPost(@RequestParam("data") String data) {
 		log.info("extraDataPost()");
-		
+
 		ExtraVO extraVO = extraService.selectAllDataByName(data);
-		
+
 		return new ResponseEntity<ExtraVO>(extraVO, HttpStatus.OK);
 	}
 }

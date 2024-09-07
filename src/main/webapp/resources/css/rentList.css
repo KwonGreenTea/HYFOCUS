@@ -1,16 +1,13 @@
-@charset "UTF-8";
-
 body {
 	font-family: 'Helvetica Neue', Arial, sans-serif;
 	background-color: #f0f2f5;
 	margin: 0;
 	padding: 0;
 	padding-top: 56px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
 	color: #333;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 #container {
@@ -21,6 +18,49 @@ body {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 90%;
 	text-align: center;
+	flex-grow: 1; /* Allow container to grow and fill available space */
+	flex-direction: column;
+	height: 50vh; /* Ensure the container height adjusts to content */
+}
+
+#footer {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	padding: 10px;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 8px;
+}
+
+.footer-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.button-container {
+	display: flex;
+}
+
+#searchForm {
+	display: flex;
+	align-items: center;
+}
+
+#searchForm input[type="text"] {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#searchForm button {
+	margin-left: 5px;
+}
+
+.nav-item {
+    cursor: pointer;
 }
 
 hr {
@@ -30,7 +70,7 @@ hr {
 
 #homeBtn {
 	align: left;
-	position: relative; 
-	display: inline-block; 
-	margin-bottom: 20px; 
+	position: relative;
+	display: inline-block;
+	margin-bottom: 20px;
 }

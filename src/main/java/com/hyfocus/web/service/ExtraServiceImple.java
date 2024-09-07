@@ -34,6 +34,11 @@ public class ExtraServiceImple implements ExtraService {
 		return extraMapper.getTripodCount(data);
 	}
 
+	@Override
+	public int modifyExtraCnt(String extraSelect, Integer extraCnt) {
+		return extraMapper.modifyExtraCnt(extraSelect, extraCnt);
+	}
+
 	
 
 }

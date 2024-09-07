@@ -22,15 +22,11 @@
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item"><a class="nav-link" id="homeBtn">대여
 								목록 </a></li>
-						<li class="nav-item"><a class="nav-link" id="modifyList">장비
-								수정</a></li>
-						<li class="nav-item"><a class="nav-link" href="allRentList">지난 내역</a>
-						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<h2>카메라 대여 목록</h2>
+		<h2>카메라 대여 전체 목록</h2>
 		<br>
 
 		<!-- 게시글 페이지 사이즈 선택 
@@ -56,15 +52,13 @@
 				</thead>
 				<tbody>
 					<c:forEach var="rentVO" items="${rentList}">
-						<c:if test="${rentVO.returnChk == 'X'}">
-							<tr class="table-secondary" id="${rentVO.rentNo}">
-								<td>${rentVO.stuInfo}</td>
-								<td><fmt:formatDate value="${rentVO.createdDate}"
-										pattern="MM월 dd일 HH시 mm분 ss초" /></td>
-								<td>${rentVO.rentChk}</td>
-								<td>${rentVO.returnChk}</td>
-							</tr>
-						</c:if>
+						<tr class="table-secondary" id="${rentVO.rentNo}">
+							<td>${rentVO.stuInfo}</td>
+							<td><fmt:formatDate value="${rentVO.createdDate}"
+									pattern="MM월 dd일 HH시 mm분 ss초" /></td>
+							<td>${rentVO.rentChk}</td>
+							<td>${rentVO.returnChk}</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -267,14 +261,6 @@
 
 		$("#homeBtn").on("click", function() {
 			window.location.href = "rentList";
-		});
-
-		$("#modifyList").on("click", function() {
-			window.location.href = "modifyList";
-		});
-		
-		$("#allRentList").on("click", function() {
-			window.location.href = "allLentList";
 		});
 	</script>
 

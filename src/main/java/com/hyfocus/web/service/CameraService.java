@@ -17,5 +17,7 @@ public interface CameraService {
 	
 	int chkCntByName(String data);
 	
+	int modifyCameraCnt(String camSelect, Integer camCnt);
+	
 
 }

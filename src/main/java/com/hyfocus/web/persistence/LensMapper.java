@@ -18,6 +18,7 @@ public interface LensMapper {
 	
 	int getCount(@Param("lens") String lens);
 	int updateCount(@Param("lens") String lens, @Param("count") int count);
+	int modifyLensCnt(@Param("lens") String lens, @Param("count") int count);
 	
 	
 

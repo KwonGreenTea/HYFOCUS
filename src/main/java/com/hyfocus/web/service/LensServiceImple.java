@@ -44,6 +44,11 @@ public class LensServiceImple implements LensService {
 		return lensMapper.getCount(data);
 	}
 
+	@Override
+	public int modifyLensCnt(String lensSelect, Integer lensCnt) {
+		return lensMapper.modifyLensCnt(lensSelect, lensCnt);
+	}
+
 	
 
 }

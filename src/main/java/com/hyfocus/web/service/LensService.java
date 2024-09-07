@@ -14,6 +14,8 @@ public interface LensService {
 	
 	int chkCntByName(String data);
 	
+	int modifyLensCnt(String lensSelect, Integer lensCnt);
+	
 	
 
 }

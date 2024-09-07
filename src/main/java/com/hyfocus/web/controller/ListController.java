@@ -49,6 +49,27 @@ public class ListController {
 		return "list/rentList";
 	}
 	
+	@GetMapping("/allRentList")
+	public String allRentListGET(HttpServletRequest request, Model model, Pagination pagination) {
+		log.info("allRentListGET()");
+
+		// 세션 30분 설정
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(1800);
+		
+		// 페이징 처리 리스트
+		List<RentVO> rentList = rentService.getPagingBoards(pagination);
+		
+		PageMaker pageMaker = new PageMaker(); 
+		pageMaker.setPagination(pagination); 
+		pageMaker.setTotalCount(rentService.getTotalCount(pagination));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("rentList", rentList);
+		
+		return "list/allRentList";
+	}
+	
 	@GetMapping("/detail")
 	public String detailGET(Model model, int rentNo) {
 		log.info("detailGET()");

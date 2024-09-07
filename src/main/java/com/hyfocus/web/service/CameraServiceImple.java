@@ -59,4 +59,9 @@ public class CameraServiceImple implements CameraService {
 		return cameraMapper.getCount(data);
 	}
 
+	@Override
+	public int modifyCameraCnt(String camSelect, Integer camCnt) {
+		return cameraMapper.modifyCameraCnt(camSelect, camCnt);
+	}
+
 }

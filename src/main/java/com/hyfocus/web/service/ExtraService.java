@@ -11,6 +11,7 @@ public interface ExtraService {
 	
 	int chtCntByBag(String data);
 	int chkCntByTripod(String data);
+	int modifyExtraCnt(String extraSelect, Integer extraCnt);
 
 	
 }

@@ -77,8 +77,32 @@ public class RentServiceImple implements RentService {
 		return rentMapper.getAllDataByRentNo(rentNo);
 	}
 
+	@Transactional(value = "transactionManager")
 	@Override
 	public int delete(int rentNo) {
+		int count = 0;
+		
+		RentVO rentVO = rentMapper.getAllDataByRentNo(rentNo);
+		
+		count = cameraMapper.getCount(rentVO.getCamName());
+		log.info(cameraMapper.updateCount(rentVO.getCamName(), ++count) + "행 카메라 갯수 업데이트");
+		
+		if(rentVO.getLensName() != null && !rentVO.getLensName().isEmpty()) {
+			count = lensMapper.getCount(rentVO.getLensName());
+			log.info(lensMapper.updateCount(rentVO.getLensName(), ++count) + "행 렌즈 갯수 업데이트");
+		}
+		
+		if(rentVO.getBag() != null && !rentVO.getBag().isEmpty()) {
+			count = extraMapper.getBagCount(rentVO.getBag());
+			log.info(extraMapper.updateBagCount(rentVO.getBag(), ++count) + "행 가방 갯수 업데이트");
+		}
+		
+		if(rentVO.getTripod() != null && !rentVO.getTripod().isEmpty()) {
+			count = extraMapper.getTripodCount(rentVO.getTripod());
+			log.info(extraMapper.updateTripodCount(rentVO.getTripod(), ++count) + "행 삼각대 갯수 업데이트");
+		}
+		
+		
 		return rentMapper.delete(rentNo);
 	}
 

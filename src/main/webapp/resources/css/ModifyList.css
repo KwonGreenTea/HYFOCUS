@@ -26,6 +26,10 @@ hr {
 	margin: 20px 0;
 }
 
+.nav-item {
+    cursor: pointer;
+}
+
 select option:disabled {
     color: red;
 }

@@ -21,6 +21,10 @@ body {
     text-align: center;
 }
 
+.nav-item {
+    cursor: pointer;
+}
+
 .btn-group {
     margin: 0 20px; 
 }

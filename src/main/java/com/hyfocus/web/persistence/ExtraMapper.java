@@ -19,6 +19,8 @@ public interface ExtraMapper {
 	int getTripodCount(@Param("tripod") String tripod);
 	int updateTripodCount(@Param("tripod") String tripod, @Param("count") int count);
 
+	int modifyExtraCnt(@Param("extraSelect") String extraSelect, @Param("count") int count);
+
 	
 
 }

@@ -13,10 +13,21 @@
 <link rel="stylesheet" href="resources/css/ModifyList.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/ModifyList.js"></script>
 </head>
 <body>
 	<form id="ModifyForm">
 		<div id="container">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="navbarColor04">
+						<ul class="navbar-nav me-auto">
+							<li class="nav-item"><a class="nav-link" id="homeBtn">대여
+									목록 </a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 			<br>
 			<div id="cameraSelectDiv">
 				<div class="select-group">
@@ -28,9 +39,8 @@
 						</c:forEach>
 					</select> <br>
 					<div id="camInput" style="display: none;">
-						<input type="text" id="camName" readOnly> <input
-							type="text" id="camCnt">
-						<button type="submit" class="btn btn-outline-primary" id="subBtn">수정</button>
+						<input type="text" id="camName" name="camSelect" readOnly> <input
+							type="text" name="camCnt" id="camCnt"> 
 					</div>
 				</div>
 			</div>
@@ -38,7 +48,6 @@
 			<div id="lensSelectDiv">
 				<br>
 				<hr>
-				<br>
 				<div class="select-group">
 					<label class="form-label mt-4">렌즈</label> <select
 						class="form-select" id="canonLensSelect" name="canonLens">
@@ -46,11 +55,10 @@
 						<c:forEach var="lensVO" items="${lensList}">
 							<option id="${lensVO.lensName}">${lensVO.lensName}</option>
 						</c:forEach>
-					</select>
+					</select> <br>
 					<div id="lensInput" style="display: none;">
-						<input type="text" id="lensName" readOnly> <input
-							type="text" id="lensCnt">
-						<button type="submit" class="btn btn-outline-primary" id="subBtn">수정</button>
+						<input type="text" id="lensName" name="lensSelect" readOnly> <input
+							type="text" name="lensCnt" id="lensCnt"> 
 					</div>
 				</div>
 			</div>
@@ -58,7 +66,6 @@
 			<div id="extraSelectDiv">
 				<br>
 				<hr>
-				<br>
 				<div class="select-group">
 					<label class="form-label mt-4">가방 / 삼각대</label> <select
 						class="form-select" id="canonLensSelect" name="canonLens">
@@ -66,95 +73,39 @@
 						<c:forEach var="extraVO" items="${extraList}">
 							<option id="${extraVO.extraName}">${extraVO.extraName}</option>
 						</c:forEach>
-					</select>
+					</select> <br>
 					<div id="extraInput" style="display: none;">
-						<input type="text" id="extraName" readOnly> <input
-							type="text" id="extraCnt">
-						<button type="submit" class="btn btn-outline-primary" id="subBtn">수정</button>
+						<input type="text" id="extraName" name="extraSelect" readOnly> <input
+							type="text" name="extraCnt" id="extraCnt"> 
 					</div>
 				</div>
-				<br>
 			</div>
+			<br><hr><br>
+			<button class="btn btn-outline-primary" id="subBtn">수정</button>
 		</div>
 	</form>
 
 	<script type="text/javaScript">
-		$(document).ready(function() {
-			$('#cameraSelectDiv .form-select').change(function() {
-				const selectedValue = $(this).val();
-				
-				$.ajax({
-                    type: "POST",
-                    url: "camData", 
-                    contentType: "application/x-www-form-urlencoded",
-                    data: { data: selectedValue }, 
-                    success: function(response) {
-            				$('#camName').val(selectedValue);
-            				$('#camCnt').val(response.camCount);
-            				$('#camInput').css('display', 'block');
-                    },
-                    error: function(xhr, status, error) {
-                    	console.log("option데이터오류");
-                    }
-                });
-			});
-
-			$('#lensSelectDiv .form-select').change(function() {
-				const selectedValue = $(this).val();
-
-				$.ajax({
-                    type: "POST",
-                    url: "lensData", 
-                    contentType: "application/x-www-form-urlencoded",
-                    data: { data: selectedValue }, 
-                    success: function(response) {
-                        	$('#lensName').val(selectedValue);
-            				$('#lensCnt').val(response.lensCount);
-            				$('#lensInput').css('display', 'block');
-                    },
-                    error: function(xhr, status, error) {
-                    	console.log("option데이터오류");
-                    }
-                });
-			});
-
-			$('#extraSelectDiv .form-select').change(function() {
-				const selectedValue = $(this).val();
-
-				$.ajax({
-                    type: "POST",
-                    url: "extraData", 
-                    contentType: "application/x-www-form-urlencoded",
-                    data: { data: selectedValue }, 
-                    success: function(response) {
-           					$('#extraName').val(selectedValue);
-            				$('#extraCnt').val(response.extraCount);
-            				$('#extraInput').css('display', 'block');
-                    },
-                    error: function(xhr, status, error) {
-                    	console.log("option데이터오류");
-                    }
-                });
-			});
+		
 
 			/* 
 			function formSub() {
 				const formData = $('#ModifyForm').serializeArray();
 
 				$.ajax({
-                    type: "POST",
-                    url: "modifyListData", 
-                    contentType: "application/x-www-form-urlencoded",
-                    data: JSON.stringify(formData), 
-                    success: function() {
-                        	const extraCnt = "<c:out value='${extraVO.extraCount}'/>";
-                        	$('#extraName').val(selectedValue);
-            				$('#extraCnt').val(extraCnt);
-            				$('#extraInput').css('display', 'block');
-                    },
-                    error: function(xhr, status, error) {
-                    	console.log("option데이터오류");
-                    }
+			        type: "POST",
+			        url: "modifyListData", 
+			        contentType: "application/x-www-form-urlencoded",
+			        data: JSON.stringify(formData), 
+			        success: function() {
+			            	const extraCnt = "<c:out value='${extraVO.extraCount}'/>";
+			            	$('#extraName').val(selectedValue);
+							$('#extraCnt').val(extraCnt);
+							$('#extraInput').css('display', 'block');
+			        },
+			        error: function(xhr, status, error) {
+			        	console.log("option데이터오류");
+			        }
 				});
 			} */
 

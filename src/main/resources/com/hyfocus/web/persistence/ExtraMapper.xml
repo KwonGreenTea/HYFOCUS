@@ -38,4 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		UPDATE EXTRA_LIST SET EXTRA_COUNT = #{count} WHERE EXTRA_NAME LIKE #{tripod} || '%'
    </update>
    
+   <update id="modifyExtraCnt">
+   		UPDATE EXTRA_LIST SET EXTRA_COUNT = #{count} WHERE EXTRA_NAME = #{extraSelect}
+   </update>
+   
 </mapper>

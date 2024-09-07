@@ -18,16 +18,26 @@
 <body>
 	<input type="hidden" id="rentNo" value="${rentVO.rentNo}">
 	<div id="container">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse" id="navbarColor04">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item"><a class="nav-link" id="homeBtn">대여
+								목록 </a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 		<h2>신청 내역</h2>
 		<br>
 		<h3>${rentVO.stuInfo}</h3>
 		<br>
 		<ul class="list-group">
-			<li class="list-group-item list-group-item-secondary"><strong>카메라 
+			<li class="list-group-item list-group-item-secondary"><strong>카메라
 					: </strong> ${rentVO.camName}</li>
-			<li class="list-group-item list-group-item-secondary"><strong>렌즈 
+			<li class="list-group-item list-group-item-secondary"><strong>렌즈
 					: </strong> ${rentVO.lensName}</li>
-			<li class="list-group-item list-group-item-secondary"><strong>추가장비 
+			<li class="list-group-item list-group-item-secondary"><strong>추가장비
 					: </strong> <c:choose>
 					<c:when test="${not empty rentVO.tripod}">
 						<c:choose>
@@ -43,15 +53,16 @@
 						${rentVO.bag}
 					</c:otherwise>
 				</c:choose></li>
-			<li class="list-group-item list-group-item-secondary"><strong>대여 확인 
-					: </strong> ${rentVO.rentChk}</li>
-			<li class="list-group-item list-group-item-secondary"><strong>반납 확인 
-					: </strong> ${rentVO.returnChk}</li>
+			<li class="list-group-item list-group-item-secondary" id="rentChk"><strong>대여
+					확인 : </strong> ${rentVO.rentChk}</li>
+			<li class="list-group-item list-group-item-secondary"><strong>반납
+					확인 : </strong> ${rentVO.returnChk}</li>
 		</ul>
 		<br>
 		<div class="button-container">
 			<div class="btn-group" id="leftBtn">
-				<button type="button" class="btn btn-secondary" id="modifyBtn">수정</button>
+				<button type="button" class="btn btn-secondary" id="modifyBtn" disabled>수정</button>
+				<!-- 필요하면 추가 -->
 				<button type="button" class="btn btn-secondary" id="deleteBtn">삭제</button>
 			</div>
 			<div class="btn-group" id="rightBtn">
