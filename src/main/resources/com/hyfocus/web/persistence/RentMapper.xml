@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="com.hyfocus.web.domain.RentVO"
 		id="rentResultMap">
 
-		<id property="rentNo" column="Rent_NO" />
+		<id property="rentNo" column="RENT_NO" />
 		<result property="camName" column="CAM_NAME" />
 		<result property="lensName" column="LENS_NAME" />
 		<result property="bag" column="BAG" />
@@ -29,13 +29,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectListByPagination" resultMap="rentResultMap">
-			SELECT * 
-			FROM (
-			    SELECT ROW_NUMBER() OVER (ORDER BY RENT_NO ASC) AS RN, RENT.*
-			    FROM RENT     
+		SELECT * 
+		FROM (
+			SELECT @rownum := @rownum + 1 AS RN, RENT.*
+			FROM RENT, (SELECT @rownum := 0) r
 			<choose>
 				<when test="keyword != null and keyword.trim() != ''">
-					WHERE STU_INFO LIKE '%' || #{keyword} || '%'
+					WHERE STU_INFO LIKE CONCAT('%', #{keyword}, '%')
 				</when>
 				<when test="rentChk == 'X'.toString()">
 					WHERE RENT_CHK = #{rentChk}
@@ -44,31 +44,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					WHERE RETURN_CHK = #{returnChk}
 				</when>
 			</choose>
-			) 
-			WHERE RN BETWEEN #{start} AND #{end}
+		) AS temp
+		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 
 	<select id="selectTotalCount" resultType="int">
-		SELECT COUNT(*)
-		TOTAL_COUNT FROM RENT
-			<choose>
-				<when test="keyword != null and keyword.trim() != ''">
-					WHERE STU_INFO LIKE '%' || #{keyword} || '%'
-				</when>
-				<when test="rentChk == 'X'.toString()">
-					WHERE RENT_CHK = #{rentChk}
-				</when>
-				<when test="returnChk == 'X'.toString()">
-					WHERE RETURN_CHK = #{returnChk}
-				</when>
-			</choose>	
+		SELECT COUNT(*) AS TOTAL_COUNT FROM RENT
+		<choose>
+			<when test="keyword != null and keyword.trim() != ''">
+				WHERE STU_INFO LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+			<when test="rentChk == 'X'.toString()">
+				WHERE RENT_CHK = #{rentChk}
+			</when>
+			<when test="returnChk == 'X'.toString()">
+				WHERE RETURN_CHK = #{returnChk}
+			</when>
+		</choose>	
 	</select>
 
 	<insert id="insert">
-		INSERT INTO RENT (Rent_NO, CAM_NAME, LENS_NAME, BAG, TRIPOD, STU_INFO)
-		VALUES (RENT_SEQ.NEXTVAL, #{camera, jdbcType=VARCHAR}, #{lens,
-		jdbcType=VARCHAR}, #{bag, jdbcType=VARCHAR}, #{tripod,
-		jdbcType=VARCHAR}, #{stuInfo, jdbcType=VARCHAR})
+		INSERT INTO RENT (RENT_NO, CAM_NAME, LENS_NAME, BAG, TRIPOD, STU_INFO)
+		VALUES (NULL, #{camera, jdbcType=VARCHAR}, #{lens, jdbcType=VARCHAR}, #{bag, jdbcType=VARCHAR}, #{tripod, jdbcType=VARCHAR}, #{stuInfo, jdbcType=VARCHAR})
 	</insert>
 
 	<update id="rent">
@@ -80,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="delete">
-		DELETE RENT WHERE RENT_NO = #{rentNo}
+		DELETE FROM RENT WHERE RENT_NO = #{rentNo}
 	</delete>
 	
 </mapper>

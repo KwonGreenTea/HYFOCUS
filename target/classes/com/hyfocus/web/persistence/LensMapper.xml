@@ -36,12 +36,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
 
 	<select id="getCount" resultType="int">
-		SELECT LENS_COUNT FROM LENS_LIST WHERE LENS_NAME LIKE #{lens} || '%'
+		SELECT LENS_COUNT FROM LENS_LIST WHERE LENS_NAME LIKE CONCAT(#{lens}, '%')
 	</select>
 
 	<update id="updateCount">
-		UPDATE LENS_LIST SET LENS_COUNT = #{count} WHERE LENS_NAME LIKE #{lens} ||
-		'%'
+		UPDATE LENS_LIST SET LENS_COUNT = #{count} WHERE LENS_NAME LIKE CONCAT(#{lens}, '%')
 	</update>
 	
 	<update id="modifyLensCnt">
