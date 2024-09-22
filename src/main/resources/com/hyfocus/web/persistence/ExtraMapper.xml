@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="extraNo" column="EXTRA_NO" />
 		<result property="extraName" column="EXTRA_NAME" /> 
 		<result property="extraCount" column="EXTRA_COUNT" />
-		 
+		
 	</resultMap>
    
    <select id="selectAllData" resultMap="extraResultMap">
@@ -23,19 +23,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <select id="getBagCount" resultType="int">
-   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME LIKE CONCAT(#{bag}, '%')
+   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME LIKE #{bag} || '%'
    </select>
    
    <update id="updateBagCount">
-   		UPDATE EXTRA_LIST SET EXTRA_COUNT = #{count} WHERE EXTRA_NAME LIKE CONCAT(#{bag}, '%')
+   		UPDATE EXTRA_LIST SET EXTRA_COUNT = #{count} WHERE EXTRA_NAME LIKE #{bag} || '%'
    </update>
    
    <select id="getTripodCount" resultType="int">
-   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME LIKE CONCAT(#{tripod}, '%')
+   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME LIKE #{tripod} || '%'
    </select>
    
    <update id="updateTripodCount">
-   		UPDATE EXTRA_LIST SET EXTRA_COUNT = #{count} WHERE EXTRA_NAME LIKE CONCAT(#{tripod}, '%')
+   		UPDATE EXTRA_LIST SET EXTRA_COUNT = #{count} WHERE EXTRA_NAME LIKE #{tripod} || '%'
    </update>
    
    <update id="modifyExtraCnt">

@@ -40,11 +40,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <select id="getCount" resultType="int">
-   		SELECT CAM_COUNT FROM CAMERA_LIST WHERE CAM_NAME LIKE CONCAT(#{camera}, '%')
+   		SELECT CAM_COUNT FROM CAMERA_LIST WHERE CAM_NAME LIKE #{camera} || '%'
    </select>
    
    <update id="updateCount">
-   		UPDATE CAMERA_LIST SET CAM_COUNT = #{count} WHERE CAM_NAME LIKE CONCAT(#{camera}, '%')
+   		UPDATE CAMERA_LIST SET CAM_COUNT = #{count} WHERE CAM_NAME LIKE #{camera} || '%'
    </update>
    
    <update id="modifyCameraCnt">
