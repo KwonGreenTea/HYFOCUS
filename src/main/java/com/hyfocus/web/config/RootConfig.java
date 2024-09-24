@@ -27,7 +27,7 @@ public class RootConfig {
 	public DataSource dataSource() { // DataSource 빈 생성 메서드
 		HikariConfig config = new HikariConfig(); // 설정 객체 생성
 		config.setDriverClassName("oracle.jdbc.OracleDriver"); // JDBC 드라이버 클래스명 설정
-		config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe"); // DB 접속 URL 설정
+		config.setJdbcUrl("jdbc:oracle:thin:@146.56.111.104:1521:xe"); // DB 접속 URL 설정
 		config.setUsername("admin"); // DB 계정 이름 설정
 		config.setPassword("KBSkbs1213!@"); // DB 계정 비밀번호 설정
 
