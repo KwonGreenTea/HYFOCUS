@@ -9,12 +9,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/HYFOCUS")
 public class HomeController {
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/HYFOCUS", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(RedirectAttributes reAttr) {
 		return "redirect:/main";
 	}
