@@ -27,7 +27,6 @@ import com.hyfocus.web.service.RentService;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/HYFOCUS")
 @Log4j
 public class MainController {
 
