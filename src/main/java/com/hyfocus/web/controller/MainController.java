@@ -2,7 +2,6 @@ package com.hyfocus.web.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -57,6 +56,12 @@ public class MainController {
 			}
 		}
 		return result;
+	}
+	
+	@GetMapping("/pageNotOpen")
+	public String pageNotOpenGET() {
+		log.info("pageNotOpenGET()");
+		return "error/pageNotOpen";
 	}
 
 	@GetMapping("/main")
