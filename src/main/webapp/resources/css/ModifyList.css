@@ -27,17 +27,41 @@ hr {
 }
 
 .nav-item {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 select option:disabled {
-    color: red;
+	color: red;
 }
 
 select option {
-    color: black;
+	color: black;
 }
 
 .form-select:disabled {
 	background-color: #e9ecef;
+}
+
+/* 작은 화면에 대한 미디어 쿼리 추가 */
+@media (max-width: 768px) {
+    #container {
+        width: 90%; /* 화면의 90%로 조정하여 모바일에 맞춤 */
+        padding: 20px;
+    }
+
+    body {
+        height: auto; /* 작은 화면에서 높이 조정 */
+        padding: 20px 0; /* 상하 여백 추가 */
+    }
+}
+
+@media (max-width: 480px) {
+    #container {
+        width: 100%; /* 모바일 화면에서 꽉 채우기 */
+        padding: 15px;
+    }
+
+    hr {
+        margin: 10px 0; /* 모바일에서 여백 축소 */
+    }
 }

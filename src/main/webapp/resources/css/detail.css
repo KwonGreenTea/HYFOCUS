@@ -26,7 +26,7 @@ body {
 }
 
 .btn-group {
-    margin: 0 20px; 
+    margin: 0 20px;
 }
 
 #container button {
@@ -37,4 +37,45 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+
+/* 작은 화면에 대한 미디어 쿼리 */
+@media (max-width: 768px) {
+    #container {
+        width: 90%; /* 화면 크기의 90%로 설정 */
+        padding: 20px;
+    }
+
+    .btn-group {
+        margin: 0 10px; /* 좌우 여백을 줄여서 모바일에 맞춤 */
+    }
+
+    #container button {
+        font-size: 1em; /* 버튼 폰트 크기 조정 */
+        padding: 10px 15px; /* 버튼 내부 여백 조정 */
+    }
+
+    .button-container {
+        flex-direction: column; /* 버튼을 세로로 배치 */
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #container {
+        padding: 15px;
+    }
+
+    .btn-group {
+        margin: 0 5px; /* 더 작은 여백 */
+    }
+
+    #container button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    .button-container {
+        margin-top: 10px;
+    }
 }
