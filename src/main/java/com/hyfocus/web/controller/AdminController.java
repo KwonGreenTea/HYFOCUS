@@ -23,24 +23,31 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-public class ListController {
+public class AdminController {
 
 	@Autowired
 	private RentService rentService;
 
 	@GetMapping("/admin")
-	public String adminGET(Model model) {
-		model.addAttribute("pwd", "198023"); // 접속 비밀번호 설정
+	public String adminGET() {
 		return "error/adminChk";
 	}
 
 	@PostMapping("/adminChk")
-	public String adminChkPOST(HttpServletRequest request) {
-		// 세션 30분 설정
-		HttpSession session = request.getSession();
-		session.setAttribute("admin", "admin");
-		session.setMaxInactiveInterval(1800);
-		return "rentList";
+	public ResponseEntity<Integer> adminChkPOST(HttpServletRequest request, @RequestParam("password") String password) {
+		int result;
+		if (password.equals("198023")) {
+			// 세션 30분 설정
+			HttpSession session = request.getSession();
+			session.setAttribute("admin", "admin");
+			session.setMaxInactiveInterval(1800);
+
+			result = 1;
+		} else {
+			result = 0;
+		}
+
+		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("/rentList")

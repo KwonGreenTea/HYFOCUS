@@ -25,7 +25,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-public class ModifyController {
+public class AdminModifyController {
 
 	@Autowired
 	private CameraService cameraService;
