@@ -67,7 +67,7 @@ public class UserMainController {
 	@GetMapping("/main")
 	public String mainGET(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false); 
-		if (session != null && session.getAttribute("user") != null) {
+		if (session != null && session.getAttribute("hyfocus") != null) {
 			log.info("mainGET()");
 
 			// 카메라 리스트 가져옴
