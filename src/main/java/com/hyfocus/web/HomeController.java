@@ -24,7 +24,7 @@ public class HomeController {
         LocalDateTime targetDateTime;
 
         try {
-            targetDateTime = LocalDateTime.parse("2024-09-28T20:40:00"); // 보여줄 시작 시간
+            targetDateTime = LocalDateTime.parse("2024-09-28T20:55:00"); // 보여줄 시작 시간
         } catch (DateTimeParseException e) {
             // 파싱 오류 처리
             System.err.println("날짜 형식 오류: " + e.getMessage());
