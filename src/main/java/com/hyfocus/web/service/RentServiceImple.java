@@ -1,6 +1,7 @@
 package com.hyfocus.web.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class RentServiceImple implements RentService {
 
 	@Transactional(value = "transactionManager") 
 	@Override
-	public int insert(String camera, String lens, String bag, String tripod, String stuInfo) {
+	public int insert(String camera, String lens, String bag, String tripod, String stuInfo, Date createdDate) {
 		int count = 0;
 		count = cameraMapper.getCount(camera);
 		log.info(cameraMapper.updateCount(camera, --count) + "행 카메라 갯수 업데이트");
@@ -54,7 +55,7 @@ public class RentServiceImple implements RentService {
 			log.info(extraMapper.updateTripodCount(tripod, --count) + "행 삼각대 갯수 업데이트");
 		}
 		
-		return rentMapper.insert(camera, lens, bag, tripod, stuInfo);
+		return rentMapper.insert(camera, lens, bag, tripod, stuInfo, createdDate);
 	}
 
 	@Override

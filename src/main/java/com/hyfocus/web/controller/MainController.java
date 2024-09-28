@@ -1,6 +1,8 @@
 package com.hyfocus.web.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -121,7 +122,8 @@ public class MainController {
 		String lens = isNullChkList(lensList);
 
 		log.info(stuInfo);
-		log.info(rentService.insert(camera, lens, bag, tripod, stuInfo) + "행 INSERT 수행완료.");
+		Date createdDate = new Date();
+		log.info(rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate) + "행 INSERT 수행완료.");
 
 		return "redirect:/main";
 	} 
