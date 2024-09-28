@@ -20,7 +20,6 @@
                 data: { password: password },
                 success: function(result) {
                     if (result > 0) {
-                        alert("비밀번호가 일치합니다.");
                         window.location.href = "rentList"; 
                     } else {
                         alert("비밀번호가 일치하지 않습니다."); 

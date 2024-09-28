@@ -40,7 +40,7 @@ public class AdminController {
 			// 세션 30분 설정
 			HttpSession session = request.getSession();
 			session.setAttribute("admin", "admin");
-			session.setMaxInactiveInterval(1800);
+			session.setMaxInactiveInterval(600);
 
 			result = 1;
 		} else {
