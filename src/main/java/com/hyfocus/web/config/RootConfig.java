@@ -25,9 +25,12 @@ public class RootConfig {
 
 	@Bean
 	public DataSource dataSource() { // DataSource 빈 생성 메서드
+		System.setProperty("oracle.net.tns_admin", "/home/ubuntu/wallet");
+		
 		HikariConfig config = new HikariConfig(); // 설정 객체 생성
 		config.setDriverClassName("oracle.jdbc.OracleDriver"); // JDBC 드라이버 클래스명 설정
-		config.setJdbcUrl("jdbc:oracle:thin:@hyfocus_high?TNS_ADMIN=./src/main/resources/wallet"); // DB 접속 URL 설정
+		config.setJdbcUrl("jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=adb.ap-chuncheon-1.oraclecloud.com))(connect_data=(service_name=g70e91f7150db1c_hyfocus_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))"); // DB 접속 URL 설정
+		
 		config.setUsername("admin"); // DB 계정 이름 설정
 		config.setPassword("KBSkbs1213!@"); // DB 계정 비밀번호 설정
 
