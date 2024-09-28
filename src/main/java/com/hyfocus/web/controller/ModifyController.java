@@ -2,6 +2,9 @@ package com.hyfocus.web.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,24 +37,29 @@ public class ModifyController {
 	private ExtraService extraService;
 
 	@GetMapping("/modifyList")
-	public String modifyListGET(Model model) {
-		log.info("modifyListGET()");
+	public String modifyListGET(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("admin") != null) {
+			log.info("modifyListGET()");
 
-		// 카메라 리스트 가져옴
-		ArrayList<CameraVO> camList = cameraService.selectAllData();
+			// 카메라 리스트 가져옴
+			ArrayList<CameraVO> camList = cameraService.selectAllData();
 
-		// 렌즈 리스트 가져옴
-		ArrayList<LensVO> lensList = lensService.selectAllData();
+			// 렌즈 리스트 가져옴
+			ArrayList<LensVO> lensList = lensService.selectAllData();
 
-		// 가방/삼각대 리스트 가져옴
-		ArrayList<ExtraVO> extraList = extraService.selectAllData();
+			// 가방/삼각대 리스트 가져옴
+			ArrayList<ExtraVO> extraList = extraService.selectAllData();
 
-		// 리스트 넘겨줌
-		model.addAttribute("camList", camList);
-		model.addAttribute("lensList", lensList);
-		model.addAttribute("extraList", extraList);
+			// 리스트 넘겨줌
+			model.addAttribute("camList", camList);
+			model.addAttribute("lensList", lensList);
+			model.addAttribute("extraList", extraList);
 
-		return "modify/modifyList";
+			return "modify/modifyList";
+		} else {
+			return "error/error";
+		}
 	}
 
 	@PostMapping("/modifyListData")
@@ -62,19 +70,18 @@ public class ModifyController {
 			@RequestParam(value = "extraSelect", required = false) String extraSelect,
 			@RequestParam(value = "extraCnt", required = false) Integer extraCnt) {
 		log.info("modifyListDataPost()");
-		
+
 		if (camSelect != null && !camSelect.isEmpty()) {
-		    log.info(cameraService.modifyCameraCnt(camSelect, camCnt) + "행 카메라 갯수 수정완료");
+			log.info(cameraService.modifyCameraCnt(camSelect, camCnt) + "행 카메라 갯수 수정완료");
 		}
 
 		if (lensSelect != null && !lensSelect.isEmpty()) {
-		    log.info(lensService.modifyLensCnt(lensSelect, lensCnt) + "행 렌즈 갯수 수정완료");
+			log.info(lensService.modifyLensCnt(lensSelect, lensCnt) + "행 렌즈 갯수 수정완료");
 		}
 
 		if (extraSelect != null && !extraSelect.isEmpty()) {
-		    log.info(extraService.modifyExtraCnt(extraSelect, extraCnt) + "행 부가물품 갯수 수정완료");
+			log.info(extraService.modifyExtraCnt(extraSelect, extraCnt) + "행 부가물품 갯수 수정완료");
 		}
-
 
 		return "modify/modifyList";
 	}

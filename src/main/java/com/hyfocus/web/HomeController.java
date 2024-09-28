@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeParseException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +21,7 @@ public class HomeController {
      * Simply selects the home view to render by returning its name.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home() {
+    public String home(HttpServletRequest request) {
         ZoneId zoneId = ZoneId.of("Asia/Seoul"); // 한국 시간
         LocalDateTime currentDateTime = LocalDateTime.now(zoneId);
         LocalDateTime targetDateTime;
@@ -32,6 +35,9 @@ public class HomeController {
         }
 
         if (currentDateTime.isAfter(targetDateTime)) {
+        	HttpSession session = request.getSession();
+        	session.setAttribute("user", "user");
+    		session.setMaxInactiveInterval(1800);
             return "redirect:/main"; 
         } else {
             return "redirect:/pageNotOpen"; 

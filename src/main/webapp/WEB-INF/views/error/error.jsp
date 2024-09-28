@@ -16,6 +16,6 @@
 	};
 </script>
 <body>
-	<h2>카메라 신청 폼 오픈 시간이 아닙니다\nPage not Open</h2>
+	<h2>잘못 된 접근입니다. 새로고침 해주세요.</h2>
 </body>
 </html>

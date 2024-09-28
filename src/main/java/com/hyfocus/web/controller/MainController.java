@@ -41,7 +41,7 @@ public class MainController {
 
 	@Autowired
 	private RentService rentService;
-	
+
 	private String isNullChkList(ArrayList<String> List) {
 		String result = null;
 		for (String str : List) {
@@ -57,7 +57,7 @@ public class MainController {
 		}
 		return result;
 	}
-	
+
 	@GetMapping("/pageNotOpen")
 	public String pageNotOpenGET() {
 		log.info("pageNotOpenGET()");
@@ -66,39 +66,40 @@ public class MainController {
 
 	@GetMapping("/main")
 	public String mainGET(HttpServletRequest request, Model model) {
-		log.info("mainGET()");
+		HttpSession session = request.getSession(false); 
+		if (session != null && session.getAttribute("user") != null) {
+			log.info("mainGET()");
 
-		// 세션 30분 설정
-		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(1800);
+			// 카메라 리스트 가져옴
+			ArrayList<CameraVO> DSLRCamList = cameraService.selectAllDataDSLR();
+			ArrayList<CameraVO> FilmMCamList = cameraService.selectAllDataFilmM();
+			ArrayList<CameraVO> FilmACamList = cameraService.selectAllDataFilmA();
+			ArrayList<CameraVO> MirrorLessCamList = cameraService.selectAllDataMirrorLess();
 
-		// 카메라 리스트 가져옴
-		ArrayList<CameraVO> DSLRCamList = cameraService.selectAllDataDSLR();
-		ArrayList<CameraVO> FilmMCamList = cameraService.selectAllDataFilmM();
-		ArrayList<CameraVO> FilmACamList = cameraService.selectAllDataFilmA();
-		ArrayList<CameraVO> MirrorLessCamList = cameraService.selectAllDataMirrorLess();
+			// 렌즈 리스트 가져옴
+			ArrayList<LensVO> canonLensList = lensService.selectAllDataCanon();
+			ArrayList<LensVO> tamronLensList = lensService.selectAllDataTamron();
+			ArrayList<LensVO> sigmaLensList = lensService.selectAllDataSigma();
 
-		// 렌즈 리스트 가져옴
-		ArrayList<LensVO> canonLensList = lensService.selectAllDataCanon();
-		ArrayList<LensVO> tamronLensList = lensService.selectAllDataTamron();
-		ArrayList<LensVO> sigmaLensList = lensService.selectAllDataSigma();
+			// 가방/삼각대 리스트 가져옴
+			ArrayList<ExtraVO> extraList = extraService.selectAllData();
 
-		// 가방/삼각대 리스트 가져옴
-		ArrayList<ExtraVO> extraList = extraService.selectAllData();
+			// 리스트 넘겨줌
+			model.addAttribute("DSLRCamList", DSLRCamList);
+			model.addAttribute("FilmMCamList", FilmMCamList);
+			model.addAttribute("FilmACamList", FilmACamList);
+			model.addAttribute("MirrorLessCamList", MirrorLessCamList);
 
-		// 리스트 넘겨줌
-		model.addAttribute("DSLRCamList", DSLRCamList);
-		model.addAttribute("FilmMCamList", FilmMCamList);
-		model.addAttribute("FilmACamList", FilmACamList);
-		model.addAttribute("MirrorLessCamList", MirrorLessCamList);
+			model.addAttribute("canonLensList", canonLensList);
+			model.addAttribute("tamronLensList", tamronLensList);
+			model.addAttribute("sigmaLensList", sigmaLensList);
 
-		model.addAttribute("canonLensList", canonLensList);
-		model.addAttribute("tamronLensList", tamronLensList);
-		model.addAttribute("sigmaLensList", sigmaLensList);
+			model.addAttribute("extraList", extraList);
 
-		model.addAttribute("extraList", extraList);
-
-		return "main/form";
+			return "main/form";
+		} else {
+			return "error/error";
+		}
 	}
 
 	@PostMapping("/rent")
@@ -131,12 +132,12 @@ public class MainController {
 		log.info(rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate) + "행 INSERT 수행완료.");
 
 		return "redirect:/main";
-	} 
-	
+	}
+
 	@PostMapping("/chkCnt")
-    public ResponseEntity<Integer> chkCntPost(@RequestParam("data") String data) {
+	public ResponseEntity<Integer> chkCntPost(@RequestParam("data") String data) {
 		log.info("chkCntPost()");
-		
+
 		int result = 0;
 		if (data.equals("카메라 가방")) {
 			result = extraService.chtCntByBag(data);
@@ -147,7 +148,7 @@ public class MainController {
 		} else {
 			result = cameraService.chkCntByName(data);
 		}
-		
+
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 }

@@ -24,101 +24,123 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class ListController {
-	
+
 	@Autowired
 	private RentService rentService;
 
+	@GetMapping("/admin")
+	public String adminGET(Model model) {
+		model.addAttribute("pwd", "198023"); // 접속 비밀번호 설정
+		return "error/adminChk";
+	}
+
+	@PostMapping("/adminChk")
+	public String adminChkPOST(HttpServletRequest request) {
+		// 세션 30분 설정
+		HttpSession session = request.getSession();
+		session.setAttribute("admin", "admin");
+		session.setMaxInactiveInterval(1800);
+		return "rentList";
+	}
+
 	@GetMapping("/rentList")
 	public String rentListGET(HttpServletRequest request, Model model, Pagination pagination) {
-		log.info("rentListGET()");
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("admin") != null) {
+			log.info("rentListGET()");
 
-		// 세션 30분 설정
-		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(1800);
-		
-		// 페이징 처리 리스트
-		List<RentVO> rentList = rentService.getPagingBoards(pagination);
-		
-		PageMaker pageMaker = new PageMaker(); 
-		pageMaker.setPagination(pagination); 
-		pageMaker.setTotalCount(rentService.getTotalCount(pagination));
-		
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("rentList", rentList);
-		
-		return "list/rentList";
+			// 페이징 처리 리스트
+			List<RentVO> rentList = rentService.getPagingBoards(pagination);
+
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setPagination(pagination);
+			pageMaker.setTotalCount(rentService.getTotalCount(pagination));
+
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("rentList", rentList);
+
+			return "list/rentList";
+		} else {
+			return "error/error";
+		}
 	}
-	
+
 	@GetMapping("/allRentList")
 	public String allRentListGET(HttpServletRequest request, Model model, Pagination pagination) {
-		log.info("allRentListGET()");
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("admin") != null) {
+			log.info("allRentListGET()");
 
-		// 세션 30분 설정
-		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(1800);
-		
-		// 페이징 처리 리스트
-		List<RentVO> rentList = rentService.getPagingBoards(pagination);
-		
-		PageMaker pageMaker = new PageMaker(); 
-		pageMaker.setPagination(pagination); 
-		pageMaker.setTotalCount(rentService.getTotalCount(pagination));
-		
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("rentList", rentList);
-		
-		return "list/allRentList";
+			// 페이징 처리 리스트
+			List<RentVO> rentList = rentService.getPagingBoards(pagination);
+
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setPagination(pagination);
+			pageMaker.setTotalCount(rentService.getTotalCount(pagination));
+
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("rentList", rentList);
+
+			return "list/allRentList";
+		} else {
+			return "error/error";
+		}
 	}
-	
+
 	@GetMapping("/detail")
-	public String detailGET(Model model, int rentNo) {
-		log.info("detailGET()");
-		
-		RentVO rentVO = rentService.getAllDataByRentNo(rentNo);
-	
-		model.addAttribute("rentVO", rentVO);
-		
-		return "list/detail";
+	public String detailGET(HttpServletRequest request, Model model, int rentNo) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("admin") != null) {
+			log.info("detailGET()");
+
+			RentVO rentVO = rentService.getAllDataByRentNo(rentNo);
+
+			model.addAttribute("rentVO", rentVO);
+
+			return "list/detail";
+		} else {
+			return "error/error";
+		}
 	}
-	
+
 	// 수정
 	@PostMapping("/modify")
 	public ResponseEntity<Integer> modifyPOST(@RequestParam("rentNo") String rentNo) {
-		
+
 		int result = 1;
-		
+
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
-	
+
 	// 삭제
 	@PostMapping("/delete")
 	public ResponseEntity<Integer> deletePOST(@RequestParam("rentNo") String rentNo) {
 		log.info("deletePOST()");
-		
+
 		int result = rentService.delete(Integer.parseInt(rentNo));
-		
+
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
-	
+
 	// 대여 확인
 	@PostMapping("/rentChk")
 	public ResponseEntity<Integer> rentChkPOST(@RequestParam("rentNo") String rentNo) {
 		log.info("rentChkPOST()");
-		
+
 		int result = rentService.rent(Integer.parseInt(rentNo));
-		
+
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
-	
+
 	// 반납
 	@PostMapping("/returnRent")
 	public ResponseEntity<Integer> returnRentPOST(@RequestParam("rentNo") String rentNo) {
 		log.info("returnRentPOST()");
-		
+
 		RentVO rentVO = rentService.getAllDataByRentNo(Integer.parseInt(rentNo));
-		
+
 		int result = rentService.returnRent(rentVO);
-		
+
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 }
