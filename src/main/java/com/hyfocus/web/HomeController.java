@@ -35,7 +35,14 @@ public class HomeController {
         }
 
         if (currentDateTime.isAfter(targetDateTime)) {
-        	HttpSession session = request.getSession();
+        	HttpSession session = request.getSession();  
+        	if(session != null && session.getAttribute("admin") != null) {
+        		session.removeAttribute("admin");
+                session.invalidate();
+                
+                // 새 세션 생성
+                session = request.getSession(true);
+        	}    
         	session.setAttribute("hyfocus", "hyfocus");
     		session.setMaxInactiveInterval(600);
             return "redirect:/main"; 

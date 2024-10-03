@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>📷 하이포커스 📷</title>
+<title>하이포커스</title>
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 <link rel="stylesheet" href="resources/css/detail.css" />
 <link

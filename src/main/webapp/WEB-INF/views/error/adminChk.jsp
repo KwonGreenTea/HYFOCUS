@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>📷 하이포커스 📷</title>
+<title>하이포커스</title>
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -31,5 +31,6 @@
             });
 		});
 	</script>
+	<h2>새로고침 해주세요.</h2>
 </body>
 </html>

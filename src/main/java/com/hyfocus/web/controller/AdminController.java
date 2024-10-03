@@ -35,18 +35,22 @@ public class AdminController {
 
 	@PostMapping("/adminChk")
 	public ResponseEntity<Integer> adminChkPOST(HttpServletRequest request, @RequestParam("password") String password) {
-		int result;
+		int result = 0;
 		if (password.equals("198023")) {
 			// 세션 30분 설정
 			HttpSession session = request.getSession();
+			if(session != null && session.getAttribute("hyfocus") != null) {
+        		session.removeAttribute("hyfocus");
+                session.invalidate();
+                
+                // 새 세션 생성
+                session = request.getSession(true);
+        	}
 			session.setAttribute("admin", "admin");
 			session.setMaxInactiveInterval(600);
 
 			result = 1;
-		} else {
-			result = 0;
 		}
-
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 

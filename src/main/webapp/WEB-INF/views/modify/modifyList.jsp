@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>📷 하이포커스 📷</title>
+<title>하이포커스</title>
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/morph/bootstrap.min.css"
@@ -40,8 +40,8 @@
 						</c:forEach>
 					</select> <br>
 					<div id="camInput" style="display: none;">
-						<input type="text" id="camName" name="camSelect" readOnly> <input
-							type="text" name="camCnt" id="camCnt"> 
+						<input type="text" id="camName" name="camSelect" readOnly>
+						<input type="text" name="camCnt" id="camCnt">
 					</div>
 				</div>
 			</div>
@@ -58,8 +58,8 @@
 						</c:forEach>
 					</select> <br>
 					<div id="lensInput" style="display: none;">
-						<input type="text" id="lensName" name="lensSelect" readOnly> <input
-							type="text" name="lensCnt" id="lensCnt"> 
+						<input type="text" id="lensName" name="lensSelect" readOnly>
+						<input type="text" name="lensCnt" id="lensCnt">
 					</div>
 				</div>
 			</div>
@@ -76,41 +76,16 @@
 						</c:forEach>
 					</select> <br>
 					<div id="extraInput" style="display: none;">
-						<input type="text" id="extraName" name="extraSelect" readOnly> <input
-							type="text" name="extraCnt" id="extraCnt"> 
+						<input type="text" id="extraName" name="extraSelect" readOnly>
+						<input type="text" name="extraCnt" id="extraCnt">
 					</div>
 				</div>
 			</div>
-			<br><hr><br>
+			<br>
+			<hr>
+			<br>
 			<button class="btn btn-outline-primary" id="subBtn">수정</button>
 		</div>
 	</form>
-
-	<script type="text/javaScript">
-		
-
-			/* 
-			function formSub() {
-				const formData = $('#ModifyForm').serializeArray();
-
-				$.ajax({
-			        type: "POST",
-			        url: "modifyListData", 
-			        contentType: "application/x-www-form-urlencoded",
-			        data: JSON.stringify(formData), 
-			        success: function() {
-			            	const extraCnt = "<c:out value='${extraVO.extraCount}'/>";
-			            	$('#extraName').val(selectedValue);
-							$('#extraCnt').val(extraCnt);
-							$('#extraInput').css('display', 'block');
-			        },
-			        error: function(xhr, status, error) {
-			        	console.log("option데이터오류");
-			        }
-				});
-			} */
-
-		});
-	</script>
 </body>
 </html>
