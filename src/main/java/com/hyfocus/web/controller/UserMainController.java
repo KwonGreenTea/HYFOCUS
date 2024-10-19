@@ -1,5 +1,8 @@
 package com.hyfocus.web.controller;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -65,8 +68,29 @@ public class UserMainController {
 	}
 
 	@GetMapping("/main")
-	public String mainGET(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession(false); 
+	public String mainGET(HttpServletRequest request, Model model, RedirectAttributes reAttr) {
+		ZoneId zoneId = ZoneId.of("Asia/Seoul"); // 한국 시간
+        LocalDateTime currentDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime targetDateTime;
+        HttpSession session;
+
+        try {
+            targetDateTime = LocalDateTime.parse("2024-10-19T15:10:00"); // 보여줄 시작 시간
+        } catch (DateTimeParseException e) {
+            // 파싱 오류 처리
+            System.err.println("날짜 형식 오류: " + e.getMessage());
+            return "error/error";
+        }
+
+        if (currentDateTime.isAfter(targetDateTime)) {
+        	session = request.getSession(false);
+        	session = request.getSession();      
+        	session.setAttribute("hyfocus", "hyfocus");
+    		session.setMaxInactiveInterval(600);
+        } else {
+            return "redirect:/pageNotOpen"; 
+        }
+		
 		if (session != null && session.getAttribute("hyfocus") != null) {
 			log.info("mainGET()");
 

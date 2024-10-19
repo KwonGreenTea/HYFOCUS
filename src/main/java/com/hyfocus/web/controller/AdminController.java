@@ -39,13 +39,6 @@ public class AdminController {
 		if (password.equals("198023")) {
 			// 세션 30분 설정
 			HttpSession session = request.getSession();
-			if(session != null && session.getAttribute("hyfocus") != null) {
-        		session.removeAttribute("hyfocus");
-                session.invalidate();
-                
-                // 새 세션 생성
-                session = request.getSession(true);
-        	}
 			session.setAttribute("admin", "admin");
 			session.setMaxInactiveInterval(600);
 

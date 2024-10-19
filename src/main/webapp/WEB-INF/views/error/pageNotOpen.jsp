@@ -8,7 +8,7 @@
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 </head>
 <script type="text/javascript">
-	fuction reset() {
+	function reset() {
 		window.location.href = "/HYFOCUS"; 
 	}
 	
