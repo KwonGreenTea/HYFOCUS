@@ -62,11 +62,11 @@
 						<c:forEach var="cameraVO" items="${MirrorLessCamList}">
 							<c:choose>
 								<c:when test="${cameraVO.camCount < 1}">
-									<option id="${cameraVO.camName}" disabled>${cameraVO.camName}
+									<option id="${cameraVO.camName}" value="${cameraVO.camName}" disabled>${cameraVO.camName}
 										(${cameraVO.camCount}대 남음)</option>
 								</c:when>
 								<c:otherwise>
-									<option id="${cameraVO.camName}">${cameraVO.camName}
+									<option id="${cameraVO.camName}" value="${cameraVO.camName}">${cameraVO.camName}
 										(${cameraVO.camCount}대 남음)</option>
 								</c:otherwise>
 							</c:choose>

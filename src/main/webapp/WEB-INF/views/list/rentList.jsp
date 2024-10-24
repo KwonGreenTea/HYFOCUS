@@ -271,8 +271,9 @@
 		$("#allRentList")
 		.on(
 				"click",
-				function() {
+				function(e) {
 					const allListForm = $("#allListForm");
+					e.preventDefault();
 					
 					var data = 'false';
 					// 전체 리스트로 데이터 가져옴
