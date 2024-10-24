@@ -36,10 +36,9 @@
 
 		<!-- 게시글 페이지 사이즈 선택 -->
 		<select class="form-select" id="selectSize">
-			<option value="" disabled selected>대여 목록 수</option>
+			<option value="" disabled selected>목록 표시 수</option>
+			<option value="5">5</option>
 			<option value="10">10</option>
-			<option value="15">15</option>
-			<option value="20">20</option>
 		</select> 
 
 		<br>
