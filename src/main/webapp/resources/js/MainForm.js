@@ -174,7 +174,7 @@
 			                        data: { data: lens }, // 데이터는 URL 인코딩 형식으로 전송됨
 			                        success: function(result) {
 			                            if (result > 0) {
-			                                if (extras) {
+			                                if (extras.length > 0) {
 			                                    chkExtra(bag, tripod);
 			                                } else {
 			                                    formSub();
@@ -189,7 +189,7 @@
 			                            location.reload();
 			                        }
 			                    });
-			                } else if (extras) {
+			                } else if (extras.length > 0) {
 			                    chkExtra(bag, tripod);
 			                } else {
 			                    formSub();

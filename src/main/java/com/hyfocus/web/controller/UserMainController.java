@@ -32,7 +32,16 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class UserMainController {
+	
+	//		*********************
+	//		**** 보여줄 시간 설정 ****
+	//		*********************
 
+	private String setDate = "2024-10-19T15:10:00"; 
+		
+	
+	
+	
 	@Autowired
 	private CameraService cameraService;
 
@@ -75,10 +84,9 @@ public class UserMainController {
         HttpSession session;
 
         try {
-            targetDateTime = LocalDateTime.parse("2024-10-19T15:10:00"); // 보여줄 시작 시간
+            targetDateTime = LocalDateTime.parse(setDate); 
         } catch (DateTimeParseException e) {
-            // 파싱 오류 처리
-            System.err.println("날짜 형식 오류: " + e.getMessage());
+        	log.info("날짜 형식 오류: " + e.getMessage());
             return "error/error";
         }
 

@@ -74,7 +74,7 @@
 		</form>
 
 		<!-- 페이지 번호와 페이지 사이즈를 전송하는 form -->
-		<form id="listForm" action="rentList" method="get">
+		<form id="listForm" action="allRentList" method="get">
 			<input type="hidden" name="pageNum"> <input type="hidden"
 				name="pageSize"> <input type="hidden" name="type"> <input
 				type="hidden" name="keyword"> <input type="hidden"
