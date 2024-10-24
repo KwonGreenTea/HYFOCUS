@@ -34,15 +34,13 @@
 		<h2>카메라 대여 목록</h2>
 		<br>
 
-		<!-- 게시글 페이지 사이즈 선택 
+		<!-- 게시글 페이지 사이즈 선택 -->
 		<select class="form-select" id="selectSize">
 			<option value="" disabled selected>대여 목록 수</option>
 			<option value="10">10</option>
 			<option value="15">15</option>
 			<option value="20">20</option>
 		</select> 
-		-->
-
 
 		<br>
 		<div class="table-responsive">
@@ -85,6 +83,11 @@
 				name="pageSize"> <input type="hidden" name="type"> <input
 				type="hidden" name="keyword"> <input type="hidden"
 				name="rentChk"> <input type="hidden" name="returnChk">
+		</form>
+		
+		<!-- 지난 내역 페이지 이동 form -->
+		<form id="allListForm" action="rentList" method="get">
+			<input type="hidden" name="rentData">
 		</form>
 
 	</div>
@@ -265,6 +268,18 @@
 
 							listForm.submit();
 						});
+		
+		$("#allRentList")
+		.on(
+				"click",
+				function() {
+					const allListForm = $("#allListForm");
+					
+					// 전체 리스트로 데이터 가져옴
+					allListForm.find("input[name='rentData']").val('false');
+
+					allListForm.submit();
+				});
 
 		$("#homeBtn").on("click", function() {
 			window.location.href = "rentList";
@@ -274,7 +289,7 @@
 			window.location.href = "modifyList";
 		});
 		
-		$("#allRentList").on("click", function() {
+		$("#").on("click", function() {
 			window.location.href = "allLentList";
 		});
 	</script>

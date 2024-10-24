@@ -29,7 +29,8 @@
 		            });
 		
 		            // DSLR 선택 시 렌즈 선택 창과 정보 창을 표시
-		            if ($('#dslrSelect').val()) {
+		            // 소니 A7M2 선택 시 렌즈 선택 창과 정보 창을 표시
+		            if ($('#dslrSelect').val() || $('#mirrorlessSelect').val('소니 A7M2')) {
 		                $('#lensSelectDiv').show();
 		                $('#extraSelectDiv').show();
 		            } else if ($('#filmSelectManual').val() || $('#filmSelectAuto').val() || $('#mirrorlessSelect').val()) {

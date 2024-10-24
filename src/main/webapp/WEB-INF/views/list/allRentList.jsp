@@ -30,15 +30,13 @@
 		<h2>카메라 대여 전체 목록</h2>
 		<br>
 
-		<!-- 게시글 페이지 사이즈 선택 
+		<!-- 게시글 페이지 사이즈 선택 -->
 		<select class="form-select" id="selectSize">
 			<option value="" disabled selected>대여 목록 수</option>
 			<option value="10">10</option>
 			<option value="15">15</option>
 			<option value="20">20</option>
 		</select> 
-		-->
-
 
 		<br>
 		<div class="table-responsive">
@@ -79,6 +77,7 @@
 				name="pageSize"> <input type="hidden" name="type"> <input
 				type="hidden" name="keyword"> <input type="hidden"
 				name="rentChk"> <input type="hidden" name="returnChk">
+			<input type="hidden" name="rentData">
 		</form>
 
 	</div>
@@ -115,23 +114,14 @@
 				</c:choose>
 			</ul>
 		</div>
-	
-		<div class="footer-content">
-			<div class="button-container">
-				<div class="btn-group" id="listBtn">
-					<button type="button" class="btn btn-secondary" id="notRentBtn">대여
-						X</button>
-					<button type="button" class="btn btn-secondary" id="notReturnBtn">반납
-						X</button>
-				</div>
-			</div>
 
-			<form id="searchForm" action="rentList" method="get">
+		<div class="footer-content">
+			<form id="searchForm" action="allRentList" method="get">
 				<label class="form-check-label">신청자: </label> <input type="text"
 					name="keyword">
 				<button class="btn btn-primary btn-sm">검색</button>
 				<input type="hidden" name="pageNum"> <input type="hidden"
-					name="pageSize">
+					name="pageSize"> <input type="hidden" name="rentData">
 			</form>
 		</div>
 	</div>
@@ -185,6 +175,8 @@
 									pageSize);
 							// keyword 값을 적용
 							listForm.find("input[name='keyword']").val(keyword);
+							// 전체 리스트로 데이터 가져옴
+							listForm.find("input[name='rentData']").val('false');
 							listForm.submit();
 						});
 
@@ -212,53 +204,11 @@
 							// 선택된 옵션 값을 input name='pageSize' 값으로 적용
 							searchForm.find("input[name='pageSize']").val(
 									pageSize);
+							// 전체 리스트로 데이터 가져옴
+							searchForm.find("input[name='rentData']").val('false');
 							searchForm.submit(); // form 전송
 						});
 
-		$("#notRentBtn")
-				.on(
-						"click",
-						function() {
-							const listForm = $("#listForm");
-							// c:out을 이용한 현재 페이지 번호값 저장
-							const pageNum = 1;
-							const pageSize = "<c:out value='${pageMaker.pagination.pageSize }' />";
-
-							const rentChk = "X";
-
-							// 페이지 번호를 input name='pageNum' 값으로 적용
-							listForm.find("input[name='pageNum']").val(pageNum);
-							// 선택된 옵션 값을 input name='pageSize' 값으로 적용
-							listForm.find("input[name='pageSize']").val(
-									pageSize);
-							// keyword 값을 적용
-							listForm.find("input[name='rentChk']").val(rentChk);
-
-							listForm.submit();
-						});
-
-		$("#notReturnBtn")
-				.on(
-						"click",
-						function() {
-							const listForm = $("#listForm");
-							// c:out을 이용한 현재 페이지 번호값 저장
-							const pageNum = 1;
-							const pageSize = "<c:out value='${pageMaker.pagination.pageSize }' />";
-
-							const returnChk = "X";
-
-							// 페이지 번호를 input name='pageNum' 값으로 적용
-							listForm.find("input[name='pageNum']").val(pageNum);
-							// 선택된 옵션 값을 input name='pageSize' 값으로 적용
-							listForm.find("input[name='pageSize']").val(
-									pageSize);
-							// keyword 값을 적용
-							listForm.find("input[name='returnChk']").val(
-									returnChk);
-
-							listForm.submit();
-						});
 
 		$("#homeBtn").on("click", function() {
 			window.location.href = "rentList";

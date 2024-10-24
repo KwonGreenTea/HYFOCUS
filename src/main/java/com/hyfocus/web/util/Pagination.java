@@ -15,17 +15,23 @@ public class Pagination {
 	private String keyword; // 검색 키워드 
 	private String rentChk; // 미 대여
 	private String returnChk; // 미 반납
+	private String rentDataChk; // 현재 반납 데이터와 전체 데이터 구분
 
 	public Pagination() {
 		this.pageNum = 1; // 기본 페이지 번호 설정
 		this.pageSize = 10; // 기본 페이지 사이즈 설정
+		this.rentDataChk = "true"; // 기본 페이지는 반납이 안되어있는 데이터만 표시
 	}
 
 	public Pagination(int page, int pageSize) {
 		this.pageNum = page;
 		this.pageSize = pageSize;
 	}
-
+	
+	public Pagination(String rentData) {
+		this.rentDataChk = rentData;
+	}
+	
 	// 선택된 페이지의 시작 글 일련번호(rn) - #{start}
 	public int getStart() {
 		return (this.pageNum - 1) * this.pageSize + 1;

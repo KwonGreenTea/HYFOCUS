@@ -43,6 +43,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<when test="returnChk == 'X'.toString()">
 					WHERE RETURN_CHK = #{returnChk}
 				</when>
+				<when test="rentDataChk == 'true'.toString()">
+					WHERE RENT_CHK = 'O' OR RETURN_CHK = 'O'
+				</when>
 			</choose>
 			) 
 			WHERE RN BETWEEN #{start} AND #{end}
@@ -60,6 +63,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</when>
 				<when test="returnChk == 'X'.toString()">
 					WHERE RETURN_CHK = #{returnChk}
+				</when>
+				<when test="rentDataChk == 'true'.toString()">
+					WHERE RENT_CHK = 'O' OR RETURN_CHK = 'O'
 				</when>
 			</choose>	
 	</select>
