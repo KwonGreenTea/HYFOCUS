@@ -275,8 +275,9 @@
 				function() {
 					const allListForm = $("#allListForm");
 					
+					var data = 'false';
 					// 전체 리스트로 데이터 가져옴
-					allListForm.find("input[name='rentData']").val('false');
+					allListForm.find("input[name='rentData']").val(data);
 
 					allListForm.submit();
 				});
@@ -287,10 +288,6 @@
 
 		$("#modifyList").on("click", function() {
 			window.location.href = "modifyList";
-		});
-		
-		$("#").on("click", function() {
-			window.location.href = "allLentList";
 		});
 	</script>
 

@@ -167,6 +167,8 @@
 							// 현재 페이지 사이즈값 저장
 							var pageSize = "<c:out value='${pageMaker.pagination.pageSize }' />";
 							var keyword = "<c:out value='${pageMaker.pagination.keyword }' />";
+							
+							var data = 'false';
 
 							// 페이지 번호를 input name='pageNum' 값으로 적용
 							listForm.find("input[name='pageNum']").val(pageNum);
@@ -176,7 +178,7 @@
 							// keyword 값을 적용
 							listForm.find("input[name='keyword']").val(keyword);
 							// 전체 리스트로 데이터 가져옴
-							listForm.find("input[name='rentData']").val('false');
+							listForm.find("input[name='rentData']").val(data);
 							listForm.submit();
 						});
 
@@ -198,6 +200,8 @@
 							// 현재 페이지 사이즈값 저장
 							var pageSize = "<c:out value='${pageMaker.pagination.pageSize }' />";
 
+							var data = 'false';
+							
 							// 페이지 번호를 input name='pageNum' 값으로 적용
 							searchForm.find("input[name='pageNum']").val(
 									pageNum);
@@ -205,7 +209,7 @@
 							searchForm.find("input[name='pageSize']").val(
 									pageSize);
 							// 전체 리스트로 데이터 가져옴
-							searchForm.find("input[name='rentData']").val('false');
+							searchForm.find("input[name='rentData']").val(data);
 							searchForm.submit(); // form 전송
 						});
 
