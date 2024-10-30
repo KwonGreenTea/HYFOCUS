@@ -7,7 +7,7 @@ body {
     padding: 0;
     display: flex;
     justify-content: center; /* 중앙 정렬 */
-    align-items: center; /* 중앙 정렬 */
+    align-items: flex-start; /* 상단 정렬 */
     min-height: 100vh; /* 최소 높이 설정 */
     color: #333;
 }
@@ -19,9 +19,10 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px; /* 고정 너비 설정 */
-    height: 500px; /* 고정 높이 설정 */
+    height: auto; /* 내용에 따라 높이 자동 조정 */
     text-align: center;
-    overflow: auto; /* 내용이 넘칠 경우 스크롤 가능 */
+    margin: 0; /* 여백 제거 */
+    overflow: auto;
 }
 
 hr {
@@ -49,8 +50,6 @@ select option {
 
     #container {
         padding: 20px; /* 적당한 패딩 유지 */
-        width: 90%; /* 모바일에서 너비를 90%로 설정 */
-        height: auto; /* 자동 높이 설정 */
     }
 
     h2, h3 {
@@ -66,8 +65,6 @@ select option {
 @media (max-width: 480px) {
     #container {
         padding: 15px; /* 적당한 패딩 유지 */
-        width: 95%; /* 모바일에서 너비를 95%로 설정 */
-        height: auto; /* 자동 높이 설정 */
     }
 
     h2, h3 {
