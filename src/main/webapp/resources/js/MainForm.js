@@ -155,7 +155,7 @@
 		    	$('#MainForm').attr('action', 'rent');
 		     	$('#MainForm').attr('method', 'POST');
 		     	$('#MainForm').submit();
-		     	alert("신청 되었습니다.");
+		     	alert("신청되었습니다.");
 		    }
 		    
 		    // DB와 갯수 비교
@@ -196,7 +196,7 @@
 			                    formSub();
 			                }
 			            } else {
-			                alert(camera + " 카메라의 수량이 없습니다.");
+			                alert(camera + " 수량이 없습니다.");
 			                location.reload();
 			            }
 			        },
@@ -226,7 +226,7 @@
 				                            if (result > 0) {
 				                                formSub();
 				                            } else {
-				                                alert(tripod + " 삼각대의 수량이 없습니다.");
+				                                alert(tripod + " 수량이 없습니다.");
 				                                location.reload();
 				                            }
 				                        },
@@ -239,7 +239,7 @@
 				           			formSub();
 				           		}
 			                } else {
-			                    alert(bag + " 가방의 수량이 없습니다.");
+			                    alert(bag + "수량이 없습니다.");
 			                    location.reload();
 			                }
 			            },
@@ -258,7 +258,7 @@
 			                if (result > 0) {
 			                    formSub();
 			                } else {
-			                    alert(tripod + " 삼각대의 수량이 없습니다.");
+			                    alert(tripod + " 수량이 없습니다.");
 			                    location.reload();
 			                }
 			            },

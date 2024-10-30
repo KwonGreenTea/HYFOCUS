@@ -1,4 +1,6 @@
-@charset "UTF-8";
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -6,72 +8,72 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* 중앙 정렬 */
-    align-items: flex-start; /* 상단 정렬 */
-    min-height: 100vh; /* 최소 높이 설정 */
-    color: #333;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 #container {
-    background-color: #fff;
-    padding: 30px; /* 내부 패딩 */
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px; /* 고정 너비 설정 */
-    height: auto; /* 내용에 따라 높이 자동 조정 */
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
     text-align: center;
-    margin: 0; /* 여백 제거 */
 }
 
-hr {
-    border: 1px solid #ddd;
-    margin: 20px 0;
+h1 {
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    color: #333;
 }
 
-select option:disabled {
-    color: red;
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
 }
 
-select option {
-    color: black;
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
 }
 
-.form-select:disabled {
-    background-color: #e9ecef;
+select, input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
 }
 
-/* 모든 화면에서 일관된 디자인을 유지하기 위한 스타일 */
-@media (max-width: 768px) {
-    body {
-        padding: 0; /* 패딩 제거 */
-    }
-
-    #container {
-        padding: 20px; /* 적당한 패딩 유지 */
-    }
-
-    h2, h3 {
-        font-size: 1.5em; /* 제목 크기 조정 */
-    }
-
-    button {
-        font-size: 1em;
-        padding: 10px 20px; /* 버튼 패딩 */
-    }
+select:focus, input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
-@media (max-width: 480px) {
-    #container {
-        padding: 15px; /* 적당한 패딩 유지 */
-    }
+input[type="radio"] {
+    margin-right: 5px;
+}
 
-    h2, h3 {
-        font-size: 1.2em; /* 제목 크기 조정 */
-    }
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%; /* ��ư�� 100% �ʺ�� ���� */
+}
 
-    button {
-        font-size: 1em; /* 버튼 글자 크기 조정 */
-        padding: 10px 20px; /* 버튼 패딩 */
-    }
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004494;
 }
