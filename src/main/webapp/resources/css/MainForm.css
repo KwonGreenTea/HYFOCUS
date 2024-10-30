@@ -7,19 +7,20 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* 상단 정렬로 변경 */
-    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+    align-items: flex-start; /* 상단 정렬 */
+    min-height: 100vh; /* 최소 높이 설정 */
     color: #333;
 }
 
 #container {
     background-color: #fff;
-    padding: 30px;
+    padding: 20px; /* 패딩 감소 */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%; /* 핸드폰 화면에서 너비를 90%로 설정 */
+    width: 100%; /* 핸드폰 화면에서 너비를 100%로 설정 */
     max-width: 500px; /* 최대 너비를 500px로 설정 */
     text-align: center;
+    margin: 0; /* 여백 제거 */
 }
 
 hr {
@@ -42,13 +43,13 @@ select option {
 /* Media Query for smaller devices */
 @media (max-width: 768px) {
     body {
-        padding: 20px;
+        padding: 0; /* 패딩 제거 */
     }
 
     #container {
-        width: 90%;
-        padding: 20px;
-        margin: 0 auto;
+        width: 100%; /* 너비를 100%로 설정 */
+        padding: 20px; /* 적당한 패딩 유지 */
+        margin: 0; /* 여백 제거 */
     }
 
     h2, h3 {
@@ -63,7 +64,7 @@ select option {
 
 @media (max-width: 480px) {
     #container {
-        padding: 15px;
+        padding: 15px; /* 적당한 패딩 유지 */
     }
 
     h2, h3 {

@@ -202,6 +202,7 @@
 						</c:if>
 					</c:forEach>
 				</div>
+				<br>
 				<div class="form-check">
 					<c:forEach var="extraVO" items="${extraList}">
 						<c:if test="${extraVO.extraNo == 2}">
