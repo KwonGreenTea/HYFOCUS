@@ -7,7 +7,7 @@ body {
     padding: 0;
     display: flex;
     justify-content: center; /* 중앙 정렬 */
-    align-items: flex-start; /* 상단 정렬 */
+    align-items: center; /* 상단 정렬 */
     min-height: 100vh; /* 최소 높이 설정 */
     color: #333;
     overflow: auto;

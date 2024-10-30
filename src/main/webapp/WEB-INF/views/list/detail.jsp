@@ -55,7 +55,8 @@
 						${rentVO.bag}
 					</c:otherwise>
 				</c:choose></li>
-			<li class="list-group-item list-group-item-secondary"><fmt:formatDate
+			<li class="list-group-item list-group-item-secondary"><strong>신청시간
+					: </strong><fmt:formatDate
 					value="${rentVO.createdDate}" pattern="MM월 dd일 HH시 mm분 ss초" /></li>
 			<li class="list-group-item list-group-item-secondary" id="rentChk"><strong>대여
 					확인 : </strong> ${rentVO.rentChk}</li>
