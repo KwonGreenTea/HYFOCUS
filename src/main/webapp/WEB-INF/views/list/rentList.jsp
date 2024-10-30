@@ -13,25 +13,28 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/morph/bootstrap.min.css"
 	rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="container">
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
-			<div class="container-fluid">
-				<div class="collapse navbar-collapse" id="navbarColor04">
-					<ul class="navbar-nav me-auto">
-						<li class="nav-item"><a class="nav-link" id="homeBtn">대여
-								목록 </a></li>
-						<li class="nav-item"><a class="nav-link" id="modifyList">장비
-								수정</a></li>
-						<li class="nav-item"><a class="nav-link" id="allRentList">지난 내역</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+		    <div class="container-fluid">
+		        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+		            <span class="navbar-toggler-icon"></span>
+		        </button>
+		        <div class="collapse navbar-collapse" id="navbarColor04">
+		            <ul class="navbar-nav me-auto">
+		                <li class="nav-item"><a class="nav-link" id="homeBtn">대여 목록</a></li>
+		                <li class="nav-item"><a class="nav-link" id="modifyList">장비 수정</a></li>
+		                <li class="nav-item"><a class="nav-link" id="allRentList">지난 내역</a></li>
+		            </ul>
+		        </div>
+		    </div>
 		</nav>
+
 		<h2>카메라 대여 목록</h2>
 		<br>
 
@@ -86,7 +89,7 @@
 		</form>
 		
 		<!-- 지난 내역 페이지 이동 form -->
-		<form id="allListForm" action="rentList" method="get">
+		<form id="allListForm" action="allRentList" method="get">
 			<input type="hidden" name="rentData">
 		</form>
 

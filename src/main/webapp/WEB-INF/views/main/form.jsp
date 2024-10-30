@@ -20,7 +20,7 @@
 <body>
 	<form id="MainForm">
 		<div id="container">
-			<h2>📷 카메라 신청 폼 📷</h2>
+			<h2>카메라 신청 폼</h2>
 			<!-- 출사 or 정기 대여 선택 창 -->
 			<!-- 
 			<div class="form-check">
@@ -36,7 +36,6 @@
 			 -->
 			<br>
 			<div id="cameraSelectDiv">
-				<h3>카메라 선택</h3>
 				<div class="select-group">
 					<label class="form-label mt-4">📷DSLR📷</label> <select
 						class="form-select" id="dslrSelect" name="dslr">
