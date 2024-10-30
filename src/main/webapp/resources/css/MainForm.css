@@ -7,20 +7,20 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center; /* 중앙 정렬 */
+    align-items: flex-start; /* 상단 정렬 */
     min-height: 100vh; /* 최소 높이 설정 */
     color: #333;
 }
 
 #container {
     background-color: #fff;
-    padding: 30px; /* 내부 패딩 */
+    padding: 20px; /* 내부 패딩 */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%; /* 너비를 100%로 설정 */
     max-width: 500px; /* 최대 너비를 500px로 설정 */
     text-align: center;
-    margin: 20px; /* 상하 여백 추가 */
+    margin: 0; /* 여백 제거 */
 }
 
 hr {
@@ -47,9 +47,7 @@ select option {
     }
 
     #container {
-        width: 100%; /* 너비를 100%로 설정 */
         padding: 20px; /* 적당한 패딩 유지 */
-        margin: 0; /* 여백 제거 */
     }
 
     h2, h3 {
@@ -72,7 +70,7 @@ select option {
     }
 
     button {
-        font-size: 0.9em; /* 버튼 글자 크기 조정 */
-        padding: 8px 16px; /* 버튼 패딩 */
+        font-size: 1em; /* 버튼 글자 크기 조정 */
+        padding: 10px 20px; /* 버튼 패딩 */
     }
 }
