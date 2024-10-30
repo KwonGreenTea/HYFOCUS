@@ -26,7 +26,7 @@
 								목록 </a></li>
 						<li class="nav-item"><a class="nav-link" id="modifyList">장비
 								수정</a></li>
-						<li class="nav-item"><a class="nav-link" href="allRentList">지난 내역</a>
+						<li class="nav-item"><a class="nav-link" id="allRentList">지난 내역</a>
 						</li>
 					</ul>
 				</div>
@@ -175,10 +175,7 @@
 		});
 
 		// page-item을 클릭하면 페이지 이동
-		$(".page-item a")
-				.on(
-						"click",
-						function(e) {
+		$(".page-item a").on("click", function(e) {
 							var listForm = $("#listForm");
 							e.preventDefault();
 
@@ -224,10 +221,7 @@
 							searchForm.submit(); // form 전송
 						});
 
-		$("#notRentBtn")
-				.on(
-						"click",
-						function() {
+		$("#notRentBtn").on("click", function() {
 							const listForm = $("#listForm");
 							// c:out을 이용한 현재 페이지 번호값 저장
 							const pageNum = 1;
@@ -246,10 +240,7 @@
 							listForm.submit();
 						});
 
-		$("#notReturnBtn")
-				.on(
-						"click",
-						function() {
+		$("#notReturnBtn").on("click", function() {
 							const listForm = $("#listForm");
 							// c:out을 이용한 현재 페이지 번호값 저장
 							const pageNum = 1;
@@ -269,10 +260,7 @@
 							listForm.submit();
 						});
 		
-		$("#allRentList")
-		.on(
-				"click",
-				function(e) {
+		$("#allRentList").on( "click", function(e) {
 					const allListForm = $("#allListForm");
 					e.preventDefault();
 					
