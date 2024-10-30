@@ -1,62 +1,62 @@
 body {
-	font-family: 'Helvetica Neue', Arial, sans-serif;
-	background-color: #f0f2f5;
-	margin: 0;
-	padding: 0;
-	padding-top: 56px;
-	color: #333;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    padding-top: 56px; /* 상단 여백 */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 #container {
-	margin: 0 auto;
-	background-color: #fff;
-	padding: 30px;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	width: 90%;
-	text-align: center;
-	flex-grow: 1; /* 컨테이너가 남은 공간을 채우도록 */
-	flex-direction: column;
-	height: 50vh; /* 컨테이너 높이가 콘텐츠에 맞게 조정됨 */
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px; /* 최대 너비 설정 */
+    text-align: center;
+    flex-grow: 1; /* 컨테이너가 남은 공간을 채우도록 */
 }
 
 #footer {
-	width: 90%;
-	margin: 0 auto;
-	margin-top: 10px;
-	margin-bottom: 20px;
-	padding: 10px;
-	background-color: #fff;
-	text-align: center;
-	border-radius: 8px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 8px;
 }
 
 .footer-content {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .button-container {
-	display: flex;
+    display: flex;
 }
 
 #searchForm {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* 작은 화면에서 줄 바꿈 */
 }
 
 #searchForm input[type="text"] {
-	margin-left: 10px;
-	margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #searchForm button {
-	margin-left: 5px;
+    margin-left: 5px;
 }
 
 .nav-item {
@@ -64,31 +64,31 @@ body {
 }
 
 hr {
-	border: 1px solid #808080;
-	margin: 20px 0;
+    border: 1px solid #808080;
+    margin: 20px 0;
 }
 
 #homeBtn {
-	align: left;
-	position: relative;
-	display: inline-block;
-	margin-bottom: 20px;
+    align: left;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
 }
 
 /* 작은 화면에 대한 미디어 쿼리 추가 */
 @media (max-width: 768px) {
     #container {
-        width: 100%;
+        width: 95%; /* 모바일에서는 약간 더 넓게 */
         padding: 20px;
         height: auto; /* 작은 화면에서는 자동 높이 설정 */
     }
 
     #footer {
-        width: 100%;
+        width: 95%; /* 모바일에서도 넓게 설정 */
     }
 
     body {
-        padding-top: 20px;
+        padding-top: 20px; /* 상단 여백 조정 */
     }
 }
 
@@ -99,18 +99,18 @@ hr {
     }
 
     .footer-content {
-        flex-direction: column;
+        flex-direction: column; /* 모바일에서 세로 정렬 */
         align-items: center;
     }
 
     #searchForm {
-        flex-direction: column;
+        flex-direction: column; /* 세로 정렬 */
         align-items: stretch;
     }
 
     #searchForm input[type="text"], 
     #searchForm button {
         width: 100%; /* 모바일에서는 입력 필드와 버튼이 100% 너비 */
-        margin: 5px 0;
+        margin: 5px 0; /* 위아래 여백 */
     }
 }

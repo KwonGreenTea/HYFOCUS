@@ -57,7 +57,7 @@
 				</div>
 
 				<div class="select-group">
-					<label class="form-label mt-4">📷미러리스📷</label> <select
+					<label class="form-label mt-4">📷미러리스 Mirror-less📷</label> <select
 						class="form-select" id="mirrorlessSelect" name="mirrorless">
 						<option value="">선택</option>
 						<c:forEach var="cameraVO" items="${MirrorLessCamList}">
@@ -76,7 +76,7 @@
 				</div>
 
 				<div class="select-group">
-					<label class="form-label mt-4">📷필름 카메라📷 - 자동</label> <select
+					<label class="form-label mt-4">📷필름 카메라 Film Auto📷 - 자동</label> <select
 						class="form-select" id="filmSelectAuto" name="filmAuto">
 						<option value="">선택</option>
 						<c:forEach var="cameraVO" items="${FilmACamList}">
@@ -95,7 +95,7 @@
 				</div>
 
 				<div class="select-group">
-					<label class="form-label mt-4">📷필름 카메라📷 - 수동</label> <select
+					<label class="form-label mt-4">📷필름 카메라 Film Manual📷 - 수동</label> <select
 						class="form-select" id="filmSelectManual" name="filmManual">
 						<option value="">선택</option>
 						<c:forEach var="cameraVO" items="${FilmMCamList}">
@@ -120,7 +120,7 @@
 				<br>
 				<h3>렌즈 선택</h3>
 				<div class="select-group">
-					<label class="form-label mt-4">⚗캐논</label> <select
+					<label class="form-label mt-4">⚗캐논 Canon</label> <select
 						class="form-select" id="canonLensSelect" name="canonLens">
 						<option value="">선택</option>
 						<c:forEach var="lensVO" items="${canonLensList}">
@@ -139,7 +139,7 @@
 				</div>
 
 				<div class="select-group">
-					<label class="form-label mt-4">🔮탐론</label> <select
+					<label class="form-label mt-4">🔮탐론 Tamron</label> <select
 						class="form-select" id="tamronLensSelect" name="tamronLens">
 						<option value="">선택</option>
 						<c:forEach var="lensVO" items="${tamronLensList}">
@@ -158,7 +158,7 @@
 				</div>
 
 				<div class="select-group">
-					<label class="form-label mt-4">⚗시그마</label> <select
+					<label class="form-label mt-4">⚗시그마 Sigma</label> <select
 						class="form-select" id="sigmaLensSelect" name="sigmaLens">
 						<option value="">선택</option>
 						<c:forEach var="lensVO" items="${sigmaLensList}">
