@@ -19,18 +19,16 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px; /* 고정 너비 설정 */
-    max-width: 90%; /* 작은 화면에서 최대 너비를 90%로 설정 */
     height: auto; /* 내용에 따라 높이 자동 조정 */
     text-align: center;
+    margin: 0; /* 여백 제거 */
 }
 
-/* 수평선 스타일 */
 hr {
     border: 1px solid #ddd;
     margin: 20px 0;
 }
 
-/* 선택 옵션 스타일 */
 select option:disabled {
     color: red;
 }
@@ -51,7 +49,6 @@ select option {
 
     #container {
         padding: 20px; /* 적당한 패딩 유지 */
-        width: 90%; /* 모바일에서 너비를 90%로 설정 */
     }
 
     h2, h3 {
@@ -67,7 +64,6 @@ select option {
 @media (max-width: 480px) {
     #container {
         padding: 15px; /* 적당한 패딩 유지 */
-        width: 95%; /* 모바일에서 너비를 95%로 설정 */
     }
 
     h2, h3 {
