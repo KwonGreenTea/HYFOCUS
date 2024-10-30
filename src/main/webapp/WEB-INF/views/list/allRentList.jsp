@@ -31,12 +31,12 @@
 		<h2>카메라 대여 전체 목록</h2>
 		<br>
 
-		<!-- 게시글 페이지 사이즈 선택 -->
+		<!-- 게시글 페이지 사이즈 선택 
 		<select class="form-select" id="selectSize">
 			<option value="" disabled selected>목록 표시 수</option>
 			<option value="5">5</option>
 			<option value="10">10</option>
-		</select> 
+		</select> -->
 
 		<br>
 		<div class="table-responsive">
