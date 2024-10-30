@@ -7,20 +7,20 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* 상단 정렬 */
+    align-items: center; /* 중앙 정렬 */
     min-height: 100vh; /* 최소 높이 설정 */
     color: #333;
 }
 
 #container {
     background-color: #fff;
-    padding: 20px; /* 패딩 감소 */
+    padding: 30px; /* 내부 패딩 */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%; /* 핸드폰 화면에서 너비를 100%로 설정 */
+    width: 100%; /* 너비를 100%로 설정 */
     max-width: 500px; /* 최대 너비를 500px로 설정 */
     text-align: center;
-    margin: 0; /* 여백 제거 */
+    margin: 20px; /* 상하 여백 추가 */
 }
 
 hr {
@@ -40,7 +40,7 @@ select option {
     background-color: #e9ecef;
 }
 
-/* Media Query for smaller devices */
+/* 모든 화면에서 일관된 디자인을 유지하기 위한 스타일 */
 @media (max-width: 768px) {
     body {
         padding: 0; /* 패딩 제거 */
@@ -53,12 +53,12 @@ select option {
     }
 
     h2, h3 {
-        font-size: 1.8em; /* 제목 크기 증가 */
+        font-size: 1.5em; /* 제목 크기 조정 */
     }
 
     button {
         font-size: 1em;
-        padding: 12px 24px; /* 버튼 패딩 증가 */
+        padding: 10px 20px; /* 버튼 패딩 */
     }
 }
 
@@ -68,11 +68,11 @@ select option {
     }
 
     h2, h3 {
-        font-size: 1.5em; /* 제목 크기 증가 */
+        font-size: 1.2em; /* 제목 크기 조정 */
     }
 
     button {
-        font-size: 1em; /* 버튼 글자 크기 증가 */
-        padding: 10px 20px; /* 버튼 패딩 증가 */
+        font-size: 0.9em; /* 버튼 글자 크기 조정 */
+        padding: 8px 16px; /* 버튼 패딩 */
     }
 }
