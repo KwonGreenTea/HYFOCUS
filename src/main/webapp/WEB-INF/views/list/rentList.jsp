@@ -51,7 +51,6 @@
 				<thead>
 					<tr>
 						<th scope="col">이름</th>
-						<th scope="col">신청시간</th>
 						<th scope="col">대여</th>
 						<th scope="col">반납</th>
 					</tr>
@@ -61,8 +60,6 @@
 						<c:if test="${rentVO.returnChk == 'X'}">
 							<tr class="table-secondary" id="${rentVO.rentNo}">
 								<td>${rentVO.stuInfo}</td>
-								<td><fmt:formatDate value="${rentVO.createdDate}"
-										pattern="MM월 dd일 HH시 mm분 ss초" /></td>
 								<td>${rentVO.rentChk}</td>
 								<td>${rentVO.returnChk}</td>
 							</tr>

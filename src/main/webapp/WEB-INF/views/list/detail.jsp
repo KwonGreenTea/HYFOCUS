@@ -55,6 +55,8 @@
 						${rentVO.bag}
 					</c:otherwise>
 				</c:choose></li>
+			<li class="list-group-item list-group-item-secondary"><fmt:formatDate
+					value="${rentVO.createdDate}" pattern="MM월 dd일 HH시 mm분 ss초" /></li>
 			<li class="list-group-item list-group-item-secondary" id="rentChk"><strong>대여
 					확인 : </strong> ${rentVO.rentChk}</li>
 			<li class="list-group-item list-group-item-secondary"><strong>반납
@@ -63,7 +65,8 @@
 		<br>
 		<div class="button-container">
 			<div class="btn-group" id="leftBtn">
-				<button type="button" class="btn btn-secondary" id="modifyBtn" disabled>수정</button>
+				<button type="button" class="btn btn-secondary" id="modifyBtn"
+					disabled>수정</button>
 				<!-- 필요하면 추가 -->
 				<button type="button" class="btn btn-secondary" id="deleteBtn">삭제</button>
 			</div>
