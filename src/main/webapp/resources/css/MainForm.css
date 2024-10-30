@@ -1,29 +1,30 @@
 @charset "UTF-8";
 
 body {
-	font-family: 'Helvetica Neue', Arial, sans-serif;
-	background-color: #f0f2f5;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	color: #333;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 상단 정렬로 변경 */
+    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+    color: #333;
 }
 
 #container {
-	background-color: #fff;
-	padding: 30px;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	width: 500px;
-	text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* 핸드폰 화면에서 너비를 90%로 설정 */
+    max-width: 500px; /* 최대 너비를 500px로 설정 */
+    text-align: center;
 }
 
 hr {
-	border: 1px solid #ddd;
-	margin: 20px 0;
+    border: 1px solid #ddd;
+    margin: 20px 0;
 }
 
 select option:disabled {
@@ -35,29 +36,28 @@ select option {
 }
 
 .form-select:disabled {
-	background-color: #e9ecef;
+    background-color: #e9ecef;
 }
 
 /* Media Query for smaller devices */
 @media (max-width: 768px) {
     body {
-        height: auto;
         padding: 20px;
     }
 
     #container {
-        width: 90%; /* Adjusts the container width to 90% of the viewport */
+        width: 90%;
         padding: 20px;
-        margin: 0 auto; /* Center container */
+        margin: 0 auto;
     }
 
     h2, h3 {
-        font-size: 1.5em; /* Adjust heading font sizes */
+        font-size: 1.8em; /* 제목 크기 증가 */
     }
 
     button {
         font-size: 1em;
-        padding: 10px 20px;
+        padding: 12px 24px; /* 버튼 패딩 증가 */
     }
 }
 
@@ -67,11 +67,11 @@ select option {
     }
 
     h2, h3 {
-        font-size: 1.2em;
+        font-size: 1.5em; /* 제목 크기 증가 */
     }
 
     button {
-        font-size: 0.9em;
-        padding: 8px 16px;
+        font-size: 1em; /* 버튼 글자 크기 증가 */
+        padding: 10px 20px; /* 버튼 패딩 증가 */
     }
 }
