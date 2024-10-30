@@ -10,6 +10,7 @@ body {
     align-items: flex-start; /* 상단 정렬 */
     min-height: 100vh; /* 최소 높이 설정 */
     color: #333;
+    overflow: auto;
 }
 
 #container {
@@ -22,7 +23,6 @@ body {
     height: auto; /* 내용에 따라 높이 자동 조정 */
     text-align: center;
     margin: 0; /* 여백 제거 */
-    overflow: auto;
 }
 
 hr {
