@@ -137,19 +137,26 @@ public class UserMainController {
 	    if (bag != null) inventoryCheck.put(bag, extraService.chkCntByBag());
 	    if (tripod != null) inventoryCheck.put(tripod, extraService.chkCntByTripod());
 
+	    log.info("1");
+	    
 	    // 응답 데이터를 담을 Map
 	    Map<String, Object> response = new HashMap<>();
 
+	    log.info("2");
+	    
 	    // 재고 검사
 	    for (Map.Entry<String, Integer> entry : inventoryCheck.entrySet()) {
+	    	log.info("3");
 	        String itemName = entry.getKey();
 	        int itemCount = entry.getValue();
 	        if (itemCount <= 0) {
+	        	log.info("4");
 	            response.put("success", false);
 	            response.put("message", itemName + " 수량이 부족합니다.");
 	            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	        }
 	    }
+	    log.info("5");
 
 	    // 재고 충분 시 데이터 삽입 및 성공 메시지 반환
 	    Date createdDate = new Date();
