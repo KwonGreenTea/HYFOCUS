@@ -187,7 +187,7 @@ public class AdminController {
 
 		// 응답 설정
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-		response.setHeader("Content-Disposition", "attachment; filename=렌트_리스트.xlsx");
+		response.setHeader("Content-Disposition", "attachment; filename=rent_list.xlsx");
 
 		// 엑셀 파일을 응답으로 출력
 		try (OutputStream out = response.getOutputStream()) {

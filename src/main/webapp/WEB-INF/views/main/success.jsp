@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,13 +23,15 @@
 <body>
 	<br>
 	<br>
-	<h1 style="text-align: center;">신청 완료 되었습니다</h1><br>
+	<h1 style="text-align: center;">신청 완료 되었습니다</h1>
+	<br>
 	<h2 style="text-align: center;">${rentVO.stuInfo}</h2>
 	<p style="text-align: center;">${rentVO.camName}</p>
 	<p style="text-align: center;">${rentVO.lensName}</p>
 	<p style="text-align: center;">${rentVO.bag}</p>
 	<p style="text-align: center;">${rentVO.tripod}</p>
-	<p style="text-align: center;">${rentVO.createdDate}</p>
+	<fmt:formatDate value="${rentVO.createdDate}"
+		pattern="MM월 dd일 HH시 mm분 ss초" />
 	<div style="text-align: center; margin-top: 20px;">
 		<button onclick="reset()" style="font-size: 20px; padding: 10px 20px;">새로고침</button>
 	</div>
