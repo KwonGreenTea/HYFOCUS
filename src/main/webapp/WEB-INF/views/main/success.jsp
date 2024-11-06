@@ -30,8 +30,6 @@
 	<p style="text-align: center;">${rentVO.lensName}</p>
 	<p style="text-align: center;">${rentVO.bag}</p>
 	<p style="text-align: center;">${rentVO.tripod}</p>
-	<fmt:formatDate value="${rentVO.createdDate}"
-		pattern="MM월 dd일 HH시 mm분 ss초" />
 	<div style="text-align: center; margin-top: 20px;">
 		<button onclick="reset()" style="font-size: 20px; padding: 10px 20px;">새로고침</button>
 	</div>
