@@ -41,6 +41,7 @@ public class UserMainController {
 	// *********************
 
 	private String setDate = "2024-11-06T19:00:00";
+	
 
 	@Autowired
 	private CameraService cameraService;
@@ -119,49 +120,40 @@ public class UserMainController {
 	}
 
 	@PostMapping("/rent")
-	public ResponseEntity<Map<String, Object>> rentPOST(@RequestParam(required = false) String camera,
+	public synchronized ResponseEntity<Map<String, Object>> rentPOST(@RequestParam(required = false) String camera,
 			@RequestParam(required = false) String lens, @RequestParam(required = false) String bag,
 			@RequestParam(required = false) String tripod, @RequestParam String stuInfo, Model model,
 			RedirectAttributes reAttr) {
 
 		log.info("rentPOST()");
+		
 
 		// 재고 확인을 위한 Map 초기화
 		Map<String, Integer> inventoryCheck = new HashMap<>();
 		inventoryCheck.put(camera, cameraService.chkCntByName(camera));
-		log.info("0");
 		if (lens != null && lens.length() != 0) {
 			inventoryCheck.put(lens, lensService.chkCntByName(lens));
 		}
-		log.info("01");
 		if (bag != null && bag.length() != 0) {
 			inventoryCheck.put(bag, extraService.chkCntByBag());
 		}
-		log.info("02");
 		if (tripod != null && tripod.length() != 0) {
 			inventoryCheck.put(tripod, extraService.chkCntByTripod());
 		}
-
-		log.info("1");
-
+		
 		// 응답 데이터를 담을 Map
 		Map<String, Object> response = new HashMap<>();
-
-		log.info("2");
-
+		
 		// 재고 검사
 		for (Map.Entry<String, Integer> entry : inventoryCheck.entrySet()) {
-			log.info("3");
 			String itemName = entry.getKey();
 			int itemCount = entry.getValue();
 			if (itemCount <= 0) {
-				log.info("4");
 				response.put("success", false);
 				response.put("message", itemName + " 수량이 부족합니다.");
 				return new ResponseEntity<>(response, HttpStatus.OK);
 			}
 		}
-		log.info("5");
 
 		// 재고 충분 시 데이터 삽입 및 성공 메시지 반환
 		Date createdDate = new Date();
