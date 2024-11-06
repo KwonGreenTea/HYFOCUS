@@ -23,5 +23,9 @@ public interface RentService {
 	int rent(int rentNo);
 	int returnRent(RentVO rentVO);
 
+	List<RentVO> getRentData();
+
+	RentVO getAllDataByStuInfo(String stuInfo);
+
 	
 }

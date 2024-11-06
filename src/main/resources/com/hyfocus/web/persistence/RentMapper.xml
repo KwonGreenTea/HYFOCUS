@@ -24,8 +24,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY RENT_NO ASC
 	</select>
 	
+	<select id="getRentData" resultMap="rentResultMap">
+		SELECT * FROM RENT 
+		WHERE RENT_CHK = 'X' OR RETURN_CHK = 'X'
+	</select>
+	
 	<select id="getAllDataByRentNo" resultMap="rentResultMap">
 		SELECT * FROM RENT WHERE RENT_NO = #{rentNo}
+	</select>
+	
+	<select id="getAllDataByStuInfo" resultMap="rentResultMap">
+		SELECT * FROM RENT WHERE STU_INFO = #{stuInfo}
 	</select>
 	
 	<select id="selectListByPagination" resultMap="rentResultMap">

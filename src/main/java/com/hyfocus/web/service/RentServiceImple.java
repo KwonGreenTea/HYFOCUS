@@ -137,4 +137,14 @@ public class RentServiceImple implements RentService {
 		return rentMapper.returnRent(rentVO.getRentNo());
 	}
 
+	@Override
+	public List<RentVO> getRentData() {
+		return rentMapper.getRentData();
+	}
+
+	@Override
+	public RentVO getAllDataByStuInfo(String stuInfo) {
+		return rentMapper.getAllDataByStuInfo(stuInfo);
+	}
+
 }

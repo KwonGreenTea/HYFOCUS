@@ -82,195 +82,56 @@
 		    });
 		    
 		    // 신청 버튼을 누름
-		    $('#subBtn').click(function(event) {
-		    	event.preventDefault();
-		    	
-		    	const stuInfo = $('#stuInfo').val();
-		        if (!stuInfo) {
-		            alert('학번, 이름을 입력해 주세요.');
-		            return;
-		        }
-		    	
-		    	// 선택된 카메라
-		        const dslr = $('#dslrSelect option:selected').attr('id');
-		        const mirrorless = $('#mirrorlessSelect option:selected').attr('id');
-		        const filmAuto = $('#filmSelectAuto option:selected').attr('id');
-		        const filmManual = $('#filmSelectManual option:selected').attr('id');
-		        const cam_List = [dslr, mirrorless, filmAuto, filmManual];
-		        
-		        let camera = null;
-		        cam_List.forEach(function(cam) {
-		            if (cam) {
-		                camera = cam;
-		                return false;
-		            }
-		        });
-		        
-
-		        // 선택된 렌즈
-		        const canonLens = $('#canonLensSelect option:selected').attr('id');
-		        const tamronLens = $('#tamronLensSelect option:selected').attr('id');
-		        const sigmaLens = $('#sigmaLensSelect option:selected').attr('id');
-		        const lens_List = [canonLens, tamronLens, sigmaLens];
-		        
-		        let lens = null;
-		        lens_List.forEach(function(lensItem) {
-		            if (lensItem) {
-		                lens = lensItem;
-		                return false;
-		            }
-		        });
-
-		        // 가방, 삼각대
-		        const bag = $('#bagCheck').is(':checked') ? $('#bagCheck').val() : '';
-    			const tripod = $('#tripodCheck').is(':checked') ? $('#tripodCheck').val() : '';
-		        const extras = [];
-			    if (bag) {
-			        extras.push(bag);
+		   $('#subBtn').click(function(event) {
+			    event.preventDefault();
+			    
+			    const stuInfo = $('#stuInfo').val();
+			    if (!stuInfo) {
+			        alert('학번, 이름을 입력해 주세요.');
+			        return;
 			    }
-			    if (tripod) {
-			        extras.push(tripod);
+			    
+			    const dslr = $('#dslrSelect option:selected').attr('id');
+			    const mirrorless = $('#mirrorlessSelect option:selected').attr('id');
+			    const filmAuto = $('#filmSelectAuto option:selected').attr('id');
+			    const filmManual = $('#filmSelectManual option:selected').attr('id');
+			    const cam_List = [dslr, mirrorless, filmAuto, filmManual];
+			    
+			    let camera = cam_List.find(cam => cam);
+			    const canonLens = $('#canonLensSelect option:selected').attr('id');
+			    const tamronLens = $('#tamronLensSelect option:selected').attr('id');
+			    const sigmaLens = $('#sigmaLensSelect option:selected').attr('id');
+			    const lens_List = [canonLens, tamronLens, sigmaLens];
+			    
+			    let lens = lens_List.find(lensItem => lensItem);
+			    
+			    const bag = $('#bagCheck').is(':checked') ? $('#bagCheck').val() : '';
+			    const tripod = $('#tripodCheck').is(':checked') ? $('#tripodCheck').val() : '';
+			    const extras = [bag, tripod].filter(extra => extra);
+			    
+			    if (confirm(`카메라 : ${camera}\n렌즈 : ${lens}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
+			        formSubmit(camera, lens, bag, tripod);
 			    }
-		        
-		     	if(lens) {
-		     		if(extras) {
-		     			if(confirm("카메라 : " + camera + "\n렌즈 : " + lens + "\n추가 장비 : " + extras + "\n(으)로 신청하시나요?")) {
-		     				chkCnt(camera, lens, extras, bag, tripod);
-		     			}
-		     		} else {
-		     			if(confirm("카메라 : " + camera + "\n렌즈 : " + lens + "\n(으)로 신청하시나요?")) {
-		     				chkCnt(camera, lens, extras, bag, tripod);
-		     			}
-		     		}
-		     	} else {
-		     		if(extras) {
-		     			if(confirm("카메라 : " + camera + "\n추가 장비 : " + extras + "\n(으)로 신청하시나요?")) {
-		     				chkCnt(camera, lens, extras, bag, tripod);
-		     			}
-		     		} else {
-		     			if(confirm("카메라 : " + camera + "\n(으)로 신청하시나요?")) {
-		     				chkCnt(camera, lens, extras, bag, tripod);
-		     			}
-		     		}
-		       	}
-		    });
-		    
-		    function formSub() {
-		    	$('#MainForm').attr('action', 'rent');
-		     	$('#MainForm').attr('method', 'POST');
-		     	$('#MainForm').submit();
-		     	alert("신청되었습니다.");
-		    }
-		    
-		    // DB와 갯수 비교
-		    function chkCnt(camera, lens, extras, bag, tripod) {
+			});
+
+		    function formSubmit(camera, lens, bag, tripod, stuInfo) {
 			    $.ajax({
 			        type: "POST",
-			        url: "chkCnt", 
+			        url: "rent",
 			        contentType: "application/x-www-form-urlencoded",
-			        data: { data: camera }, // 데이터는 URL 인코딩 형식으로 전송됨
+			        data: { camera: camera, lens: lens, bag: bag, tripod: tripod, stuInfo: stuInfo },
 			        success: function(result) {
-			            if (result > 0) {
-			                if (lens) {
-			                    $.ajax({
-			                        type: "POST",
-			                        url: "chkCnt", 
-			                        contentType: "application/x-www-form-urlencoded",
-			                        data: { data: lens }, // 데이터는 URL 인코딩 형식으로 전송됨
-			                        success: function(result) {
-			                            if (result > 0) {
-			                                if (extras.length > 0) {
-			                                    chkExtra(bag, tripod);
-			                                } else {
-			                                    formSub();
-			                                }
-			                            } else {
-			                                alert(lens + " 렌즈의 수량이 없습니다.");
-			                                location.reload();
-			                            }
-			                        },
-			                        error: function(xhr, status, error) {
-			                            alert("렌즈 오류");
-			                            location.reload();
-			                        }
-			                    });
-			                } else if (extras.length > 0) {
-			                    chkExtra(bag, tripod);
-			                } else {
-			                    formSub();
-			                }
+			            if (result.success) { 
+			                window.location.href = `rentSuccess?stuInfo=${encodeURIComponent(stuInfo)}`;
 			            } else {
-			                alert(camera + " 수량이 없습니다.");
+			                alert(result.message); // 수량 부족 메시지
 			                location.reload();
 			            }
 			        },
 			        error: function(xhr, status, error) {
-			            alert("카메라 오류");
+			            alert("신청 처리 중 오류가 발생했습니다.");
 			            location.reload();
 			        }
 			    });
-			}
-			
-			function chkExtra(bag, tripod) {
-			    if (bag) {
-			        $.ajax({
-			            type: "POST",
-			            url: "chkCnt", 
-			            contentType: "application/x-www-form-urlencoded",
-			            data: { data: bag }, // 데이터는 URL 인코딩 형식으로 전송됨
-			            success: function(result) {
-			                if (result > 0) {
-			                	if (tripod) {
-				                    $.ajax({
-				                        type: "POST",
-				                        url: "chkCnt", 
-				                        contentType: "application/x-www-form-urlencoded",
-				                        data: { data: tripod }, // 데이터는 URL 인코딩 형식으로 전송됨
-				                        success: function(result) {
-				                            if (result > 0) {
-				                                formSub();
-				                            } else {
-				                                alert(tripod + " 수량이 없습니다.");
-				                                location.reload();
-				                            }
-				                        },
-				                        error: function(xhr, status, error) {
-				                            alert("삼각대 오류");
-				                            location.reload();
-				                        }
-				                    });
-				           		} else {
-				           			formSub();
-				           		}
-			                } else {
-			                    alert(bag + "수량이 없습니다.");
-			                    location.reload();
-			                }
-			            },
-			            error: function(xhr, status, error) {
-			                alert("가방 오류");
-			                location.reload();
-			            }
-			        });
-			    } else if (tripod) {
-			        $.ajax({
-			            type: "POST",
-			            url: "chkCnt", 
-			            contentType: "application/x-www-form-urlencoded",
-			            data: { data: tripod }, // 데이터는 URL 인코딩 형식으로 전송됨
-			            success: function(result) {
-			                if (result > 0) {
-			                    formSub();
-			                } else {
-			                    alert(tripod + " 수량이 없습니다.");
-			                    location.reload();
-			                }
-			            },
-			            error: function(xhr, status, error) {
-			                alert("삼각대 오류");
-			                location.reload();
-			            }
-			        });
-			    }
 			}
 		});

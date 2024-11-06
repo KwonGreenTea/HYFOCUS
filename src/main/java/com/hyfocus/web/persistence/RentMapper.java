@@ -28,4 +28,8 @@ public interface RentMapper {
 	
 	int returnRent(int rentNo);
 
+	List<RentVO> getRentData();
+
+	RentVO getAllDataByStuInfo(String stuInfo);
+
 }

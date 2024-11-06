@@ -156,9 +156,9 @@ public class AdminController {
 	}
 
 	@GetMapping("/exportExcel")
-	public void exportToExcel(HttpServletRequest request, HttpServletResponse response, Pagination pagination)
+	public void exportToExcel(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		List<RentVO> rentList = rentService.getPagingBoards(pagination);
+		List<RentVO> rentList = rentService.getRentData();
 
 		// 엑셀 파일 생성
 		Workbook workbook = new XSSFWorkbook();
@@ -166,21 +166,23 @@ public class AdminController {
 
 		// 헤더 생성
 		Row headerRow = sheet.createRow(0);
-		headerRow.createCell(0).setCellValue("이름");
-		headerRow.createCell(1).setCellValue("카메라");
-		headerRow.createCell(2).setCellValue("렌즈");
-		headerRow.createCell(3).setCellValue("카메라 가방");
-		headerRow.createCell(4).setCellValue("삼각대");
+		headerRow.createCell(0).setCellValue("신청시간");
+		headerRow.createCell(1).setCellValue("이름");
+		headerRow.createCell(2).setCellValue("카메라");
+		headerRow.createCell(3).setCellValue("렌즈");
+		headerRow.createCell(4).setCellValue("카메라 가방");
+		headerRow.createCell(5).setCellValue("삼각대");
 
 		// 데이터 추가
 		int rowNum = 1;
 		for (RentVO rentVO : rentList) {
 			Row row = sheet.createRow(rowNum++);
-			row.createCell(0).setCellValue(rentVO.getStuInfo());
-			row.createCell(1).setCellValue(rentVO.getCamName());
-			row.createCell(2).setCellValue(rentVO.getLensName());
-			row.createCell(3).setCellValue(rentVO.getBag());
-			row.createCell(4).setCellValue(rentVO.getTripod());
+			row.createCell(0).setCellValue(rentVO.getCreatedDate());
+			row.createCell(1).setCellValue(rentVO.getStuInfo());
+			row.createCell(2).setCellValue(rentVO.getCamName());
+			row.createCell(3).setCellValue(rentVO.getLensName());
+			row.createCell(4).setCellValue(rentVO.getBag());
+			row.createCell(5).setCellValue(rentVO.getTripod());
 		}
 
 		// 응답 설정

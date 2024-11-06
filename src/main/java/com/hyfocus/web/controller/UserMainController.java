@@ -5,6 +5,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,16 +35,13 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class UserMainController {
-	
-	//		*********************
-	//		**** 보여줄 시간 설정 ****
-	//		*********************
 
-	private String setDate = "2024-11-06T19:00:00"; 
-		
-	
-	
-	
+	// *********************
+	// **** 보여줄 시간 설정 ****
+	// *********************
+
+	private String setDate = "2024-11-06T19:00:00";
+
 	@Autowired
 	private CameraService cameraService;
 
@@ -55,22 +54,6 @@ public class UserMainController {
 	@Autowired
 	private RentService rentService;
 
-	private String isNullChkList(ArrayList<String> List) {
-		String result = null;
-		for (String str : List) {
-			if (str != null && !str.isEmpty()) {
-				int index = str.indexOf('(');
-				if (index != -1) {
-					result = str.substring(0, index).trim();
-				} else {
-					result = str;
-				}
-				break;
-			}
-		}
-		return result;
-	}
-
 	@GetMapping("/pageNotOpen")
 	public String pageNotOpenGET() {
 		log.info("pageNotOpenGET()");
@@ -80,26 +63,26 @@ public class UserMainController {
 	@GetMapping("/main")
 	public String mainGET(HttpServletRequest request, Model model, RedirectAttributes reAttr) {
 		ZoneId zoneId = ZoneId.of("Asia/Seoul"); // 한국 시간
-        LocalDateTime currentDateTime = LocalDateTime.now(zoneId);
-        LocalDateTime targetDateTime;
-        HttpSession session;
+		LocalDateTime currentDateTime = LocalDateTime.now(zoneId);
+		LocalDateTime targetDateTime;
+		HttpSession session;
 
-        try {
-            targetDateTime = LocalDateTime.parse(setDate); 
-        } catch (DateTimeParseException e) {
-        	log.info("날짜 형식 오류: " + e.getMessage());
-            return "error/error";
-        }
+		try {
+			targetDateTime = LocalDateTime.parse(setDate);
+		} catch (DateTimeParseException e) {
+			log.info("날짜 형식 오류: " + e.getMessage());
+			return "error/error";
+		}
 
-        if (currentDateTime.isAfter(targetDateTime)) {
-        	session = request.getSession(false);
-        	session = request.getSession();      
-        	session.setAttribute("hyfocus", "hyfocus");
-    		session.setMaxInactiveInterval(600);
-        } else {
-            return "redirect:/pageNotOpen"; 
-        }
-		
+		if (currentDateTime.isAfter(targetDateTime)) {
+			session = request.getSession(false);
+			session = request.getSession();
+			session.setAttribute("hyfocus", "hyfocus");
+			session.setMaxInactiveInterval(600);
+		} else {
+			return "redirect:/pageNotOpen";
+		}
+
 		if (session != null && session.getAttribute("hyfocus") != null) {
 			log.info("mainGET()");
 
@@ -136,55 +119,54 @@ public class UserMainController {
 	}
 
 	@PostMapping("/rent")
-	public String rentPOST(@RequestParam(required = false) String dslr,
-			@RequestParam(required = false) String mirrorless, @RequestParam(required = false) String filmAuto,
-			@RequestParam(required = false) String filmManual, @RequestParam(required = false) String canonLens,
-			@RequestParam(required = false) String tamronLens, @RequestParam(required = false) String sigmaLens,
-			@RequestParam(required = false) String bag, @RequestParam(required = false) String tripod,
-			@RequestParam String stuInfo, Model model, RedirectAttributes reAttr) {
+	public ResponseEntity<Map<String, Object>> rentPOST(
+	        @RequestParam(required = false) String camera,
+	        @RequestParam(required = false) String lens,
+	        @RequestParam(required = false) String bag,
+	        @RequestParam(required = false) String tripod,
+	        @RequestParam String stuInfo,
+	        Model model,
+	        RedirectAttributes reAttr) {
 
-		log.info("rentPOST()");
+	    log.info("rentPOST()");
 
-		ArrayList<String> camList = new ArrayList<>();
-		camList.add(dslr);
-		camList.add(mirrorless);
-		camList.add(filmAuto);
-		camList.add(filmManual);
+	    // 재고 확인을 위한 Map 초기화
+	    Map<String, Integer> inventoryCheck = new HashMap<>();
+	    inventoryCheck.put(camera, cameraService.chkCntByName(camera));
+	    if (lens != null) inventoryCheck.put(lens, lensService.chkCntByName(lens));
+	    if (bag != null) inventoryCheck.put(bag, extraService.chtCntByBag(bag));
+	    if (tripod != null) inventoryCheck.put(tripod, extraService.chkCntByTripod(tripod));
 
-		String camera = isNullChkList(camList);
+	    // 응답 데이터를 담을 Map
+	    Map<String, Object> response = new HashMap<>();
 
-		ArrayList<String> lensList = new ArrayList<>();
-		lensList.add(canonLens);
-		lensList.add(tamronLens);
-		lensList.add(sigmaLens);
+	    // 재고 검사
+	    for (Map.Entry<String, Integer> entry : inventoryCheck.entrySet()) {
+	        String itemName = entry.getKey();
+	        int itemCount = entry.getValue();
+	        if (itemCount <= 0) {
+	            response.put("success", false);
+	            response.put("message", itemName + " 수량이 부족합니다.");
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        }
+	    }
 
-		String lens = isNullChkList(lensList);
+	    // 재고 충분 시 데이터 삽입 및 성공 메시지 반환
+	    Date createdDate = new Date();
+	    int rowsInserted = rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate);
+	    log.info(rowsInserted + "행 INSERT 수행완료.");
 
-		log.info(stuInfo);
-		Date createdDate = new Date();
-		log.info(rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate) + "행 INSERT 수행완료.");
-		RentVO rentVO = new RentVO(0, camera, lens, bag, tripod, stuInfo, createdDate, "", "");
+	    response.put("success", true);
+	    response.put("stuInfo", stuInfo);
+
+	    return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/rentSuccess")
+	public String rentSuccessGet(Model model, String stuInfo){
+		RentVO rentVO = rentService.getAllDataByStuInfo(stuInfo);
 		
 		model.addAttribute("rentVO", rentVO);
-		
 		return "main/success";
-	}
-
-	@PostMapping("/chkCnt")
-	public ResponseEntity<Integer> chkCntPost(@RequestParam("data") String data) {
-		log.info("chkCntPost()");
-
-		int result = 0;
-		if (data.equals("카메라 가방")) {
-			result = extraService.chtCntByBag(data);
-		} else if (data.equals("삼각대")) {
-			result = extraService.chkCntByTripod(data);
-		} else if (data.charAt(0) >= '0' && data.charAt(0) <= '9') {
-			result = lensService.chkCntByName(data);
-		} else {
-			result = cameraService.chkCntByName(data);
-		}
-
-		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 }
