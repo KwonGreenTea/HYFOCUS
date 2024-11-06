@@ -46,12 +46,12 @@ public class RentServiceImple implements RentService {
 		}
 		
 		if(bag != null && !bag.isEmpty()) {
-			count = extraMapper.getBagCount(bag);
+			count = extraMapper.getBagCount();
 			log.info(extraMapper.updateBagCount(bag, --count) + "행 가방 갯수 업데이트");
 		}
 		
 		if(tripod != null && !tripod.isEmpty()) {
-			count = extraMapper.getTripodCount(tripod);
+			count = extraMapper.getTripodCount();
 			log.info(extraMapper.updateTripodCount(tripod, --count) + "행 삼각대 갯수 업데이트");
 		}
 		
@@ -94,12 +94,12 @@ public class RentServiceImple implements RentService {
 		}
 		
 		if(rentVO.getBag() != null && !rentVO.getBag().isEmpty()) {
-			count = extraMapper.getBagCount(rentVO.getBag());
+			count = extraMapper.getBagCount();
 			log.info(extraMapper.updateBagCount(rentVO.getBag(), ++count) + "행 가방 갯수 업데이트");
 		}
 		
 		if(rentVO.getTripod() != null && !rentVO.getTripod().isEmpty()) {
-			count = extraMapper.getTripodCount(rentVO.getTripod());
+			count = extraMapper.getTripodCount();
 			log.info(extraMapper.updateTripodCount(rentVO.getTripod(), ++count) + "행 삼각대 갯수 업데이트");
 		}
 		
@@ -125,12 +125,12 @@ public class RentServiceImple implements RentService {
 		}
 		
 		if(rentVO.getBag() != null && !rentVO.getBag().isEmpty()) {
-			count = extraMapper.getBagCount(rentVO.getBag());
+			count = extraMapper.getBagCount();
 			log.info(extraMapper.updateBagCount(rentVO.getBag(), ++count) + "행 가방 갯수 업데이트");
 		}
 		
 		if(rentVO.getTripod() != null && !rentVO.getTripod().isEmpty()) {
-			count = extraMapper.getTripodCount(rentVO.getTripod());
+			count = extraMapper.getTripodCount();
 			log.info(extraMapper.updateTripodCount(rentVO.getTripod(), ++count) + "행 삼각대 갯수 업데이트");
 		}
 		

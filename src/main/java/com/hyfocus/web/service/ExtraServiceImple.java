@@ -25,13 +25,13 @@ public class ExtraServiceImple implements ExtraService {
 	}
 
 	@Override
-	public int chtCntByBag(String data) {
-		return extraMapper.getBagCount(data);
+	public int chkCntByBag() {
+		return extraMapper.getBagCount();
 	}
 
 	@Override
-	public int chkCntByTripod(String data) {
-		return extraMapper.getTripodCount(data);
+	public int chkCntByTripod() {
+		return extraMapper.getTripodCount();
 	}
 
 	@Override

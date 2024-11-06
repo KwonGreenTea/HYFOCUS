@@ -109,9 +109,15 @@
 			    const tripod = $('#tripodCheck').is(':checked') ? $('#tripodCheck').val() : '';
 			    const extras = [bag, tripod].filter(extra => extra);
 			    
-			    if (confirm(`카메라 : ${camera}\n렌즈 : ${lens}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
-			        formSubmit(camera, lens, bag, tripod);
-			    }
+			    if (lens != null) {
+				    if (confirm(`카메라 : ${camera}\n렌즈 : ${lens}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
+				        formSubmit(camera, lens, bag, tripod);
+				    }
+				} else {
+					if (confirm(`카메라 : ${camera}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
+				        formSubmit(camera, lens, bag, tripod);
+				    }
+				}
 			});
 
 		    function formSubmit(camera, lens, bag, tripod, stuInfo) {

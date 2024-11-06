@@ -12,11 +12,11 @@ public interface ExtraMapper {
 
 	ArrayList<ExtraVO> selectAllData();
 
-	int getBagCount(@Param("bag") String bag);
+	int getBagCount();
 	int updateBagCount(@Param("bag") String bag, @Param("count") int count);
 	ExtraVO selectAllDataByName(@Param("data") String data);
 	
-	int getTripodCount(@Param("tripod") String tripod);
+	int getTripodCount();
 	int updateTripodCount(@Param("tripod") String tripod, @Param("count") int count);
 
 	int modifyExtraCnt(@Param("extraSelect") String extraSelect, @Param("count") int count);

@@ -9,8 +9,8 @@ public interface ExtraService {
 	ArrayList<ExtraVO> selectAllData();
 	ExtraVO selectAllDataByName(String data);
 	
-	int chtCntByBag(String data);
-	int chkCntByTripod(String data);
+	int chkCntByBag();
+	int chkCntByTripod();
 	int modifyExtraCnt(String extraSelect, Integer extraCnt);
 
 	

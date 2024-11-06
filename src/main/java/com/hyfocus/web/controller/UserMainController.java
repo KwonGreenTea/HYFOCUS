@@ -129,13 +129,15 @@ public class UserMainController {
 	        RedirectAttributes reAttr) {
 
 	    log.info("rentPOST()");
+	    
+	    log.info(camera + " " + lens + " " + bag + " " + tripod + " " + stuInfo);
 
 	    // 재고 확인을 위한 Map 초기화
 	    Map<String, Integer> inventoryCheck = new HashMap<>();
 	    inventoryCheck.put(camera, cameraService.chkCntByName(camera));
 	    if (lens != null) inventoryCheck.put(lens, lensService.chkCntByName(lens));
-	    if (bag != null) inventoryCheck.put(bag, extraService.chtCntByBag(bag));
-	    if (tripod != null) inventoryCheck.put(tripod, extraService.chkCntByTripod(tripod));
+	    if (bag != null) inventoryCheck.put(bag, extraService.chkCntByBag());
+	    if (tripod != null) inventoryCheck.put(tripod, extraService.chkCntByTripod());
 
 	    // 응답 데이터를 담을 Map
 	    Map<String, Object> response = new HashMap<>();
