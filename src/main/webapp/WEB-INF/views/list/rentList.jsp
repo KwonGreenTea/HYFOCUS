@@ -30,7 +30,7 @@
 		                <li class="nav-item"><a class="nav-link" id="homeBtn">대여 목록</a></li>
 		                <li class="nav-item"><a class="nav-link" id="modifyList">장비 수정</a></li>
 		                <li class="nav-item"><a class="nav-link" id="allRentList">지난 내역</a></li>
-		                <!-- <li class="nav-item"><a class="nav-link" id="exportToExcel">엑셀</a></li>  -->
+		                <li class="nav-item"><a class="nav-link" id="exportExcel">엑셀</a></li>
 		            </ul>
 		        </div>
 		    </div>
@@ -278,6 +278,10 @@
 
 		$("#modifyList").on("click", function() {
 			window.location.href = "modifyList";
+		});
+		
+		$("#exportExcel").on("click", function() {
+			window.location.href = "exportExcel";
 		});
 	</script>
 

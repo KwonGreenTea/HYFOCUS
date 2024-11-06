@@ -155,7 +155,7 @@ public class AdminController {
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 
-	@GetMapping("/exportToExcel")
+	@GetMapping("/exportExcel")
 	public void exportToExcel(HttpServletRequest request, HttpServletResponse response, Pagination pagination)
 			throws IOException {
 		List<RentVO> rentList = rentService.getPagingBoards(pagination);
