@@ -1,10 +1,17 @@
 package com.hyfocus.web.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -146,5 +153,45 @@ public class AdminController {
 		int result = rentService.returnRent(rentVO);
 
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
+	}
+
+	@GetMapping("/exportToExcel")
+	public void exportToExcel(HttpServletRequest request, HttpServletResponse response, Pagination pagination)
+			throws IOException {
+		List<RentVO> rentList = rentService.getPagingBoards(pagination);
+
+		// 엑셀 파일 생성
+		Workbook workbook = new XSSFWorkbook();
+		Sheet sheet = workbook.createSheet("대여 목록");
+
+		// 헤더 생성
+		Row headerRow = sheet.createRow(0);
+		headerRow.createCell(0).setCellValue("신청시간");
+		headerRow.createCell(1).setCellValue("이름");
+		headerRow.createCell(2).setCellValue("카메라");
+		headerRow.createCell(3).setCellValue("렌즈");
+		headerRow.createCell(4).setCellValue("카메라가방");
+		headerRow.createCell(5).setCellValue("삼각대");
+
+		// 데이터 추가
+		int rowNum = 1;
+		for (RentVO rentVO : rentList) {
+			Row row = sheet.createRow(rowNum++);
+			row.createCell(0).setCellValue(rentVO.getCreatedDate());
+			row.createCell(1).setCellValue(rentVO.getStuInfo());
+			row.createCell(2).setCellValue(rentVO.getCamName());
+			row.createCell(3).setCellValue(rentVO.getLensName());
+			row.createCell(4).setCellValue(rentVO.getBag());
+			row.createCell(5).setCellValue(rentVO.getTripod());
+		}
+
+		// 응답 설정
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		response.setHeader("Content-Disposition", "attachment; filename=렌트_리스트.xlsx");
+
+		// 엑셀 파일을 응답으로 출력
+		OutputStream out = response.getOutputStream();
+		workbook.write(out);
+		workbook.close();
 	}
 }

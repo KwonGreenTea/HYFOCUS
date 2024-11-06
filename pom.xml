@@ -231,6 +231,18 @@
 			<version>21.5.0.0</version> <!-- 명시된 최신 버전 -->
 		</dependency>
 
+		<!-- Excel Export -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.2.3</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>

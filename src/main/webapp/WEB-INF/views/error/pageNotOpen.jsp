@@ -20,6 +20,8 @@
 	};
 </script>
 <body>
+	<br>
+	<br>
 	<h2 style="text-align: center;">카메라 신청 폼 오픈 시간이 아닙니다</h2>
 	<div style="text-align: center; margin-top: 20px;">
 		<button onclick="reset()" style="font-size: 20px; padding: 10px 20px;">새로고침</button>

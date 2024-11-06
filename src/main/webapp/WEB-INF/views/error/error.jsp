@@ -20,6 +20,8 @@
 	};
 </script>
 <body>
+	<br>
+	<br>
 	<h2 style="text-align: center;">잘못 된 접근입니다. 새로고침 해주세요.</h2>
 	<div style="text-align: center; margin-top: 20px;">
 		<button onclick="reset()" style="font-size: 20px; padding: 10px 20px;">새로고침</button>
