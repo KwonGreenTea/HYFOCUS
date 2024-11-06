@@ -111,11 +111,11 @@
 			    
 			    if (lens != null) {
 				    if (confirm(`카메라 : ${camera}\n렌즈 : ${lens}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
-				        formSubmit(camera, lens, bag, tripod);
+				        formSubmit(camera, lens, bag, tripod, stuInfo);
 				    }
 				} else {
 					if (confirm(`카메라 : ${camera}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
-				        formSubmit(camera, lens, bag, tripod);
+				        formSubmit(camera, lens, bag, tripod, stuInfo);
 				    }
 				}
 			});
