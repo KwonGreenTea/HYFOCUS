@@ -9,13 +9,13 @@
 </head>
 <script type="text/javascript">
 	function reset() {
-		window.location.href = "/HYFOCUS"; 
+		window.location.href = "/"; 
 	}
 
 	window.onload = function() {
 		// 새로 고침 감지 (performance.navigation.type 값이 1일 때는 F5 또는 브라우저의 새로 고침)
 		if (performance.navigation.type === 1) {
-			window.location.href = "/HYFOCUS"; 
+			window.location.href = "/"; 
 		}
 	};
 </script>

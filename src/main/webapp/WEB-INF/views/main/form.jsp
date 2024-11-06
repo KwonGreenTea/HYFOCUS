@@ -20,7 +20,7 @@
 <body>
 	<form id="MainForm">
 		<div id="container">
-			<h1>카메라 신청 폼</h1>
+			<h2>카메라 신청 폼</h2>
 			<!-- 출사 or 정기 대여 선택 창 -->
 			<!-- 
 			<div class="form-check">
