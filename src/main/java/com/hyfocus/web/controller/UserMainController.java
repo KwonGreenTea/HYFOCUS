@@ -129,8 +129,6 @@ public class UserMainController {
 	        RedirectAttributes reAttr) {
 
 	    log.info("rentPOST()");
-	    
-	    log.info(camera + " " + lens + " " + bag + " " + tripod + " " + stuInfo);
 
 	    // 재고 확인을 위한 Map 초기화
 	    Map<String, Integer> inventoryCheck = new HashMap<>();
@@ -149,7 +147,7 @@ public class UserMainController {
 	        if (itemCount <= 0) {
 	            response.put("success", false);
 	            response.put("message", itemName + " 수량이 부족합니다.");
-	            return new ResponseEntity<>(response, HttpStatus.OK);
+	            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	        }
 	    }
 

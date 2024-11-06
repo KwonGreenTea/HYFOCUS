@@ -135,9 +135,10 @@
 			            }
 			        },
 			        error: function(xhr, status, error) {
-			            alert("신청 처리 중 오류가 발생했습니다.");
-			            location.reload();
-			        }
+					    console.error("Error details:", xhr, status, error);
+					    alert("신청 처리 중 오류가 발생했습니다.");
+					    location.reload();
+					}
 			    });
 			}
 		});
