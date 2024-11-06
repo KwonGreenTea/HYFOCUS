@@ -37,7 +37,7 @@ public class UserMainController {
 	//		**** 보여줄 시간 설정 ****
 	//		*********************
 
-	private String setDate = "2024-10-19T15:10:00"; 
+	private String setDate = "2024-11-06T14:15:00"; 
 		
 	
 	
