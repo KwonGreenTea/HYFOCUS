@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <select id="getBagCount" resultType="int">
-   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME = "카메라 가방"
+   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME = '카메라 가방'
    </select>
    
    <update id="updateBagCount">
@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
    
    <select id="getTripodCount" resultType="int">
-   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME = "삼각대"
+   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME = '삼각대'
    </select>
    
    <update id="updateTripodCount">
