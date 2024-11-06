@@ -2,6 +2,7 @@ package com.hyfocus.web.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -173,11 +174,16 @@ public class AdminController {
 		headerRow.createCell(4).setCellValue("카메라 가방");
 		headerRow.createCell(5).setCellValue("삼각대");
 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH시 mm분 ss초");
+		
 		// 데이터 추가
 		int rowNum = 1;
 		for (RentVO rentVO : rentList) {
 			Row row = sheet.createRow(rowNum++);
-			row.createCell(0).setCellValue(rentVO.getCreatedDate());
+			
+			String formattedDate = dateFormat.format(rentVO.getCreatedDate());
+	        row.createCell(0).setCellValue(formattedDate);
+	        
 			row.createCell(1).setCellValue(rentVO.getStuInfo());
 			row.createCell(2).setCellValue(rentVO.getCamName());
 			row.createCell(3).setCellValue(rentVO.getLensName());
