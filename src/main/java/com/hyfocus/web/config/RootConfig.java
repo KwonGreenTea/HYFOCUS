@@ -34,7 +34,7 @@ public class RootConfig {
 		config.setUsername("admin"); // DB 계정 이름 설정
 		config.setPassword("KBSkbs1213!@"); // DB 계정 비밀번호 설정
 
-		config.setMaximumPoolSize(50); // 최대 커넥션 풀 크기 설정
+		config.setMaximumPoolSize(100); // 최대 커넥션 풀 크기 설정
 		config.setConnectionTimeout(30000); // 커넥션 타임아웃 설정 (30초)
 		HikariDataSource ds = new HikariDataSource(config); // 설정 객체를 사용하여 DataSource 빈 생성
 		return ds; // DataSource 빈 반환

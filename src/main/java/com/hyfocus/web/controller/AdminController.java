@@ -190,8 +190,14 @@ public class AdminController {
 		response.setHeader("Content-Disposition", "attachment; filename=렌트_리스트.xlsx");
 
 		// 엑셀 파일을 응답으로 출력
-		OutputStream out = response.getOutputStream();
-		workbook.write(out);
-		workbook.close();
+		try (OutputStream out = response.getOutputStream()) {
+			workbook.write(out);
+			out.flush();
+		} finally {
+			workbook.close();
+		}
+
+		// 응답 버퍼 비우기
+		response.flushBuffer();
 	}
 }

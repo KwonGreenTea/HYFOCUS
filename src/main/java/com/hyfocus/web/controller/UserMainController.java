@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hyfocus.web.domain.CameraVO;
 import com.hyfocus.web.domain.ExtraVO;
 import com.hyfocus.web.domain.LensVO;
+import com.hyfocus.web.domain.RentVO;
 import com.hyfocus.web.service.CameraService;
 import com.hyfocus.web.service.ExtraService;
 import com.hyfocus.web.service.LensService;
@@ -140,7 +141,7 @@ public class UserMainController {
 			@RequestParam(required = false) String filmManual, @RequestParam(required = false) String canonLens,
 			@RequestParam(required = false) String tamronLens, @RequestParam(required = false) String sigmaLens,
 			@RequestParam(required = false) String bag, @RequestParam(required = false) String tripod,
-			@RequestParam String stuInfo, RedirectAttributes reAttr) {
+			@RequestParam String stuInfo, Model model, RedirectAttributes reAttr) {
 
 		log.info("rentPOST()");
 
@@ -162,8 +163,11 @@ public class UserMainController {
 		log.info(stuInfo);
 		Date createdDate = new Date();
 		log.info(rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate) + "행 INSERT 수행완료.");
-
-		return "redirect:/main";
+		RentVO rentVO = new RentVO(0, camera, lens, bag, tripod, stuInfo, createdDate, "", "");
+		
+		model.addAttribute("rentVO", rentVO);
+		
+		return "main/success";
 	}
 
 	@PostMapping("/chkCnt")
