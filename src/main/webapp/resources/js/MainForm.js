@@ -1,3 +1,7 @@
+		window.localStorage.clear();
+		window.sessionStorage.clear();
+		
+		
 		// 가방 라벨 클릭시 체크박스 선택
 		function bagCheck() {
 			const checkbox = document.getElementById('bagCheck');
