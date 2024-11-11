@@ -176,7 +176,7 @@ public class UserMainController {
 	}
 	
 	@PostMapping("/rentListForStuInfo")
-	public ArrayList<RentVO> rentListForStuInfoPOST(@RequestParam String data) {
+	public ArrayList<RentVO> rentListForStuInfoPOST(@RequestParam("data") String data) {
 		ArrayList<RentVO> resultList = rentService.getAllDataByStuInfo(data);
 		return resultList;
 	}

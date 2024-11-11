@@ -261,8 +261,6 @@
 					</ul>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">닫기</button>
 					<button type="button" class="btn btn-primary" id="searchModalBtn">검색</button>
 				</div>
 			</div>
