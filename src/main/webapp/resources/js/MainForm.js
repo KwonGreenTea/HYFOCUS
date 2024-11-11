@@ -146,8 +146,8 @@
 				$('#searchModal').modal('show');
 			});
 			
-			$('#searchModalLabel').on('click', function() {
-	            let data = $(this).val();
+			$('#searchModalBtn').on('click', function() {
+	            let data = $('#searchInput').val();
 	
 	            $.ajax({
 				        type: "POST",

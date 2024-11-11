@@ -5,8 +5,8 @@
 		
 			$('#modifyBtn').click(function() {
 				$.ajax({
-	               type: "GET",
-	               url: "modifyList", 
+	               type: "POST",
+	               url: "modifyListToDetail", 
 	               contentType: "application/x-www-form-urlencoded",
 		               success: function() {
 		               		$('#editModal').modal('show');

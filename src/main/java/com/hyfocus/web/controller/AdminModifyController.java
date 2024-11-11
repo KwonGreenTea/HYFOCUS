@@ -36,7 +36,7 @@ public class AdminModifyController {
 
 	@Autowired
 	private ExtraService extraService;
-	
+
 	@Autowired
 	private RentService rentService;
 
@@ -66,6 +66,23 @@ public class AdminModifyController {
 		}
 	}
 
+	@PostMapping("/modifyListToDetail")
+	public void modifyListToDetailPOST(Model model) {
+		// 카메라 리스트 가져옴
+		ArrayList<CameraVO> camList = cameraService.selectAllData();
+
+		// 렌즈 리스트 가져옴
+		ArrayList<LensVO> lensList = lensService.selectAllData();
+
+		// 가방/삼각대 리스트 가져옴
+		ArrayList<ExtraVO> extraList = extraService.selectAllData();
+
+		// 리스트 넘겨줌
+		model.addAttribute("camList", camList);
+		model.addAttribute("lensList", lensList);
+		model.addAttribute("extraList", extraList);
+	}
+
 	@PostMapping("/modifyListData")
 	public String modifyListDataPost(@RequestParam(value = "camSelect", required = false) String camSelect,
 			@RequestParam(value = "camCnt", required = false) Integer camCnt,
@@ -91,7 +108,7 @@ public class AdminModifyController {
 	}
 
 	@PostMapping("/modifyUserData")
-	public String modifyUserDataPost(@RequestParam(value = "rentNo", required = false) Integer rentNo,
+	public String modifyUserDataPost(@RequestParam(value = "stuInfo") Integer rentNo,
 			@RequestParam(value = "stuInfo", required = false) String stuInfo,
 			@RequestParam(value = "camName", required = false) String camName,
 			@RequestParam(value = "lensName", required = false) String lensName,
@@ -109,7 +126,7 @@ public class AdminModifyController {
 		if (lensName != null && !lensName.isEmpty()) {
 			log.info(rentService.modifyUserLens(rentNo, lensName) + "행 렌즈 수정완료");
 		}
-		
+
 		if (extraName != null && !extraName.isEmpty()) {
 			log.info(rentService.modifyUserExtra(rentNo, extraName) + "행 부가물품 수정완료");
 		}

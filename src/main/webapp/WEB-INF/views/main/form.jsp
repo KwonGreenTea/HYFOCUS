@@ -250,7 +250,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="searchModalLabel">검색</h5>
+					<h5 class="modal-title" id="searchModalLabel">학번을 입력해주세요</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
@@ -263,6 +263,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id="searchModalBtn">검색</button>
 				</div>
 			</div>
 		</div>
