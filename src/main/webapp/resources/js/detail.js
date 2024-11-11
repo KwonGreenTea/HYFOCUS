@@ -49,14 +49,16 @@
 					$.ajax({
                         type: "POST",
                         url: "modifyUserData", 
-                        contentType: "application/json",
-						data: JSON.stringify({ rentNo: rentNo, stuInfo: stuInfo, camName: camName, lensName: lensName, extraName: extraName }), 
-                        success: function() {
-                            alert("수정되었습니다.");
-                            location.reload();
+                        contentType: "application/x-www-form-urlencoded",
+                        data: { rentNo : rentNo, stuInfo : stuInfo, camName : camName, lensName : lensName, extraName : extraName}, 
+                        success: function(result) {
+	                        if (result) {
+	                        	alert("수정되었습니다.");
+                            	location.reload();
+	                        }
                         },
                         error: function(xhr, status, error) {
-                        	alert("rentNo 데이터 오류");
+                        	alert("데이터 오류");
                         }
                     });
 				}

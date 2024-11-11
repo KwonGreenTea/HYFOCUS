@@ -16,7 +16,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/detail.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<input type="hidden" id="rentNo" value="${rentVO.rentNo}">
@@ -96,7 +97,7 @@
 						<div class="mb-4">
 							<label for="camName" class="form-label">카메라</label> <select
 								class="form-select" id="camSelect">
-								<option value="">선택</option>
+								<option id="" value="">선택</option>
 								<c:forEach var="cameraVO" items="${camList}">
 									<option id="${cameraVO.camName}">${cameraVO.camName}</option>
 								</c:forEach>
@@ -106,7 +107,7 @@
 						<div class="mb-4">
 							<label for="lensName" class="form-label">렌즈</label> <select
 								class="form-select" id="lensSelect">
-								<option value="">선택</option>
+								<option id="" value="">선택</option>
 								<c:forEach var="lensVO" items="${lensList}">
 									<option id="${lensVO.lensName}">${lensVO.lensName}</option>
 								</c:forEach>
@@ -115,12 +116,14 @@
 						<div class="mb-4">
 							<label class="form-label">가방</label> <select class="form-select"
 								id="extraSelect">
-								<option value="">선택</option>
+								<option id="" value="">선택</option>
 								<c:forEach var="extraVO" items="${extraList}">
-									<option id="${extraVO.extraName}">${extraVO.extraName}</option>
+									<c:if test="${extraVO.extraNo == 1}">
+										<option id="${extraVO.extraName}">${extraVO.extraName}</option>
+									</c:if>
 								</c:forEach>
 							</select>
-							<!-- 가방만 수정할 수 있게 변경 / 팔요 시 추가. -->
+							<!-- 가방만 수정할 수 있게 함. / 팔요 시 추가. -->
 						</div>
 					</form>
 				</div>

@@ -26,9 +26,23 @@ body {
     margin: 0; /* 여백 제거 */
 }
 
-.navbar-nav {
-    margin-left: 0; 
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0;
+    margin-left: 0;
 }
+
+.navbar-nav {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 15px;
+}
+
 
 hr {
     border: 1px solid #ddd;
