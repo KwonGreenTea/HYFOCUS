@@ -32,4 +32,12 @@ public interface RentMapper {
 
 	ArrayList<RentVO> getAllDataByStuInfo(String stuInfo);
 
+	String modifyUserCamera(@Param("rentNo")Integer rentNo, @Param("camera")String camName);
+
+	String modifyUserData(@Param("rentNo")Integer rentNo, @Param("stuInfo")String stuInfo);
+
+	String modifyUserLens(@Param("rentNo")Integer rentNo, @Param("lens")String lensName);
+
+	String modifyUserExtra(@Param("rentNo")Integer rentNo, @Param("bag")String extraName);
+
 }

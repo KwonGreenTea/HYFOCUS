@@ -20,6 +20,11 @@
 <body>
 	<form id="MainForm">
 		<div id="container">
+			<div class="collapse navbar-collapse" id="navbarColor04">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link" id="rentList">신청내역</a></li>
+				</ul>
+			</div>
 			<h2>카메라 신청 폼</h2>
 			<!-- 출사 or 정기 대여 선택 창 -->
 			<!-- 

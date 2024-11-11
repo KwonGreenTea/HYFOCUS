@@ -4,8 +4,26 @@
 			});
 		
 			$('#modifyBtn').click(function() {
-				if(confirm("신청 내역을 수정하시나요?")) {
-					const rentNo = $('#rentNo').val();
+				$.ajax({
+	               type: "POST",
+	               url: "modifyList", 
+	               contentType: "application/x-www-form-urlencoded",
+		               success: function() {
+		               		$('#editModal').modal('show');
+		               },
+	                   error: function(xhr, status, error) {
+	                        alert("데이터 오류");
+	                   }
+	               });
+			});
+			
+			$('#saveChangesBtn').on('click', function() {
+				if(confirm("내역을 수정하시나요?")) {
+					let rentNo = $('#rentNo').val();
+					let stuInfo = $('#stuInfo').val();
+					let camName = $('#camSelect').val();
+			    	let lensName = $('#lensSelect').val();
+			    	let extraName = $('#extraSelect').val();
 					$.ajax({
                         type: "POST",
                         url: "modify", 
@@ -24,6 +42,31 @@
                         }
                     });
 				}
+				
+				
+			    // 폼의 입력 값 가져오기
+			    let camName = $('#camName').val();
+			    let lensName = $('#lensName').val();
+			    // 기타 필요한 값도 함께 가져오기
+			
+			    // AJAX 요청으로 서버에 수정 데이터 전송
+			    $.ajax({
+			        type: 'POST',
+			        url: 'updateRentData', // 수정 요청을 처리할 컨트롤러 URL
+			        data: {
+			            rentNo: $('#rentNo').val(), // 식별자 값
+			            camName: camName,
+			            lensName: lensName,
+			            // 기타 필요한 데이터 추가
+			        },
+			        success: function(response) {
+			            alert('수정되었습니다.');
+			            location.reload(); // 페이지 새로고침하여 변경 내용 반영
+			        },
+			        error: function(xhr, status, error) {
+			            alert('수정에 실패했습니다.');
+			        }
+			    });
 			});
 			
 			$('#deleteBtn').click(function() {
@@ -55,7 +98,7 @@
 				}
 			});
 			
-			$('#rentChkBtn').click(function() {
+			$('#rentChk').click(function() {
 				if(confirm("대여하시나요?")) {
 					const rentNo = $('#rentNo').val();
 					$.ajax({
@@ -78,7 +121,7 @@
 				}
 			});
 			
-			$('#returnBtn').click(function() {
+			$('#returnChk').click(function() {
 				const rentChk = $('#rentChk').text().trim(); 
 				
 				if(rentChk.includes("X")) {  

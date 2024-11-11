@@ -95,6 +95,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="returnRent">
 		UPDATE RENT SET RETURN_CHK = 'O' WHERE RENT_NO = #{rentNo}
 	</update>
+	
+	<update id="modifyUserCamera">
+		UPDATE RENT SET CAM_NAME = #{camera} WHERE RENT_NO = #{rentNo}
+	</update>
+	
+	<update id="modifyUserData">
+		UPDATE RENT SET STU_INFO = #{stuInfo} WHERE RENT_NO = #{rentNo}
+	</update>
+	
+	<update id="modifyUserLens">
+		UPDATE RENT SET LENS_NAME = #{lens} WHERE RENT_NO = #{rentNo}
+	</update>
+	
+	<update id="modifyUserExtra">
+		UPDATE RENT SET BAG = #{bag} WHERE RENT_NO = #{rentNo}
+	</update>
 
 	<delete id="delete">
 		DELETE RENT WHERE RENT_NO = #{rentNo}

@@ -147,4 +147,24 @@ public class RentServiceImple implements RentService {
 		return rentMapper.getAllDataByStuInfo(stuInfo);
 	}
 
+	@Override
+	public String modifyUserCamera(Integer rentNo, String camName) {
+		return rentMapper.modifyUserCamera(rentNo, camName);
+	}
+
+	@Override
+	public String modifyUserData(Integer rentNo, String stuInfo) {
+		return rentMapper.modifyUserData(rentNo, stuInfo);
+	}
+
+	@Override
+	public String modifyUserLens(Integer rentNo, String lensName) {
+		return rentMapper.modifyUserLens(rentNo, lensName);
+	}
+
+	@Override
+	public String modifyUserExtra(Integer rentNo, String extraName) {
+		return rentMapper.modifyUserExtra(rentNo, extraName);
+	}
+
 }

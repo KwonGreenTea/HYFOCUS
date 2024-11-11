@@ -142,8 +142,8 @@
 			    });
 			}
 			
-			$('#').on('click', function() {
-				$('#editModal').modal('show');
+			$('#rentList').on('click', function() {
+				$('#searchModal').modal('show');
 			});
 			
 			$('#searchModalLabel').on('click', function() {

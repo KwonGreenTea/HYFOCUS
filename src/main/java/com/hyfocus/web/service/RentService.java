@@ -27,5 +27,13 @@ public interface RentService {
 
 	ArrayList<RentVO> getAllDataByStuInfo(String stuInfo);
 
+	String modifyUserCamera(Integer rentNo, String camName);
+
+	String modifyUserData(Integer rentNo, String stuInfo);
+
+	String modifyUserLens(Integer rentNo, String lensName);
+
+	String modifyUserExtra(Integer rentNo, String extraName);
+
 	
 }

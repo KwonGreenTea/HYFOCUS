@@ -20,6 +20,7 @@ import com.hyfocus.web.domain.LensVO;
 import com.hyfocus.web.service.CameraService;
 import com.hyfocus.web.service.ExtraService;
 import com.hyfocus.web.service.LensService;
+import com.hyfocus.web.service.RentService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -35,6 +36,9 @@ public class AdminModifyController {
 
 	@Autowired
 	private ExtraService extraService;
+	
+	@Autowired
+	private RentService rentService;
 
 	@GetMapping("/modifyList")
 	public String modifyListGET(HttpServletRequest request, Model model) {
@@ -81,6 +85,33 @@ public class AdminModifyController {
 
 		if (extraSelect != null && !extraSelect.isEmpty()) {
 			log.info(extraService.modifyExtraCnt(extraSelect, extraCnt) + "행 부가물품 갯수 수정완료");
+		}
+
+		return "modify/modifyList";
+	}
+
+	@PostMapping("/modifyUserData")
+	public String modifyUserDataPost(@RequestParam(value = "rentNo", required = false) Integer rentNo,
+			@RequestParam(value = "stuInfo", required = false) String stuInfo,
+			@RequestParam(value = "camName", required = false) String camName,
+			@RequestParam(value = "lensName", required = false) String lensName,
+			@RequestParam(value = "extraName", required = false) String extraName) {
+		log.info("modifyUserDataPost()");
+
+		if (stuInfo != null && !stuInfo.isEmpty()) {
+			log.info(rentService.modifyUserData(rentNo, stuInfo) + "행 학번/이름 수정완료");
+		}
+
+		if (camName != null && !camName.isEmpty()) {
+			log.info(rentService.modifyUserCamera(rentNo, camName) + "행 카메라 수정완료");
+		}
+
+		if (lensName != null && !lensName.isEmpty()) {
+			log.info(rentService.modifyUserLens(rentNo, lensName) + "행 렌즈 수정완료");
+		}
+		
+		if (extraName != null && !extraName.isEmpty()) {
+			log.info(rentService.modifyUserExtra(rentNo, extraName) + "행 부가물품 수정완료");
 		}
 
 		return "modify/modifyList";
