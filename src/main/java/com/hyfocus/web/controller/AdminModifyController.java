@@ -122,19 +122,19 @@ public class AdminModifyController {
 		
 		log.info(rentNo + " " + stuInfo  + " " +  camName + " " + lensName + " " + extraName);
 
-		if (stuInfo.length() > 9) {
+		if (stuInfo != null && stuInfo.length() > 9) {
 			log.info(rentService.modifyUserData(rentNo, stuInfo) + "행 학번/이름 수정완료");
 		}
 
-		if (camName.length() > 1) {
+		if (camName != null && !camName.isEmpty()) {
 			log.info(rentService.modifyUserCamera(rentNo, camName) + "행 카메라 수정완료");
 		}
 
-		if (lensName.length() > 1) {
+		if (lensName != null && !lensName.isEmpty()) {
 			log.info(rentService.modifyUserLens(rentNo, lensName) + "행 렌즈 수정완료");
 		}
 
-		if (extraName.length() > 1) {
+		if (extraName != null && !extraName.isEmpty()) {
 			log.info(rentService.modifyUserExtra(rentNo, extraName) + "행 부가물품 수정완료");
 		}
 
