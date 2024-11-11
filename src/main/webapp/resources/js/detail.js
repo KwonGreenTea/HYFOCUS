@@ -1,3 +1,24 @@
+		// 모달에 데이터 채우는 함수
+		function dataForModal(camList, lensList, extraList) {
+		    $('#camSelect').empty();
+		    $('#camSelect').append('<option value="">선택</option>');
+		    camList.forEach(function(camera) {
+		        $('#camSelect').append('<option value="' + camera.camName + '">' + camera.camName + '</option>');
+		    });
+		
+		    $('#lensSelect').empty();
+		    $('#lensSelect').append('<option value="">선택</option>');
+		    lensList.forEach(function(lens) {
+		        $('#lensSelect').append('<option value="' + lens.lensName + '">' + lens.lensName + '</option>');
+		    });
+		
+		    $('#extraSelect').empty();
+		    $('#extraSelect').append('<option value="">선택</option>');
+		    extraList.forEach(function(extra) {
+		        $('#extraSelect').append('<option value="' + extra.extraName + '">' + extra.extraName + '</option>');
+		    });
+		}
+		
 		$(document).ready(function() {
 			$("#homeBtn").on("click", function() {
 				window.location.href = "rentList";
@@ -8,8 +29,9 @@
 	               type: "POST",
 	               url: "modifyListToDetail", 
 	               contentType: "application/x-www-form-urlencoded",
-		               success: function() {
-		               		$('#editModal').modal('show');
+		               success: function(result) {
+		               		dataForModal(result.camList, result.lensList, result.extraList);
+                			$('#editModal').modal('show');
 		               },
 	                   error: function(xhr, status, error) {
 	                        alert("데이터 오류");
@@ -42,6 +64,7 @@
 			
 			$('#deleteBtn').click(function() {
 				const returnChkBtn = $('#returnChkBtn').text().trim(); 
+				console.log('ReturnChkBtn:', returnChkBtn);
 				
 				if(returnChkBtn.includes("X")) {  
 				    alert("삭제가 불가능합니다.");

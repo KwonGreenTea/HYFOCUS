@@ -176,8 +176,11 @@ public class UserMainController {
 	}
 	
 	@PostMapping("/rentListForStuInfo")
-	public ArrayList<RentVO> rentListForStuInfoPOST(@RequestParam("data") String data) {
+	public ResponseEntity<ArrayList<RentVO>> rentListForStuInfoPOST(@RequestParam("data") String data) {
+		if(data.length() < 10) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
 		ArrayList<RentVO> resultList = rentService.getAllDataByStuInfo(data);
-		return resultList;
+		return new ResponseEntity<ArrayList<RentVO>>(resultList, HttpStatus.OK);
 	}
 }

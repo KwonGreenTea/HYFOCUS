@@ -149,27 +149,42 @@
 			$('#searchModalBtn').on('click', function() {
 	            let data = $('#searchInput').val();
 	
-	            $.ajax({
-				        type: "POST",
-				        url: "rentListForStuInfo",
-				        contentType: "application/x-www-form-urlencoded",
-				        data: { data: data },
-				        success: function(result) {
-				            $('#resultList').empty();
-				            
-				            if (!result || result.length === 0) {
-						        $('#resultList').append('<li class="list-group-item">검색 결과가 없습니다.</li>');
-						    } else {
-						        // result 배열이 있을 때만 반복문을 돌며 항목 추가
-						        result.forEach(function(item) {
-						            $('#resultList').append('<li class="list-group-item">' + item + '</li>');
-						        });
-						    }
-				        },
-				        error: function(xhr, status, error) {
-						    alert("해당 학번에 맞는 데이터가 없습니다.");
-						}
-				});	            
+				if(data.length() < 10) {
+					alert("학번 10자리를 입력해주세요");
+				}
+	
+	           $.ajax({
+				    type: "POST",
+				    url: "rentListForStuInfo",
+				    contentType: "application/x-www-form-urlencoded",
+				    data: { data: data },
+				    success: function(result) {
+				        $('#resultList').empty();
+				        
+				        if (!result || result.length === 0) {
+				            $('#resultList').append('<li class="list-group-item">검색 결과가 없습니다.</li>');
+				        } else {
+				            // result 배열이 있을 때만 반복문을 돌며 항목 추가
+				            result.forEach(function(item) {
+				                // RentVO 객체의 필드를 사용하여 항목을 추가
+				                var rentInfo = `
+				                    <div>
+				                    	${item.stuInfo} <br>
+				                    	<strong>신청 시간 : </strong> <fmt:formatDate value="${item.createdDate}"
+					pattern="YYYY년 MM월 dd일 HH시 mm분 ss초" /> <br>
+				                        <strong>카메라 :</strong> ${item.camName} <br>
+				                        <strong>렌즈 :</strong> ${item.lensName} <br>
+				                    </div>
+				                `;
+				                $('#resultList').append('<li class="list-group-item">' + rentInfo + '</li>');
+				            });
+				        }
+				    },
+				    error: function(xhr, status, error) {
+				        alert("해당 학번에 맞는 데이터가 없습니다.");
+				    }
+				});
+       
 	        });
 	        
 		});

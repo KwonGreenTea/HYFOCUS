@@ -1,6 +1,8 @@
 package com.hyfocus.web.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -67,7 +69,7 @@ public class AdminModifyController {
 	}
 
 	@PostMapping("/modifyListToDetail")
-	public void modifyListToDetailPOST(Model model) {
+	public ResponseEntity<Map<String, Object>> modifyListToDetailPOST(Model model) {
 		// 카메라 리스트 가져옴
 		ArrayList<CameraVO> camList = cameraService.selectAllData();
 
@@ -77,10 +79,13 @@ public class AdminModifyController {
 		// 가방/삼각대 리스트 가져옴
 		ArrayList<ExtraVO> extraList = extraService.selectAllData();
 
-		// 리스트 넘겨줌
-		model.addAttribute("camList", camList);
-		model.addAttribute("lensList", lensList);
-		model.addAttribute("extraList", extraList);
+		// 응답 객체 생성
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("camList", camList);
+	    response.put("lensList", lensList);
+	    response.put("extraList", extraList);
+
+	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@PostMapping("/modifyListData")
