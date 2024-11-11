@@ -70,7 +70,7 @@
 							<c:choose>
 								<c:when test="${cameraVO.camCount < 1}">
 									<option id="${cameraVO.camName}" value="${cameraVO.camName}"
-										disabled>${cameraVO.camName}(${cameraVO.camCount}대
+										disabled>${cameraVO.camName} (${cameraVO.camCount}대
 										남음)</option>
 								</c:when>
 								<c:otherwise>

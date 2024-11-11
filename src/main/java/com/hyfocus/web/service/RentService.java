@@ -27,13 +27,13 @@ public interface RentService {
 
 	ArrayList<RentVO> getAllDataByStuInfo(String stuInfo);
 
-	String modifyUserCamera(Integer rentNo, String camName);
+	int modifyUserCamera(Integer rentNo, String camName);
 
-	String modifyUserData(Integer rentNo, String stuInfo);
+	int modifyUserData(Integer rentNo, String stuInfo);
 
-	String modifyUserLens(Integer rentNo, String lensName);
+	int modifyUserLens(Integer rentNo, String lensName);
 
-	String modifyUserExtra(Integer rentNo, String extraName);
+	int modifyUserExtra(Integer rentNo, String extraName);
 
 	
 }
