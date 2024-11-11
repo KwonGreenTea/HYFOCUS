@@ -26,6 +26,10 @@ body {
     margin: 0; /* 여백 제거 */
 }
 
+.navbar-nav {
+    margin-left: 0; 
+}
+
 hr {
     border: 1px solid #ddd;
     margin: 20px 0;

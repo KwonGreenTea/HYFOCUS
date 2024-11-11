@@ -63,9 +63,9 @@
 			});
 			
 			$('#deleteBtn').click(function() {
-				const returnChkBtn = $('#returnChkBtn').text().trim();
+				const returnChk = $('#returnChk').text().trim();
 				
-				if(returnChkBtn.includes("반납")) {  
+				if(returnChk.includes("X")) {  
 				    alert("삭제가 불가능합니다.");
 				} else {
 					if(confirm("신청 내역을 삭제하시나요?")) {
@@ -115,7 +115,7 @@
 			});
 			
 			$('#returnChkBtn').click(function() {
-				const rentChk = $('#rentChkBtn').text().trim(); 
+				const rentChk = $('#rentChk').text().trim(); 
 				
 				if(rentChk.includes("X")) {  
 				    alert("대여가 아직 안됐습니다");

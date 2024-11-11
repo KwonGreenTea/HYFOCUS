@@ -61,7 +61,7 @@
 					pattern="MM월 dd일 HH시 mm분 ss초" /></li>
 			<li class="list-group-item list-group-item-secondary" id="rentChk"><strong>대여
 					확인 : </strong> ${rentVO.rentChk}</li>
-			<li class="list-group-item list-group-item-secondary"><strong>반납
+			<li class="list-group-item list-group-item-secondary" id="returnChk"><strong>반납
 					확인 : </strong> ${rentVO.returnChk}</li>
 		</ul>
 		<br>

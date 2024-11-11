@@ -113,12 +113,14 @@ public class AdminModifyController {
 	}
 
 	@PostMapping("/modifyUserData")
-	public String modifyUserDataPost(@RequestParam("rentNo") String rentNo,
+	public ResponseEntity<Integer> modifyUserDataPost(@RequestParam("rentNo") String rentNo,
 			@RequestParam(value = "stuInfo", required = false) String stuInfo,
 			@RequestParam(value = "camName", required = false) String camName,
 			@RequestParam(value = "lensName", required = false) String lensName,
 			@RequestParam(value = "extraName", required = false) String extraName) {
 		log.info("modifyUserDataPost()");
+		
+		log.info(rentNo + " " + stuInfo  + " " +  camName + " " + lensName + " " + extraName);
 
 		if (stuInfo != null && !stuInfo.isEmpty()) {
 			log.info(rentService.modifyUserData(rentNo, stuInfo) + "행 학번/이름 수정완료");
@@ -136,7 +138,7 @@ public class AdminModifyController {
 			log.info(rentService.modifyUserExtra(rentNo, extraName) + "행 부가물품 수정완료");
 		}
 
-		return "modify/modifyList";
+		return new ResponseEntity<Integer>(1, HttpStatus.OK);
 	}
 
 	@PostMapping("/camData")
