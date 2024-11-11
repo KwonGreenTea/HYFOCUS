@@ -70,8 +70,8 @@
 				<button type="button" class="btn btn-secondary" id="deleteBtn">삭제</button>
 			</div>
 			<div class="btn-group" id="rightBtn">
-				<button type="button" class="btn btn-secondary" id="rentChk">대여</button>
-				<button type="button" class="btn btn-secondary" id="returnChk">반납</button>
+				<button type="button" class="btn btn-secondary" id="rentChkBtn">대여</button>
+				<button type="button" class="btn btn-secondary" id="returnChkBtn">반납</button>
 			</div>
 		</div>
 	</div>

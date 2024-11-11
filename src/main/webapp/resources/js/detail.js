@@ -5,7 +5,7 @@
 		
 			$('#modifyBtn').click(function() {
 				$.ajax({
-	               type: "POST",
+	               type: "GET",
 	               url: "modifyList", 
 	               contentType: "application/x-www-form-urlencoded",
 		               success: function() {
@@ -26,51 +26,22 @@
 			    	let extraName = $('#extraSelect').val();
 					$.ajax({
                         type: "POST",
-                        url: "modify", 
+                        url: "modifyUserData", 
                         contentType: "application/x-www-form-urlencoded",
-                        data: { rentNo : rentNo }, 
-                        success: function(result) {
-                            if (result > 0) {
-                                alert("수정되었습니다.");
-                                location.reload();
-                            } else {
-                                alert("rentNo 데이터 오류");
-                            }
+                        data: { rentNo : rentNo, stuInfo : stuInfo, camName : camName, lensName : lensName, extraName : extraName}, 
+                        success: function() {
+                            alert("수정되었습니다.");
+                            location.reload();
                         },
                         error: function(xhr, status, error) {
                         	alert("rentNo 데이터 오류");
                         }
                     });
 				}
-				
-				
-			    // 폼의 입력 값 가져오기
-			    let camName = $('#camName').val();
-			    let lensName = $('#lensName').val();
-			    // 기타 필요한 값도 함께 가져오기
-			
-			    // AJAX 요청으로 서버에 수정 데이터 전송
-			    $.ajax({
-			        type: 'POST',
-			        url: 'updateRentData', // 수정 요청을 처리할 컨트롤러 URL
-			        data: {
-			            rentNo: $('#rentNo').val(), // 식별자 값
-			            camName: camName,
-			            lensName: lensName,
-			            // 기타 필요한 데이터 추가
-			        },
-			        success: function(response) {
-			            alert('수정되었습니다.');
-			            location.reload(); // 페이지 새로고침하여 변경 내용 반영
-			        },
-			        error: function(xhr, status, error) {
-			            alert('수정에 실패했습니다.');
-			        }
-			    });
 			});
 			
 			$('#deleteBtn').click(function() {
-				const returnChk = $('#returnChk').text().trim(); 
+				const returnChk = $('#returnChkBtn').text().trim(); 
 				
 				if(returnChk.includes("X")) {  
 				    alert("삭제가 불가능합니다.");
@@ -98,7 +69,7 @@
 				}
 			});
 			
-			$('#rentChk').click(function() {
+			$('#rentChkBtn').click(function() {
 				if(confirm("대여하시나요?")) {
 					const rentNo = $('#rentNo').val();
 					$.ajax({
@@ -121,8 +92,8 @@
 				}
 			});
 			
-			$('#returnChk').click(function() {
-				const rentChk = $('#rentChk').text().trim(); 
+			$('#returnChkBtn').click(function() {
+				const rentChk = $('#rentChkBtn').text().trim(); 
 				
 				if(rentChk.includes("X")) {  
 				    alert("대여가 아직 안됐습니다");
