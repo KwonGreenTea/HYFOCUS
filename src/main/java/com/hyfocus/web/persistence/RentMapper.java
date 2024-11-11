@@ -30,6 +30,6 @@ public interface RentMapper {
 
 	List<RentVO> getRentData();
 
-	RentVO getAllDataByStuInfo(String stuInfo);
+	ArrayList<RentVO> getAllDataByStuInfo(String stuInfo);
 
 }

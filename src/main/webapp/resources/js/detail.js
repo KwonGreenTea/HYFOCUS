@@ -27,25 +27,31 @@
 			});
 			
 			$('#deleteBtn').click(function() {
-				if(confirm("신청 내역을 삭제하시나요?")) {
-					const rentNo = $('#rentNo').val();
-					$.ajax({
-                        type: "POST",
-                        url: "delete", 
-                        contentType: "application/x-www-form-urlencoded",
-                        data: { rentNo : rentNo }, 
-                        success: function(result) {
-                            if (result > 0) {
-                                alert("삭제되었습니다.");
-                                window.location.href="rentList";
-                            } else {
-                                alert("rentNo 데이터 오류");
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                        	alert("rentNo 데이터 오류");
-                        }
-                    });
+				const returnChk = $('#returnChk').text().trim(); 
+				
+				if(returnChk.includes("X")) {  
+				    alert("삭제가 불가능합니다.");
+				} else {
+					if(confirm("신청 내역을 삭제하시나요?")) {
+						const rentNo = $('#rentNo').val();
+						$.ajax({
+	                        type: "POST",
+	                        url: "delete", 
+	                        contentType: "application/x-www-form-urlencoded",
+	                        data: { rentNo : rentNo }, 
+	                        success: function(result) {
+	                            if (result > 0) {
+	                                alert("삭제되었습니다.");
+	                                window.location.href="rentList";
+	                            } else {
+	                                alert("rentNo 데이터 오류");
+	                            }
+	                        },
+	                        error: function(xhr, status, error) {
+	                        	alert("rentNo 데이터 오류");
+	                        }
+	                    });
+					}
 				}
 			});
 			

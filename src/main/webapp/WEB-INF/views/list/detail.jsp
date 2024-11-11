@@ -66,14 +66,12 @@
 		<br>
 		<div class="button-container">
 			<div class="btn-group" id="leftBtn">
-				<button type="button" class="btn btn-secondary" id="modifyBtn"
-					disabled>수정</button>
-				<!-- 필요하면 추가 -->
+				<button type="button" class="btn btn-secondary" id="modifyBtn">수정</button>
 				<button type="button" class="btn btn-secondary" id="deleteBtn">삭제</button>
 			</div>
 			<div class="btn-group" id="rightBtn">
-				<button type="button" class="btn btn-secondary" id="rentChkBtn">대여</button>
-				<button type="button" class="btn btn-secondary" id="returnBtn">반납</button>
+				<button type="button" class="btn btn-secondary" id="rentChk">대여</button>
+				<button type="button" class="btn btn-secondary" id="returnChk">반납</button>
 			</div>
 		</div>
 	</div>

@@ -61,8 +61,9 @@
 						<c:forEach var="cameraVO" items="${MirrorLessCamList}">
 							<c:choose>
 								<c:when test="${cameraVO.camCount < 1}">
-									<option id="${cameraVO.camName}" value="${cameraVO.camName}" disabled>${cameraVO.camName}
-										(${cameraVO.camCount}대 남음)</option>
+									<option id="${cameraVO.camName}" value="${cameraVO.camName}"
+										disabled>${cameraVO.camName}(${cameraVO.camCount}대
+										남음)</option>
 								</c:when>
 								<c:otherwise>
 									<option id="${cameraVO.camName}" value="${cameraVO.camName}">${cameraVO.camName}
@@ -93,8 +94,8 @@
 				</div>
 
 				<div class="select-group">
-					<label class="form-label mt-4">📷필름 카메라 Film Manual📷 - 수동</label> <select
-						class="form-select" id="filmSelectManual" name="filmManual">
+					<label class="form-label mt-4">📷필름 카메라 Film Manual📷 - 수동</label>
+					<select class="form-select" id="filmSelectManual" name="filmManual">
 						<option value="">선택</option>
 						<c:forEach var="cameraVO" items="${FilmMCamList}">
 							<c:choose>
@@ -194,8 +195,8 @@
 								<c:otherwise>
 									<input class="form-check-input" type="checkbox"
 										value="${extraVO.extraName}" id="bagCheck" name="bag">
-									<label class="form-check-label" onclick="bagCheck()"> 🎒${extraVO.extraName}
-										(${extraVO.extraCount}개 남음) </label>
+									<label class="form-check-label" onclick="bagCheck()">
+										🎒${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
 								</c:otherwise>
 							</c:choose>
 						</c:if>
@@ -216,8 +217,8 @@
 								<c:otherwise>
 									<input class="form-check-input" type="checkbox"
 										value="${extraVO.extraName}" id="tripodCheck" name="tripod">
-									<label class="form-check-label" onclick="tripodCheck()"> 📐${extraVO.extraName}
-										(${extraVO.extraCount}개 남음) </label>
+									<label class="form-check-label" onclick="tripodCheck()">
+										📐${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
 								</c:otherwise>
 							</c:choose>
 						</c:if>
@@ -237,5 +238,28 @@
 			</div>
 		</div>
 	</form>
+
+	<div class="modal fade" id="searchModal" tabindex="-1"
+		aria-labelledby="searchModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="searchModalLabel">검색</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<input type="text" id="searchInput" class="form-control"
+						placeholder="2023000000" />
+					<ul id="resultList" class="list-group mt-3">
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

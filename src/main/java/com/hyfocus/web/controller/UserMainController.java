@@ -157,8 +157,7 @@ public class UserMainController {
 
 		// 재고 충분 시 데이터 삽입 및 성공 메시지 반환
 		Date createdDate = new Date();
-		int rowsInserted = rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate);
-		log.info(rowsInserted + "행 INSERT 수행완료.");
+		log.info(stuInfo + " " + rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate) + "행 INSERT 수행완료.");
 
 		response.put("success", true);
 		response.put("stuInfo", stuInfo);
@@ -168,9 +167,17 @@ public class UserMainController {
 
 	@GetMapping("/rentSuccess")
 	public String rentSuccessGet(Model model, String stuInfo) {
-		RentVO rentVO = rentService.getAllDataByStuInfo(stuInfo);
+		ArrayList<RentVO> resultList = rentService.getAllDataByStuInfo(stuInfo);
 
+		RentVO rentVO = resultList.get(0);
+		
 		model.addAttribute("rentVO", rentVO);
 		return "main/success";
+	}
+	
+	@PostMapping("/rentListForStuInfo")
+	public ArrayList<RentVO> rentListForStuInfoPOST(@RequestParam String data) {
+		ArrayList<RentVO> resultList = rentService.getAllDataByStuInfo(data);
+		return resultList;
 	}
 }

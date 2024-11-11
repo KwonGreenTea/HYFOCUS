@@ -25,7 +25,7 @@ public interface RentService {
 
 	List<RentVO> getRentData();
 
-	RentVO getAllDataByStuInfo(String stuInfo);
+	ArrayList<RentVO> getAllDataByStuInfo(String stuInfo);
 
 	
 }

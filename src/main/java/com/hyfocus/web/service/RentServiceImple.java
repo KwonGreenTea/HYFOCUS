@@ -143,7 +143,7 @@ public class RentServiceImple implements RentService {
 	}
 
 	@Override
-	public RentVO getAllDataByStuInfo(String stuInfo) {
+	public ArrayList<RentVO> getAllDataByStuInfo(String stuInfo) {
 		return rentMapper.getAllDataByStuInfo(stuInfo);
 	}
 

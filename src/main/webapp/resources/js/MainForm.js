@@ -141,4 +141,35 @@
 					}
 			    });
 			}
+			
+			$('#').on('click', function() {
+				$('#editModal').modal('show');
+			});
+			
+			$('#searchModalLabel').on('click', function() {
+	            let data = $(this).val();
+	
+	            $.ajax({
+				        type: "POST",
+				        url: "rentListForStuInfo",
+				        contentType: "application/x-www-form-urlencoded",
+				        data: { data: data },
+				        success: function(result) {
+				            $('#resultList').empty();
+				            
+				            if (!result || result.length === 0) {
+						        $('#resultList').append('<li class="list-group-item">검색 결과가 없습니다.</li>');
+						    } else {
+						        // result 배열이 있을 때만 반복문을 돌며 항목 추가
+						        result.forEach(function(item) {
+						            $('#resultList').append('<li class="list-group-item">' + item + '</li>');
+						        });
+						    }
+				        },
+				        error: function(xhr, status, error) {
+						    alert("해당 학번에 맞는 데이터가 없습니다.");
+						}
+				});	            
+	        });
+	        
 		});

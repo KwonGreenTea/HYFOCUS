@@ -35,7 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getAllDataByStuInfo" resultMap="rentResultMap">
-		SELECT * FROM RENT WHERE STU_INFO = #{stuInfo}
+		SELECT * FROM RENT WHERE STU_INFO LIKE #{stuInfo} || '%'
+		ORDER BY CREATED_DATE
 	</select>
 	
 	<select id="selectListByPagination" resultMap="rentResultMap">

@@ -13,27 +13,35 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/morph/bootstrap.min.css"
 	rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="container">
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		    <div class="container-fluid">
-		        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
-		            <span class="navbar-toggler-icon"></span>
-		        </button>
-		        <div class="collapse navbar-collapse" id="navbarColor04">
-		            <ul class="navbar-nav me-auto">
-		                <li class="nav-item"><a class="nav-link" id="homeBtn">대여 목록</a></li>
-		                <li class="nav-item"><a class="nav-link" id="modifyList">장비 수정</a></li>
-		                <li class="nav-item"><a class="nav-link" id="allRentList">지난 내역</a></li>
-		                <li class="nav-item"><a class="nav-link" id="exportExcel">엑셀</a></li>
-		            </ul>
-		        </div>
-		    </div>
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarColor04"
+					aria-controls="navbarColor04" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor04">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item"><a class="nav-link" id="homeBtn">대여
+								목록</a></li>
+						<li class="nav-item"><a class="nav-link" id="modifyList">장비
+								수정</a></li>
+						<li class="nav-item"><a class="nav-link" id="allRentList">지난
+								내역</a></li>
+						<li class="nav-item"><a class="nav-link" id="exportExcel">엑셀</a></li>
+					</ul>
+				</div>
+			</div>
 		</nav>
 
 		<h2>카메라 대여 목록</h2>
@@ -58,13 +66,11 @@
 				</thead>
 				<tbody>
 					<c:forEach var="rentVO" items="${rentList}">
-						<c:if test="${rentVO.returnChk == 'X'}">
-							<tr class="table-secondary" id="${rentVO.rentNo}">
-								<td>${rentVO.stuInfo}</td>
-								<td>${rentVO.rentChk}</td>
-								<td>${rentVO.returnChk}</td>
-							</tr>
-						</c:if>
+						<tr class="table-secondary" id="${rentVO.rentNo}">
+							<td>${rentVO.stuInfo}</td>
+							<td>${rentVO.rentChk}</td>
+							<td>${rentVO.returnChk}</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -85,7 +91,7 @@
 				type="hidden" name="keyword"> <input type="hidden"
 				name="rentChk"> <input type="hidden" name="returnChk">
 		</form>
-		
+
 		<!-- 지난 내역 페이지 이동 form -->
 		<form id="allListForm" action="allRentList" method="get">
 			<input type="hidden" name="rentData">
@@ -125,7 +131,7 @@
 				</c:choose>
 			</ul>
 		</div>
-	
+
 		<div class="footer-content">
 			<div class="button-container">
 				<div class="btn-group" id="listBtn">
@@ -176,7 +182,10 @@
 		});
 
 		// page-item을 클릭하면 페이지 이동
-		$(".page-item a").on("click", function(e) {
+		$(".page-item a")
+				.on(
+						"click",
+						function(e) {
 							var listForm = $("#listForm");
 							e.preventDefault();
 
@@ -222,7 +231,10 @@
 							searchForm.submit(); // form 전송
 						});
 
-		$("#notRentBtn").on("click", function() {
+		$("#notRentBtn")
+				.on(
+						"click",
+						function() {
 							const listForm = $("#listForm");
 							// c:out을 이용한 현재 페이지 번호값 저장
 							const pageNum = 1;
@@ -241,7 +253,10 @@
 							listForm.submit();
 						});
 
-		$("#notReturnBtn").on("click", function() {
+		$("#notReturnBtn")
+				.on(
+						"click",
+						function() {
 							const listForm = $("#listForm");
 							// c:out을 이용한 현재 페이지 번호값 저장
 							const pageNum = 1;
@@ -260,17 +275,17 @@
 
 							listForm.submit();
 						});
-		
-		$("#allRentList").on( "click", function(e) {
-					const allListForm = $("#allListForm");
-					e.preventDefault();
-					
-					var data = 'false';
-					// 전체 리스트로 데이터 가져옴
-					allListForm.find("input[name='rentData']").val(data);
 
-					allListForm.submit();
-				});
+		$("#allRentList").on("click", function(e) {
+			const allListForm = $("#allListForm");
+			e.preventDefault();
+
+			var data = 'false';
+			// 전체 리스트로 데이터 가져옴
+			allListForm.find("input[name='rentData']").val(data);
+
+			allListForm.submit();
+		});
 
 		$("#homeBtn").on("click", function() {
 			window.location.href = "rentList";
@@ -279,7 +294,7 @@
 		$("#modifyList").on("click", function() {
 			window.location.href = "modifyList";
 		});
-		
+
 		$("#exportExcel").on("click", function() {
 			window.location.href = "exportExcel";
 		});
