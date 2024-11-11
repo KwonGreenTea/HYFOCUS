@@ -63,10 +63,9 @@
 			});
 			
 			$('#deleteBtn').click(function() {
-				const returnChkBtn = $('#returnChkBtn').text().trim(); 
-				console.log('ReturnChkBtn:', returnChkBtn);
+				const returnChkBtn = $('#returnChkBtn').text().trim();
 				
-				if(returnChkBtn.includes("X")) {  
+				if(returnChkBtn.includes("반납")) {  
 				    alert("삭제가 불가능합니다.");
 				} else {
 					if(confirm("신청 내역을 삭제하시나요?")) {

@@ -113,7 +113,7 @@ public class AdminModifyController {
 	}
 
 	@PostMapping("/modifyUserData")
-	public String modifyUserDataPost(@RequestParam("rentNo") Integer rentNo,
+	public String modifyUserDataPost(@RequestParam("rentNo") String rentNo,
 			@RequestParam(value = "stuInfo", required = false) String stuInfo,
 			@RequestParam(value = "camName", required = false) String camName,
 			@RequestParam(value = "lensName", required = false) String lensName,

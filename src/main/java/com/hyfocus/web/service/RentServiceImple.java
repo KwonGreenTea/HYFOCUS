@@ -148,22 +148,22 @@ public class RentServiceImple implements RentService {
 	}
 
 	@Override
-	public String modifyUserCamera(Integer rentNo, String camName) {
+	public String modifyUserCamera(String rentNo, String camName) {
 		return rentMapper.modifyUserCamera(rentNo, camName);
 	}
 
 	@Override
-	public String modifyUserData(Integer rentNo, String stuInfo) {
+	public String modifyUserData(String rentNo, String stuInfo) {
 		return rentMapper.modifyUserData(rentNo, stuInfo);
 	}
 
 	@Override
-	public String modifyUserLens(Integer rentNo, String lensName) {
+	public String modifyUserLens(String rentNo, String lensName) {
 		return rentMapper.modifyUserLens(rentNo, lensName);
 	}
 
 	@Override
-	public String modifyUserExtra(Integer rentNo, String extraName) {
+	public String modifyUserExtra(String rentNo, String extraName) {
 		return rentMapper.modifyUserExtra(rentNo, extraName);
 	}
 
