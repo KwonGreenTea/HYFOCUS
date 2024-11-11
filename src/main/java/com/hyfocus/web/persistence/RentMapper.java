@@ -17,27 +17,29 @@ public interface RentMapper {
 			@Param("tripod") String tripod, @Param("stuInfo") String stuInfo, @Param("createdDate") Date createdDate);
 
 	ArrayList<RentVO> getAllData();
+
 	List<RentVO> selectListByPagination(Pagination pagination);
+
 	int selectTotalCount(Pagination pagination);
 
 	RentVO getAllDataByRentNo(int rentNo);
 
 	int delete(int rentNo);
-	
+
 	int rent(int rentNo);
-	
+
 	int returnRent(int rentNo);
 
 	List<RentVO> getRentData();
 
 	ArrayList<RentVO> getAllDataByStuInfo(String stuInfo);
 
-	String modifyUserCamera(@Param("rentNo")String rentNo, @Param("camera")String camName);
+	String modifyUserCamera(@Param("rentNo") String rentNo, @Param("camera") String camName);
 
-	String modifyUserData(@Param("rentNo")String rentNo, @Param("stuInfo")String stuInfo);
+	String modifyUserData(@Param("rentNo") String rentNo, @Param("stuInfo") String stuInfo);
 
-	String modifyUserLens(@Param("rentNo")String rentNo, @Param("lens")String lensName);
+	String modifyUserLens(@Param("rentNo") String rentNo, @Param("lens") String lensName);
 
-	String modifyUserExtra(@Param("rentNo")String rentNo, @Param("bag")String extraName);
+	String modifyUserExtra(@Param("rentNo") String rentNo, @Param("bag") String extraName);
 
 }

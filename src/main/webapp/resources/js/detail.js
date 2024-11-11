@@ -65,7 +65,7 @@
 			$('#deleteBtn').click(function() {
 				const returnChk = $('#returnChk').text().trim();
 				
-				if(returnChk.includes("X")) {  
+				if(returnChk.includes("O")) {  
 				    alert("삭제가 불가능합니다.");
 				} else {
 					if(confirm("신청 내역을 삭제하시나요?")) {
