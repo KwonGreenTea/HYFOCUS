@@ -113,15 +113,13 @@ public class AdminModifyController {
 	}
 
 	@PostMapping("/modifyUserData")
-	public ResponseEntity<Integer> modifyUserDataPost(@RequestParam("rentNo") String rentNo,
+	public ResponseEntity<Integer> modifyUserDataPost(@RequestParam("rentNo") Integer rentNo,
 			@RequestParam(value = "stuInfo", required = false) String stuInfo,
 			@RequestParam(value = "camName", required = false) String camName,
 			@RequestParam(value = "lensName", required = false) String lensName,
 			@RequestParam(value = "extraName", required = false) String extraName) {
 		log.info("modifyUserDataPost()");
 		
-		log.info(rentNo + " " + stuInfo  + " " +  camName + " " + lensName + " " + extraName);
-
 		if (stuInfo != null && stuInfo.length() > 9) {
 			log.info(rentService.modifyUserData(rentNo, stuInfo) + "행 학번/이름 수정완료");
 		}
