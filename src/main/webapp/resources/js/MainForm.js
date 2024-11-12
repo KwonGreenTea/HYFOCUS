@@ -170,7 +170,7 @@
 					                var rentInfo = `
 					                    <div>
 					                    	${item.stuInfo} <br>
-					                    	<strong>신청 시간 : </strong> ${item.createdDate} <br>
+					                    	<strong>신청 날짜 : </strong> ${item.formattedCreatedDate} <br>
 					                        <strong>카메라 :</strong> ${item.camName} <br>
 					                        <strong>렌즈 :</strong> ${item.lensName} <br>
 					                    </div>

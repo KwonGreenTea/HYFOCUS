@@ -181,6 +181,13 @@ public class UserMainController {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 		ArrayList<RentVO> resultList = rentService.getAllDataByStuInfo(data);
+		
+		for (RentVO rentVO : resultList) {
+			rentVO.setFormattedCreatedDate(rentVO.getCreatedDate());
+			if(rentVO.getLensName() == null) {
+				rentVO.setLensName("");
+			}
+		}
 		return new ResponseEntity<ArrayList<RentVO>>(resultList, HttpStatus.OK);
 	}
 }

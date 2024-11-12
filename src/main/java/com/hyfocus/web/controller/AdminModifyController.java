@@ -131,6 +131,11 @@ public class AdminModifyController {
 		if (lensName != null && !lensName.isEmpty()) {
 			log.info(rentService.modifyUserLens(rentNo, lensName) + "행 렌즈 수정완료");
 		}
+		
+		if (lensName.equals("noSelected")) {
+			lensName = "";
+			log.info(rentService.modifyUserLens(rentNo, lensName) + "행 렌즈 수정완료");
+		}
 
 		if (extraName != null && !extraName.isEmpty()) {
 			log.info(rentService.modifyUserExtra(rentNo, extraName) + "행 부가물품 수정완료");

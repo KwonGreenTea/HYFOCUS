@@ -108,6 +108,7 @@
 							<label for="lensName" class="form-label">렌즈</label> <select
 								class="form-select" id="lensSelect">
 								<option id="" value="">선택</option>
+								<option id="noSelected" value="">취소</option>
 								<c:forEach var="lensVO" items="${lensList}">
 									<option id="${lensVO.lensName}">${lensVO.lensName}</option>
 								</c:forEach>

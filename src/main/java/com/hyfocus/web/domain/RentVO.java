@@ -1,5 +1,6 @@
 package com.hyfocus.web.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -24,4 +25,12 @@ public class RentVO {
 	private Date createdDate;
 	private String rentChk;
 	private String returnChk;
+	
+	private String formattedCreatedDate;
+
+    public void setFormattedCreatedDate(Date createdDate) {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+    	
+        this.formattedCreatedDate = sdf.format(createdDate);
+    }
 }
