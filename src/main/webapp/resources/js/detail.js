@@ -43,9 +43,9 @@
 				if(confirm("내역을 수정하시나요?")) {
 					let rentNo = $('#rentNo').val();
 					let stuInfo = $('#stuInfo').val();
-					let camName = $('#camSelect').val();
-			    	let lensName = $('#lensSelect').val();
-			    	let extraName = $('#extraSelect').val();
+					let camName = $('#camSelect option:selected').attr('id');
+			        let lensName = $('#lensSelect option:selected').attr('id');
+			        let extraName = $('#extraSelect option:selected').attr('id');
 					$.ajax({
                         type: "POST",
                         url: "modifyUserData", 

@@ -40,7 +40,7 @@ body {
 }
 
 .navbar-nav .nav-item {
-    margin-right: 100px;
+    margin-right: 200px;
     cursor: pointer;
 }
 
@@ -60,6 +60,11 @@ select option {
 
 .form-select:disabled {
     background-color: #e9ecef;
+}
+
+#resultList {
+    max-height: calc(5 * 2.5rem); 
+    overflow-y: auto;
 }
 
 /* 모든 화면에서 일관된 디자인을 유지하기 위한 스타일 */

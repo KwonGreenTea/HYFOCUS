@@ -169,7 +169,6 @@
 					                // RentVO 객체의 필드를 사용하여 항목을 추가
 					                var rentInfo = `
 					                    <div>
-					                    	${item.stuInfo} <br>
 					                    	<strong>신청 날짜 : </strong> ${item.formattedCreatedDate} <br>
 					                        <strong>카메라 :</strong> ${item.camName} <br>
 					                        <strong>렌즈 :</strong> ${item.lensName} <br>
