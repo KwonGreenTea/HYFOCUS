@@ -132,6 +132,7 @@ public class UserMainController {
 		// 재고 확인을 위한 Map 초기화
 		Map<String, Integer> inventoryCheck = new HashMap<>();
 		if (camera != null && camera.length() != 0) {
+			log.info("1");
 			inventoryCheck.put(camera, cameraService.chkCntByName(camera));
 		}
 		if (lens != null && lens.length() != 0) {
@@ -143,6 +144,8 @@ public class UserMainController {
 		if (tripod != null && tripod.length() != 0) {
 			inventoryCheck.put(tripod, extraService.chkCntByTripod());
 		}
+		
+		log.info("2");
 		
 		// 응답 데이터를 담을 Map
 		Map<String, Object> response = new HashMap<>();
@@ -157,6 +160,8 @@ public class UserMainController {
 				return new ResponseEntity<>(response, HttpStatus.OK);
 			}
 		}
+		
+		log.info("3");
 
 		// 재고 충분 시 데이터 삽입 및 성공 메시지 반환
 		Date createdDate = new Date();

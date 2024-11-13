@@ -26,10 +26,10 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" id="homeBtn">홈으로</a></li>
 					<li class="nav-item"><a class="nav-link" id="rentList">신청내역</a></li>
-					<li class="nav-item"><a class="nav-link" id="NCamera">카메라x</a></li>
+					<li class="nav-item"><a class="nav-link" id="NCamera">(렌즈/가방)만</a></li>
 				</ul>
 			</div>
-
+			<br>
 			<h3>카메라 신청 폼</h3>
 			<!-- 출사 or 정기 대여 선택 창 -->
 			<!-- 
