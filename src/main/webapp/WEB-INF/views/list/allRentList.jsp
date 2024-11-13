@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>하이포커스</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="HY-FOCUS CAMERA FORM" />
+<meta name="author" content="46기 권보성" />
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 <link rel="stylesheet" href="resources/css/rentList.css" />
 <link

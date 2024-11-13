@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="HY-FOCUS CAMERA FORM" />
+<meta name="author" content="46기 권보성" />
 <title>하이포커스</title>
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 </head>

@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="HY-FOCUS CAMERA FORM" />
+<meta name="author" content="46기 권보성" />
 <title>하이포커스</title>
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 <script
@@ -12,7 +14,7 @@
 <body>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			let password = prompt("비밀번호를 입력하세요:");
+			let password = prompt("접속번호를 입력하세요:");
 
 			$.ajax({
                 type: "POST",
@@ -22,7 +24,7 @@
                     if (result > 0) {
                         window.location.href = "rentList"; 
                     } else {
-                        alert("비밀번호가 일치하지 않습니다."); 
+                        alert("접속번호가 일치하지 않습니다."); 
                     }
                 },
                 error: function() {

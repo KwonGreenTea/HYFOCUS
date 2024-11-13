@@ -40,7 +40,7 @@ public class UserMainController {
 	// **** 보여줄 시간 설정 ****
 	// *********************
 
-	private String setDate = "2024-11-06T19:00:00";
+	private String setDate = "2024-11-13T19:00:00";
 	
 
 	@Autowired
@@ -74,7 +74,7 @@ public class UserMainController {
 			log.info("날짜 형식 오류: " + e.getMessage());
 			return "error/error";
 		}
-
+		
 		if (currentDateTime.isAfter(targetDateTime)) {
 			session = request.getSession(false);
 			session = request.getSession();
@@ -187,6 +187,8 @@ public class UserMainController {
 			rentVO.setFormattedCreatedDate(rentVO.getCreatedDate());
 			if(rentVO.getLensName() == null) {
 				rentVO.setLensName("");
+			} else if(rentVO.getCamName() == null) {
+				rentVO.setCamName("");
 			}
 		}
 		return new ResponseEntity<ArrayList<RentVO>>(resultList, HttpStatus.OK);
