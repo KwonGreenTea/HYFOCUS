@@ -37,8 +37,10 @@ public class RentServiceImple implements RentService {
 	@Override
 	public int insert(String camera, String lens, String bag, String tripod, String stuInfo, Date createdDate) {
 		int count = 0;
-		count = cameraMapper.getCount(camera);
-		log.info(cameraMapper.updateCount(camera, --count) + "행 카메라 갯수 업데이트");
+		if(camera != null && !camera.isEmpty()) {
+			count = cameraMapper.getCount(camera);
+			log.info(cameraMapper.updateCount(camera, --count) + "행 카메라 갯수 업데이트");
+		}
 		
 		if(lens != null && !lens.isEmpty()) {
 			count = lensMapper.getCount(lens);
@@ -85,8 +87,10 @@ public class RentServiceImple implements RentService {
 		
 		RentVO rentVO = rentMapper.getAllDataByRentNo(rentNo);
 		
-		count = cameraMapper.getCount(rentVO.getCamName());
-		log.info(cameraMapper.updateCount(rentVO.getCamName(), ++count) + "행 카메라 갯수 업데이트");
+		if(rentVO.getCamName() != null && !rentVO.getCamName().isEmpty()) {
+			count = cameraMapper.getCount(rentVO.getCamName());
+			log.info(cameraMapper.updateCount(rentVO.getCamName(), ++count) + "행 카메라 갯수 업데이트");
+		}
 		
 		if(rentVO.getLensName() != null && !rentVO.getLensName().isEmpty()) {
 			count = lensMapper.getCount(rentVO.getLensName());

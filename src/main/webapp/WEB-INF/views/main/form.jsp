@@ -26,7 +26,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" id="homeBtn">홈으로</a></li>
 					<li class="nav-item"><a class="nav-link" id="rentList">신청내역</a></li>
-					<li class="nav-item"><a class="nav-link" id="NCamera">(렌즈/가방)만</a></li>
+					<li class="nav-item"><a class="nav-link" id="NCamera">(렌즈/가방/삼각대)만</a></li>
 				</ul>
 			</div>
 			<br>
