@@ -12,8 +12,29 @@
 			const checkbox = document.getElementById('tripodCheck');
     		checkbox.checked = !checkbox.checked;
 		}
+		
+		function bagCheckModal() {
+			const checkbox = document.getElementById('bagCheckModal');
+    		checkbox.checked = !checkbox.checked;
+		}
+		
+		function tripodCheckModal() {
+			const checkbox = document.getElementById('tripodCheckModal');
+    		checkbox.checked = !checkbox.checked;
+		}
 			
 		$(document).ready(function() {
+			$("#homeBtn").on("click", function() {
+				window.location.href = "/";
+			});
+			
+			$('#rentList').on('click', function() {
+				$('#searchModal').modal('show');
+			});
+			
+			$("#NCamera").on("click", function() {
+				$('#editModal').modal('show');
+			});
 		
 		    // 카메라 선택창 변경 시, 다른 카메라 선택창 숨김 및 값 초기화
 		    $('#cameraSelectDiv .form-select').change(function() {
@@ -141,10 +162,6 @@
 			    });
 			}
 			
-			$('#rentList').on('click', function() {
-				$('#searchModal').modal('show');
-			});
-			
 			$('#searchModalBtn').on('click', function() {
 	            let data = $('#searchInput').val();
 	
@@ -183,14 +200,6 @@
 					});
 				}
 	        });
-	        
-	        $("#homeBtn").on("click", function() {
-				window.location.href = "/";
-			});
-			
-			$("#NCamera").on("click", function() {
-				$('#editModal').modal('show');
-			});
 			
 			$('#subBtnModal').click(function(event) {
 			    event.preventDefault();

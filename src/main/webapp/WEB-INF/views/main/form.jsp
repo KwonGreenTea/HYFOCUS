@@ -341,7 +341,7 @@
 											<c:otherwise>
 												<input class="form-check-input" type="checkbox"
 													value="${extraVO.extraName}" id="bagCheckModal">
-												<label class="form-check-label" onclick="bagCheck()">
+												<label class="form-check-label" onclick="bagCheckModal()">
 													🎒${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
 											</c:otherwise>
 										</c:choose>
@@ -362,7 +362,7 @@
 											<c:otherwise>
 												<input class="form-check-input" type="checkbox"
 													value="${extraVO.extraName}" id="tripodCheckModal">
-												<label class="form-check-label" onclick="tripodCheck()">
+												<label class="form-check-label" onclick="tripodCheckModal()">
 													📐${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
 											</c:otherwise>
 										</c:choose>
