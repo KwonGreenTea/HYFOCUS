@@ -35,6 +35,32 @@
 			$("#NCamera").on("click", function() {
 				$('#editModal').modal('show');
 			});
+			
+			$('#subBtnModal').click(function(event) {
+			    event.preventDefault();
+			    
+			    const stuInfo = $('#stuInfoModal').val();
+			    if (stuInfo.length < 10) {
+			        alert('학번, 이름을 입력해 주세요.');
+			        return;
+			    }
+				  
+			    const lens = $('#onlyLensSelect option:selected').attr('id');
+			    
+			    const bag = $('#bagCheckModal').is(':checked') ? $('#bagCheckModal').val() : '';
+			    const tripod = $('#tripodCheckModal').is(':checked') ? $('#tripodCheckModal').val() : '';
+			    const extras = [bag, tripod].filter(extra => extra);
+			    
+			    if (lens != null) {
+				    if (confirm(`렌즈 : ${lens}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
+				        formSubmit(null, lens, bag, tripod, stuInfo);
+				    }
+				} else {
+					if (confirm(`추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
+				        formSubmit(null, lens, bag, tripod, stuInfo);
+				    }
+				}
+			});
 		
 		    // 카메라 선택창 변경 시, 다른 카메라 선택창 숨김 및 값 초기화
 		    $('#cameraSelectDiv .form-select').change(function() {
@@ -106,7 +132,7 @@
 			    event.preventDefault();
 			    
 			    const stuInfo = $('#stuInfo').val();
-			    if (!stuInfo) {
+			    if (stuInfo.length < 10) {
 			        alert('학번, 이름을 입력해 주세요.');
 			        return;
 			    }
@@ -201,30 +227,4 @@
 				}
 	        });
 			
-			$('#subBtnModal').click(function(event) {
-			    event.preventDefault();
-			    
-			    const stuInfo = $('#stuInfoModal').val();
-			    if (!stuInfo) {
-			        alert('학번, 이름을 입력해 주세요.');
-			        return;
-			    }
-			    
-			    let lens = $('#onlyLensSelect option:selected').attr('id');
-			    
-			    const bag = $('#bagCheckModal').is(':checked') ? $('#bagCheckModal').val() : '';
-			    const tripod = $('#tripodCheckModal').is(':checked') ? $('#tripodCheckModal').val() : '';
-			    const extras = [bag, tripod].filter(extra => extra);
-			    
-			    if (lens != null) {
-				    if (confirm(`렌즈 : ${lens}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
-				        formSubmit(camera, lens, bag, tripod, stuInfo);
-				    }
-				} else {
-					if (confirm(`추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
-				        formSubmit("", lens, bag, tripod, stuInfo);
-				    }
-				}
-			});
-	        
 		});

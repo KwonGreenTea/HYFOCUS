@@ -126,8 +126,9 @@ public class UserMainController {
 			RedirectAttributes reAttr) {
 
 		log.info("rentPOST()");
-		
 
+		log.info(stuInfo + " " + camera + " " + lens + " " + bag + " " + tripod);
+		
 		// 재고 확인을 위한 Map 초기화
 		Map<String, Integer> inventoryCheck = new HashMap<>();
 		if (camera != null && camera.length() != 0) {

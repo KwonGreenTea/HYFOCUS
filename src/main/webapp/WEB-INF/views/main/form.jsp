@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 
-			<h2>카메라 신청 폼</h2>
+			<h3>카메라 신청 폼</h3>
 			<!-- 출사 or 정기 대여 선택 창 -->
 			<!-- 
 			<div class="form-check">
@@ -127,7 +127,7 @@
 				<br>
 				<hr>
 				<br>
-				<h3>렌즈 선택</h3>
+				<h4>렌즈 선택</h4>
 				<div class="select-group">
 					<label class="form-label mt-4">⚗캐논 Canon</label> <select
 						class="form-select" id="canonLensSelect" name="canonLens">
@@ -190,7 +190,7 @@
 				<br>
 				<hr>
 				<br>
-				<h3>가방 / 삼각대 선택</h3>
+				<h4>가방 / 삼각대 선택</h4>
 				<br>
 				<div class="form-check">
 					<c:forEach var="extraVO" items="${extraList}">
@@ -237,7 +237,7 @@
 				<br>
 				<hr>
 				<br>
-				<h3>학번 / 이름 입력</h3>
+				<h4>학번 / 이름 입력</h4>
 				<br>
 				<div class="info-input">
 					<input type="text" class="form-control"
@@ -326,6 +326,7 @@
 								</c:forEach>
 							</select>
 						</div>
+						<br>
 						<div class="mb-3">
 							<label class="form-label">가방 / 삼각대</label>
 							<div class="form-check">
@@ -370,6 +371,7 @@
 								</c:forEach>
 							</div>
 						</div>
+						<br>
 						<div class="mb-3">
 							<label for="stuInfo" class="form-label">학번 / 이름 입력</label> <input
 								type="text" class="form-control" placeholder="2023000000 권보성"
