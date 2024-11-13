@@ -24,7 +24,9 @@
 		<div id="container">
 			<div class="collapse navbar-collapse show" id="navbarColor04">
 				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" id="homeBtn">홈으로</a></li>
 					<li class="nav-item"><a class="nav-link" id="rentList">신청내역</a></li>
+					<li class="nav-item"><a class="nav-link" id="NCamera">카메라x</a></li>
 				</ul>
 			</div>
 
@@ -70,7 +72,7 @@
 							<c:choose>
 								<c:when test="${cameraVO.camCount < 1}">
 									<option id="${cameraVO.camName}" value="${cameraVO.camName}"
-										disabled>${cameraVO.camName} (${cameraVO.camCount}대
+										disabled>${cameraVO.camName}(${cameraVO.camCount}대
 										남음)</option>
 								</c:when>
 								<c:otherwise>
@@ -247,6 +249,7 @@
 		</div>
 	</form>
 
+	<!-- 신청내역 모달 -->
 	<div class="modal fade" id="searchModal" tabindex="-1"
 		aria-labelledby="searchModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -264,6 +267,118 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="searchModalBtn">검색</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 렌즈, 가방, 삼각대만 선택할 수 있는 모달 -->
+	<div class="modal fade" id="editModal" tabindex="-1"
+		aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editModalLabel">렌즈, 가방, 삼각대만 신청 시</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<div class="mb-3">
+							<label for="lensName" class="form-label">렌즈</label> <select
+								class="form-select" id="onlyLensSelect">
+								<option value="">선택</option>
+								<c:forEach var="lensVO" items="${canonLensList}">
+									<c:choose>
+										<c:when test="${lensVO.lensCount < 1}">
+											<option id="${lensVO.lensName}" disabled>${lensVO.lensName}
+												(${lensVO.lensCount}개 남음)</option>
+										</c:when>
+										<c:otherwise>
+											<option id="${lensVO.lensName}">${lensVO.lensName}
+												(${lensVO.lensCount}개 남음)</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:forEach var="lensVO" items="${tamronLensList}">
+									<c:choose>
+										<c:when test="${lensVO.lensCount < 1}">
+											<option id="${lensVO.lensName}" disabled>${lensVO.lensName}
+												(${lensVO.lensCount}개 남음)</option>
+										</c:when>
+										<c:otherwise>
+											<option id="${lensVO.lensName}">${lensVO.lensName}
+												(${lensVO.lensCount}개 남음)</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:forEach var="lensVO" items="${sigmaLensList}">
+									<c:choose>
+										<c:when test="${lensVO.lensCount < 1}">
+											<option id="${lensVO.lensName}" disabled>${lensVO.lensName}
+												(${lensVO.lensCount}개 남음)</option>
+										</c:when>
+										<c:otherwise>
+											<option id="${lensVO.lensName}">${lensVO.lensName}
+												(${lensVO.lensCount}개 남음)</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">가방 / 삼각대</label>
+							<div class="form-check">
+								<c:forEach var="extraVO" items="${extraList}">
+									<c:if test="${extraVO.extraNo == 1}">
+										<c:choose>
+											<c:when test="${extraVO.extraCount < 1}">
+												<input class="form-check-input" type="checkbox"
+													value="${extraVO.extraName}" id="bagCheckModal" disabled>
+												<label class="form-check-label">
+													🎒${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
+											</c:when>
+											<c:otherwise>
+												<input class="form-check-input" type="checkbox"
+													value="${extraVO.extraName}" id="bagCheckModal">
+												<label class="form-check-label" onclick="bagCheck()">
+													🎒${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</c:forEach>
+							</div>
+							<br>
+							<div class="form-check">
+								<c:forEach var="extraVO" items="${extraList}">
+									<c:if test="${extraVO.extraNo == 2}">
+										<c:choose>
+											<c:when test="${extraVO.extraCount < 1}">
+												<input class="form-check-input" type="checkbox"
+													value="${extraVO.extraName}" id="tripodCheckModal" disabled>
+												<label class="form-check-label">
+													📐${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
+											</c:when>
+											<c:otherwise>
+												<input class="form-check-input" type="checkbox"
+													value="${extraVO.extraName}" id="tripodCheckModal">
+												<label class="form-check-label" onclick="tripodCheck()">
+													📐${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="stuInfo" class="form-label">학번 / 이름 입력</label> <input
+								type="text" class="form-control" placeholder="2023000000 권보성"
+								id="stuInfoModal" required>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-outline-primary" id="subBtnModal">신청</button>
 				</div>
 			</div>
 		</div>

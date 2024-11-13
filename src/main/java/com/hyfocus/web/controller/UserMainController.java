@@ -130,7 +130,9 @@ public class UserMainController {
 
 		// 재고 확인을 위한 Map 초기화
 		Map<String, Integer> inventoryCheck = new HashMap<>();
-		inventoryCheck.put(camera, cameraService.chkCntByName(camera));
+		if (camera != null && camera.length() != 0) {
+			inventoryCheck.put(camera, cameraService.chkCntByName(camera));
+		}
 		if (lens != null && lens.length() != 0) {
 			inventoryCheck.put(lens, lensService.chkCntByName(lens));
 		}
