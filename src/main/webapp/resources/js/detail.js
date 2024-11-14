@@ -41,11 +41,13 @@
 			
 			$('#saveChangesBtn').on('click', function() {
 				if(confirm("내역을 수정하시나요?")) {
-					let rentNo = $('#rentNo').val();
-					let stuInfo = $('#stuInfo').val();
-					let camName = $('#camSelect option:selected').attr('id');
-			        let lensName = $('#lensSelect option:selected').attr('id');
-			        let extraName = $('#extraSelect option:selected').attr('id');
+					const rentNo = $('#rentNo').val();
+					const stuInfo = $('#stuInfo').val();
+					const camName = $('#camSelect option:selected').attr('id');
+			        const lensName = $('#lensSelect option:selected').attr('id');
+			        const extraName = $('#extraSelect option:selected').attr('id');
+			        
+			        console.log(rentNo + " " + stuInfo + " " + camName + " " + lensName + " " + extraName);
 					$.ajax({
                         type: "POST",
                         url: "modifyUserData", 

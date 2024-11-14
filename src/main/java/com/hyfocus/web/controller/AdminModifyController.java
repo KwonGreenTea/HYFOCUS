@@ -120,7 +120,7 @@ public class AdminModifyController {
 			@RequestParam(value = "extraName", required = false) String extraName) {
 		log.info("modifyUserDataPost()");
 		
-		log.info(rentNo + "\n" + stuInfo + "\n" + camName + "\n" + lensName + "\n" + extraName);
+		log.info(rentNo + " " + stuInfo + " " + camName + " " + lensName + " " + extraName);
 		
 		if (stuInfo != null && stuInfo.length() > 9) {
 			log.info(rentService.modifyUserData(rentNo, stuInfo) + "행 학번/이름 수정완료");
@@ -131,7 +131,7 @@ public class AdminModifyController {
 		}
 
 		if (lensName != null && !lensName.isEmpty()) {
-			if (lensName.equals("noSelected")) lensName = "";
+			if (lensName.equals("cancel")) lensName = "";
 			log.info(rentService.modifyUserLens(rentNo, lensName) + "행 렌즈 수정완료");
 		}
 
