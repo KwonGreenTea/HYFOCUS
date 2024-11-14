@@ -120,6 +120,8 @@ public class AdminModifyController {
 			@RequestParam(value = "extraName", required = false) String extraName) {
 		log.info("modifyUserDataPost()");
 		
+		log.info(rentNo + "\n" + stuInfo + "\n" + camName + "\n" + lensName + "\n" + extraName);
+		
 		if (stuInfo != null && stuInfo.length() > 9) {
 			log.info(rentService.modifyUserData(rentNo, stuInfo) + "행 학번/이름 수정완료");
 		}
