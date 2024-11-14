@@ -184,7 +184,8 @@ public class AdminController {
 			String formattedDate = dateFormat.format(rentVO.getCreatedDate());
 	        row.createCell(0).setCellValue(formattedDate);
 	        
-			row.createCell(1).setCellValue(rentVO.getStuInfo());
+			row.createCell(1).setCellValue(rentVO.getStuInfo().replaceAll("\\d", "")); // "[0-9]"
+			
 			row.createCell(2).setCellValue(rentVO.getCamName());
 			row.createCell(3).setCellValue(rentVO.getLensName());
 			row.createCell(4).setCellValue(rentVO.getBag());
