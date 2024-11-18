@@ -1,3 +1,6 @@
+		window.localStorage.clear();
+		window.sessionStorage.clear();
+		
 		// 모달에 데이터 채우는 함수
 		function dataForModal(camList, lensList, extraList) {
 		    $('#camSelect').empty();

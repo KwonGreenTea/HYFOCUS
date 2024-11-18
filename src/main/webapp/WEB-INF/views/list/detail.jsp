@@ -128,10 +128,10 @@
 							</select>
 							<!-- 가방만 수정할 수 있게 함. / 팔요 시 추가. -->
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="saveChangesBtn">수정</button>
+						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="saveChangesBtn">수정</button>
 				</div>
 			</div>
 		</div>
