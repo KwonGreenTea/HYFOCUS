@@ -99,9 +99,9 @@
 						<div class="mb-4">
 							<label for="camName" class="form-label">카메라</label> <select
 								class="form-select" id="camSelect">
-								<option id="" value="">선택</option>
+								<option value="">선택</option>
 								<c:forEach var="cameraVO" items="${camList}">
-									<option id="${cameraVO.camName}">${cameraVO.camName}</option>
+									<option value="${cameraVO.camName}">${cameraVO.camName}</option>
 								</c:forEach>
 							</select>
 
@@ -110,19 +110,19 @@
 							<label for="lensName" class="form-label">렌즈</label> <select
 								class="form-select" id="lensSelect">
 								<option id="" value="">선택</option>
-								<option id="cancel" value="">취소</option>
+								<option value="cancel">취소</option>
 								<c:forEach var="lensVO" items="${lensList}">
-									<option id="${lensVO.lensName}">${lensVO.lensName}</option>
+									<option value="${lensVO.lensName}">${lensVO.lensName}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="mb-4">
 							<label class="form-label">가방</label> <select class="form-select"
 								id="extraSelect">
-								<option id="" value="">선택</option>
+								<option value="">선택</option>
 								<c:forEach var="extraVO" items="${extraList}">
 									<c:if test="${extraVO.extraNo == 1}">
-										<option id="${extraVO.extraName}">${extraVO.extraName}</option>
+										<option value="${extraVO.extraName}">${extraVO.extraName}</option>
 									</c:if>
 								</c:forEach>
 							</select>

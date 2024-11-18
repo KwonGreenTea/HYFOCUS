@@ -43,9 +43,10 @@
 				if(confirm("내역을 수정하시나요?")) {
 					const rentNo = $('#rentNo').val();
 					const stuInfo = $('#stuInfo').val();
-					const camName = $('#camSelect option:selected').attr('id');
-			        const lensName = $('#lensSelect option:selected').attr('id');
-			        const extraName = $('#extraSelect option:selected').attr('id');
+					const camName = $('#camSelect option:selected').val();
+					const lensName = $('#lensSelect option:selected').val();
+					const extraName = $('#extraSelect option:selected').val();
+
 			        
 			        console.log(rentNo + " " + stuInfo + " " + camName + " " + lensName + " " + extraName);
 					$.ajax({

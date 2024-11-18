@@ -115,15 +115,6 @@ public class AdminController {
 		}
 	}
 
-	// 수정
-	@PostMapping("/modify")
-	public ResponseEntity<Integer> modifyPOST(@RequestParam("rentNo") String rentNo) {
-
-		int result = 1;
-
-		return new ResponseEntity<Integer>(result, HttpStatus.OK);
-	}
-
 	// 삭제
 	@PostMapping("/delete")
 	public ResponseEntity<Integer> deletePOST(@RequestParam("rentNo") String rentNo) {
