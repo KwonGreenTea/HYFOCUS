@@ -84,7 +84,12 @@
 		                $('#lensSelectDiv').show();
 		                $('#extraSelectDiv').show();
 		            } else if ($('#mirrorlessSelect').val() === '소니 A7M2'){
-						$('#lensSelectDiv .select-group #canonLensSelect').show();
+				        // 'canonLensSelect'만 보이게 하고 다른 선택창 숨기기
+					    $('#lensSelectDiv .select-group').hide(); // 모든 select-group 숨기기
+					    $('#canonLensSelect').closest('.select-group').show(); // 'canonLensSelect'만 표시
+					
+					    // 렌즈 선택창과 기타 선택창 표시
+					    $('#lensSelectDiv').show();
 					    $('#extraSelectDiv').show();
 						
 					    $('#canonLensSelect option').each(function () {
@@ -119,7 +124,7 @@
 		            $('#canonLensSelect option').each(function () {
 					    const optionValue = $(this).val();
 					    if (['24mm', '10-18mm', '55-250mm'].includes(optionValue)) {
-					        $(this).prop('disabled', false); // 비활성화
+					        $(this).prop('disabled', false); // 활성화
 					    }
 					});
 		        }
