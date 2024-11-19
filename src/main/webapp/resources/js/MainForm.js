@@ -93,8 +93,8 @@
 					    $('#extraSelectDiv').show();
 						
 					    $('#canonLensSelect option').each(function () {
-					        const optionValue = $(this).val();
-					      	if (['24mm', '10-18mm', '55-250mm'].includes(optionValue)) {
+					        const optionId = $(this).attr('id');
+					      	if (['24mm', '10-18mm', '55-250mm'].includes(optionId)) {
 					            $(this).prop('disabled', true); // 비활성화
 					        }
 					    });		            	
@@ -122,8 +122,8 @@
 		            $('#lensSelectDiv .select-group').show();
 		            
 		            $('#canonLensSelect option').each(function () {
-					    const optionValue = $(this).val();
-					    if (['24mm', '10-18mm', '55-250mm'].includes(optionValue)) {
+					    const optionId = $(this).attr('id');
+					    if (['24mm', '10-18mm', '55-250mm'].includes(optionId)) {
 					        $(this).prop('disabled', false); // 활성화
 					    }
 					});
