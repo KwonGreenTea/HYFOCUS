@@ -84,15 +84,12 @@
 		                $('#lensSelectDiv').show();
 		                $('#extraSelectDiv').show();
 		            } else if ($('#mirrorlessSelect').val() === '소니 A7M2'){
-						$('#lensSelectDiv').show(); // 렌즈 선택 섹션 표시
-					    $('#canonLensSelect').show(); // Canon 렌즈만 표시
-					    $('#tamronLensSelect').hide(); // Tamron 숨김
-					    $('#sigmaLensSelect').hide(); // Sigma 숨김
+						$('#lensSelectDiv .select-group #canonLensSelect').show();
 					    $('#extraSelectDiv').show();
 						
 					    $('#canonLensSelect option').each(function () {
 					        const optionValue = $(this).val();
-					      	if (['4', '5', '6'].includes(optionValue)) {
+					      	if (['24mm', '10-18mm', '55-250mm'].includes(optionValue)) {
 					            $(this).prop('disabled', true); // 비활성화
 					        }
 					    });		            	
@@ -118,6 +115,13 @@
 		            $('#tamronLensSelect').prop('selectedIndex', 0);
 		            $('#sigmaLensSelect').prop('selectedIndex', 0);
 		            $('#lensSelectDiv .select-group').show();
+		            
+		            $('#canonLensSelect option').each(function () {
+					    const optionValue = $(this).val();
+					    if (['24mm', '10-18mm', '55-250mm'].includes(optionValue)) {
+					        $(this).prop('disabled', false); // 비활성화
+					    }
+					});
 		        }
 		    });
 	
