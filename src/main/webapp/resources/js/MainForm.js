@@ -83,7 +83,21 @@
 		            if ($('#dslrSelect').val()) {
 		                $('#lensSelectDiv').show();
 		                $('#extraSelectDiv').show();
+		            } else if ($('#mirrorlessSelect').val() === '소니 A7M2'){
+						$('#lensSelectDiv').show(); // 렌즈 선택 섹션 표시
+					    $('#canonLensSelect').show(); // Canon 렌즈만 표시
+					    $('#tamronLensSelect').hide(); // Tamron 숨김
+					    $('#sigmaLensSelect').hide(); // Sigma 숨김
+					    $('#extraSelectDiv').show();
+						
+					    $('#canonLensSelect option').each(function () {
+					        const optionValue = $(this).val();
+					      	if (['4', '5', '6'].includes(optionValue)) {
+					            $(this).prop('disabled', true); // 비활성화
+					        }
+					    });		            	
 		            } else if ($('#filmSelectManual').val() || $('#filmSelectAuto').val() || $('#mirrorlessSelect').val()) {
+		            	$('#lensSelectDiv').hide();
 		                $('#extraSelectDiv').show();
 		            } else {
 		                $('#lensSelectDiv').hide();
