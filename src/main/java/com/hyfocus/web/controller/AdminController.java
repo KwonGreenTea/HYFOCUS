@@ -148,8 +148,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/exportExcel")
-	public void exportToExcel(HttpServletRequest request, HttpServletResponse response)
-			throws IOException {
+	public void exportToExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		List<RentVO> rentList = rentService.getRentData();
 
 		// 엑셀 파일 생성
@@ -166,17 +165,17 @@ public class AdminController {
 		headerRow.createCell(5).setCellValue("삼각대");
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH시 mm분 ss초");
-		
+
 		// 데이터 추가
 		int rowNum = 1;
 		for (RentVO rentVO : rentList) {
 			Row row = sheet.createRow(rowNum++);
-			
+
 			String formattedDate = dateFormat.format(rentVO.getCreatedDate());
-	        row.createCell(0).setCellValue(formattedDate);
-	        
+			row.createCell(0).setCellValue(formattedDate);
+
 			row.createCell(1).setCellValue(rentVO.getStuInfo().replaceAll("\\d", "")); // "[0-9]"
-			
+
 			row.createCell(2).setCellValue(rentVO.getCamName());
 			row.createCell(3).setCellValue(rentVO.getLensName());
 			row.createCell(4).setCellValue(rentVO.getBag());
