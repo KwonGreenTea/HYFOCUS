@@ -10,12 +10,13 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.Gson;
 import com.hyfocus.web.service.ExtraService;
 import com.hyfocus.web.service.RentService;
 
-public class WebSocketHandler {
+public class WebSocketHandler extends TextWebSocketHandler {
 	
 	@Autowired
 	private ExtraService extraService;
