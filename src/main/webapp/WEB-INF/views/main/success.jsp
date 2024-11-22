@@ -22,6 +22,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
+	var rentNo;
+	
 	function reset() {
 		window.location.href = "/";
 	}
@@ -41,8 +43,8 @@
 		const checkbox = document.getElementById('tripodCheck');
 		checkbox.checked = !checkbox.checked;
 	}
-
-	const socket = new WebSocket("ws://hyfocus.com/success");
+	
+	const socket = new WebSocket("ws://hyfocus.com/rentSuccess");
 
 	socket.onmessage = function(event) {
 		const data = JSON.parse(event.data);
