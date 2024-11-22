@@ -35,7 +35,7 @@ public class RentServiceImple implements RentService {
 
 	@Transactional(value = "transactionManager") 
 	@Override
-	public int insert(String camera, String lens, String bag, String tripod, String stuInfo, Date createdDate) {
+	public int insert(String camera, String lens, String stuInfo, Date createdDate) {
 		int count = 0;
 		if(camera != null && !camera.isEmpty()) {
 			count = cameraMapper.getCount(camera);
@@ -47,17 +47,7 @@ public class RentServiceImple implements RentService {
 			log.info(lensMapper.updateCount(lens, --count) + "행 렌즈 갯수 업데이트");
 		}
 		
-		if(bag != null && !bag.isEmpty()) {
-			count = extraMapper.getBagCount();
-			log.info(extraMapper.updateBagCount(bag, --count) + "행 가방 갯수 업데이트");
-		}
-		
-		if(tripod != null && !tripod.isEmpty()) {
-			count = extraMapper.getTripodCount();
-			log.info(extraMapper.updateTripodCount(tripod, --count) + "행 삼각대 갯수 업데이트");
-		}
-		
-		return rentMapper.insert(camera, lens, bag, tripod, stuInfo, createdDate);
+		return rentMapper.insert(camera, lens, stuInfo, createdDate);
 	}
 
 	@Override
@@ -169,6 +159,16 @@ public class RentServiceImple implements RentService {
 	@Override
 	public int modifyUserExtra(Integer rentNo, String extraName) {
 		return rentMapper.modifyUserExtra(rentNo, extraName);
+	}
+
+	@Transactional(value = "transactionManager")
+	@Override
+	public int updateUserExtra(Integer rentNo, String extraName, int extraCount) {
+		@SuppressWarnings("unused")
+		int result = modifyUserExtra(rentNo, extraName);
+		int count = --extraCount;
+		count = extraMapper.updateBagCount(extraName, count);
+		return count;
 	}
 
 }

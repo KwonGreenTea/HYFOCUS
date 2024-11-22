@@ -22,6 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		SELECT * FROM EXTRA_LIST WHERE EXTRA_NAME = #{data}
    </select>
    
+   <select id="chkCntByName" resultType="int">
+   		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME = #{extraName}
+   </select>
+   
    <select id="getBagCount" resultType="int">
    		SELECT EXTRA_COUNT FROM EXTRA_LIST WHERE EXTRA_NAME = '카메라 가방'
    </select>

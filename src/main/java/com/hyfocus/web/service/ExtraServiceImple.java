@@ -39,6 +39,11 @@ public class ExtraServiceImple implements ExtraService {
 		return extraMapper.modifyExtraCnt(extraSelect, extraCnt);
 	}
 
+	@Override
+	public int chkCntByName(String extraName) {
+		return extraMapper.chkCntByName(extraName);
+	}
+
 	
 
 }

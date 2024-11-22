@@ -9,7 +9,7 @@ import com.hyfocus.web.util.Pagination;
 
 public interface RentService {
 
-	int insert(String camera, String lens, String bag, String tripod, String stuInfo, Date createdDate);
+	int insert(String camera, String lens, String stuInfo, Date createdDate);
 
 	ArrayList<RentVO> getAllData();
 	
@@ -34,6 +34,8 @@ public interface RentService {
 	int modifyUserLens(Integer rentNo, String lensName);
 
 	int modifyUserExtra(Integer rentNo, String extraName);
+
+	int updateUserExtra(Integer rentNo, String extraName, int extraCount);
 
 	
 }

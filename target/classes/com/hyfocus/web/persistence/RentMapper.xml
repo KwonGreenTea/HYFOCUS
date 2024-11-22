@@ -82,9 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="insert">
-		INSERT INTO RENT (Rent_NO, CAM_NAME, LENS_NAME, BAG, TRIPOD, STU_INFO, CREATED_DATE)
+		INSERT INTO RENT (Rent_NO, CAM_NAME, LENS_NAME, STU_INFO, CREATED_DATE)
 		VALUES (RENT_SEQ.NEXTVAL, #{camera, jdbcType=VARCHAR}, #{lens,
-		jdbcType=VARCHAR}, #{bag, jdbcType=VARCHAR}, #{tripod,
 		jdbcType=VARCHAR}, #{stuInfo, jdbcType=VARCHAR}, #{createdDate, jdbcType=TIMESTAMP})
 	</insert>
 

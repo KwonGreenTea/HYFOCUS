@@ -13,8 +13,8 @@ import com.hyfocus.web.util.Pagination;
 @Mapper
 public interface RentMapper {
 
-	int insert(@Param("camera") String camera, @Param("lens") String lens, @Param("bag") String bag,
-			@Param("tripod") String tripod, @Param("stuInfo") String stuInfo, @Param("createdDate") Date createdDate);
+	int insert(@Param("camera") String camera, @Param("lens") String lens, @Param("stuInfo") String stuInfo,
+			@Param("createdDate") Date createdDate);
 
 	ArrayList<RentVO> getAllData();
 

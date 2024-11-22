@@ -42,7 +42,6 @@ public class UserMainController {
 
 	private String setDate = "2024-11-20T14:00:00";
 	
-
 	@Autowired
 	private CameraService cameraService;
 
@@ -74,7 +73,7 @@ public class UserMainController {
 			log.info("날짜 형식 오류: " + e.getMessage());
 			return "error/error";
 		}
-		
+
 		if (currentDateTime.isAfter(targetDateTime)) {
 			session = request.getSession(false);
 			session = request.getSession();
@@ -121,12 +120,11 @@ public class UserMainController {
 
 	@PostMapping("/rent")
 	public synchronized ResponseEntity<Map<String, Object>> rentPOST(@RequestParam(required = false) String camera,
-			@RequestParam(required = false) String lens, @RequestParam(required = false) String bag,
-			@RequestParam(required = false) String tripod, @RequestParam String stuInfo, Model model,
+			@RequestParam(required = false) String lens, @RequestParam String stuInfo, Model model,
 			RedirectAttributes reAttr) {
 
 		log.info("rentPOST()");
-		
+
 		// 재고 확인을 위한 Map 초기화
 		Map<String, Integer> inventoryCheck = new HashMap<>();
 		if (camera != null && camera.length() != 0) {
@@ -135,16 +133,10 @@ public class UserMainController {
 		if (lens != null && lens.length() != 0) {
 			inventoryCheck.put(lens, lensService.chkCntByName(lens));
 		}
-		if (bag != null && bag.length() != 0) {
-			inventoryCheck.put(bag, extraService.chkCntByBag());
-		}
-		if (tripod != null && tripod.length() != 0) {
-			inventoryCheck.put(tripod, extraService.chkCntByTripod());
-		}
-		
+
 		// 응답 데이터를 담을 Map
 		Map<String, Object> response = new HashMap<>();
-		
+
 		// 재고 검사
 		for (Map.Entry<String, Integer> entry : inventoryCheck.entrySet()) {
 			String itemName = entry.getKey();
@@ -158,7 +150,7 @@ public class UserMainController {
 
 		// 재고 충분 시 데이터 삽입 및 성공 메시지 반환
 		Date createdDate = new Date();
-		log.info(stuInfo + " " + rentService.insert(camera, lens, bag, tripod, stuInfo, createdDate) + "행 INSERT 수행완료.");
+		log.info(stuInfo + " " + rentService.insert(camera, lens, stuInfo, createdDate) + "행 INSERT 수행완료.");
 
 		response.put("success", true);
 		response.put("stuInfo", stuInfo);
@@ -169,25 +161,28 @@ public class UserMainController {
 	@GetMapping("/rentSuccess")
 	public String rentSuccessGet(Model model, String stuInfo) {
 		ArrayList<RentVO> resultList = rentService.getAllDataByStuInfo(stuInfo);
-
 		RentVO rentVO = resultList.get(0);
-		
+
+		// 가방/삼각대 리스트 가져옴
+		ArrayList<ExtraVO> extraList = extraService.selectAllData();
+
+		model.addAttribute("extraList", extraList);
 		model.addAttribute("rentVO", rentVO);
 		return "main/success";
 	}
-	
+
 	@PostMapping("/rentListForStuInfo")
 	public ResponseEntity<ArrayList<RentVO>> rentListForStuInfoPOST(@RequestParam("data") String data) {
-		if(data.length() < 10) {
+		if (data.length() < 10) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 		ArrayList<RentVO> resultList = rentService.getAllDataByStuInfo(data);
-		
+
 		for (RentVO rentVO : resultList) {
 			rentVO.setFormattedCreatedDate(rentVO.getCreatedDate());
-			if(rentVO.getLensName() == null) {
+			if (rentVO.getLensName() == null) {
 				rentVO.setLensName("");
-			} else if(rentVO.getCamName() == null) {
+			} else if (rentVO.getCamName() == null) {
 				rentVO.setCamName("");
 			}
 		}

@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f9f9f9;
+}
+
+.form-container {
+	margin: 50px auto;
+	padding: 30px;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+	margin-bottom: 30px;
+}
+
+.form-check {
+	margin-bottom: 15px;
+}

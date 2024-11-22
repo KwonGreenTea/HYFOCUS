@@ -162,23 +162,27 @@
 			    
 			    let lens = lens_List.find(lensItem => lensItem);
 			    
+			    const bag = $('#bagCheck').is(':checked') ? $('#bagCheck').val() : '';
+			    const tripod = $('#tripodCheck').is(':checked') ? $('#tripodCheck').val() : '';
+			    const extras = [bag, tripod].filter(extra => extra);
+			    
 			    if (lens != null) {
-				    if (confirm(`카메라 : ${camera}\n렌즈 : ${lens}\n(으)로 신청하시나요?`)) {
-				        formSubmit(camera, lens, stuInfo);
+				    if (confirm(`카메라 : ${camera}\n렌즈 : ${lens}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
+				        formSubmit(camera, lens, bag, tripod, stuInfo);
 				    }
 				} else {
-					if (confirm(`카메라 : ${camera}\n(으)로 신청하시나요?`)) {
-				        formSubmit(camera, lens, stuInfo);
+					if (confirm(`카메라 : ${camera}\n추가 장비 : ${extras}\n(으)로 신청하시나요?`)) {
+				        formSubmit(camera, lens, bag, tripod, stuInfo);
 				    }
 				}
 			});
 
-		    function formSubmit(camera, lens, stuInfo) {
+		    function formSubmit(camera, lens, bag, tripod, stuInfo) {
 			    $.ajax({
 			        type: "POST",
 			        url: "rent",
 			        contentType: "application/x-www-form-urlencoded",
-			        data: { camera: camera, lens: lens, stuInfo: stuInfo },
+			        data: { camera: camera, lens: lens, bag: bag, tripod: tripod, stuInfo: stuInfo },
 			        success: function(result) {
 			            if (result.success) { 
 			                window.location.href = `rentSuccess?stuInfo=${encodeURIComponent(stuInfo)}`;

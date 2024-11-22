@@ -21,6 +21,8 @@ public interface ExtraMapper {
 
 	int modifyExtraCnt(@Param("extraSelect") String extraSelect, @Param("count") int count);
 
+	int chkCntByName(String extraName);
+
 	
 
 }
