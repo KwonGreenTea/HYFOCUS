@@ -22,8 +22,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
-	var rentNo;
-	
 	function reset() {
 		window.location.href = "/";
 	}
@@ -44,7 +42,9 @@
 		checkbox.checked = !checkbox.checked;
 	}
 	
-	const socket = new WebSocket("ws://hyfocus.com/rentSuccess");
+	//----------------------------------------------------------------------------
+	var stuInfo = "${rentVo.stuInfo}";
+	var socket = new WebSocket("ws://hyfocus.com/rentSuccess/" + stuInfo);
 
 	socket.onmessage = function(event) {
 		const data = JSON.parse(event.data);
@@ -56,6 +56,8 @@
 			checkbox.disabled = true;
 		}
 	};
+	
+	// ----------------------------------------------------------------------------
 	
 	$("#bagCheck").on("change", function() {
 		if ($(this).is(":checked")) {
@@ -76,7 +78,7 @@
 	});
 
 	function updateCount(extraSelect) {
-		const rentNo = $('#rentNo').val();
+		const rentNo = "${rentVo.rentNo}";
 		socket.send(rentNo, extraSelect);
 	}
 </script>

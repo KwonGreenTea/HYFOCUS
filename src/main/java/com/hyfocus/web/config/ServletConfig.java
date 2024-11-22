@@ -37,7 +37,7 @@ public class ServletConfig implements WebMvcConfigurer, WebSocketConfigurer {
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(socketHandler(), "/rentSuccess").setAllowedOrigins("*");
+		registry.addHandler(socketHandler(), "/rentSuccess/{stuInfo}").setAllowedOrigins("*");
 	}
 
 	@Bean
