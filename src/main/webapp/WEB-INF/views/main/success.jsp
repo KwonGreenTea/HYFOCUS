@@ -44,7 +44,7 @@
 	
 	//----------------------------------------------------------------------------
 	var stuInfo = "${rentVo.stuInfo}";
-	var socket = new WebSocket("ws://hyfocus.xyz/rentSuccess/" + stuInfo);
+	var socket = new WebSocket("ws://hyfocus.xyz/rentSuccess?stuInfo=" + stuInfo);
 
 	socket.onmessage = function(event) {
 		const data = JSON.parse(event.data);
