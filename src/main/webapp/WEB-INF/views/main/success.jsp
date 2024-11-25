@@ -43,7 +43,7 @@
 	}
 	
 	//----------------------------------------------------------------------------
-	var stuInfo = "${rentVo.stuInfo}";
+	var stuInfo = "${rentVO.stuInfo}";
 	var socket = new WebSocket("ws://hyfocus.xyz/rentSuccess?stuInfo=" + stuInfo);
 
 	socket.onmessage = function(event) {
@@ -78,7 +78,7 @@
 	});
 
 	function updateCount(extraSelect) {
-		const rentNo = "${rentVo.rentNo}";
+		const rentNo = "${rentVO.rentNo}";
 		socket.send(rentNo, extraSelect);
 	}
 </script>
