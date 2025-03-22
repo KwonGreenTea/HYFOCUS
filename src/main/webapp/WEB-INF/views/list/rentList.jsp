@@ -38,6 +38,8 @@
 								목록</a></li>
 						<li class="nav-item"><a class="nav-link" id="modifyList">장비
 								수정</a></li>
+						<li class="nav-item"><a class="nav-link" id="modifyTime">시간
+								수정</a></li>
 						<li class="nav-item"><a class="nav-link" id="allRentList">지난
 								내역</a></li>
 						<li class="nav-item"><a class="nav-link" id="exportExcel">엑셀</a></li>
@@ -295,6 +297,10 @@
 
 		$("#modifyList").on("click", function() {
 			window.location.href = "modifyList";
+		});
+		
+		$("#modifyTime").on("click", function() {
+			window.location.href = "modifyTime";
 		});
 
 		$("#exportExcel").on("click", function() {

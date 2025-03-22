@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="HY-FOCUS CAMERA FORM" />
 <meta name="author" content="46기 권보성" />
 <title>하이포커스</title>

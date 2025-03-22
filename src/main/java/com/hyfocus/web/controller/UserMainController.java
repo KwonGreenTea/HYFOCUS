@@ -2,6 +2,7 @@ package com.hyfocus.web.controller;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,11 +37,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class UserMainController {
 
-	// *********************
-	// **** 보여줄 시간 설정 ****
-	// *********************
-
-	private String setDate = "2024-11-20T14:00:00";
+	private String startDate; // 오픈 시간
+	private String endDate; // 마감 시간
 	
 	@Autowired
 	private CameraService cameraService;
@@ -53,7 +51,39 @@ public class UserMainController {
 
 	@Autowired
 	private RentService rentService;
+	
+	@GetMapping("/modifyTime")
+	public String modifyTimeGET(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("admin") != null) {
+			log.info("modifyTimeGET()");
+			
+			// 현재 오픈 시간과 마감 시간을 넘겨줌
+			model.addAttribute("startDate", startDate);
+			model.addAttribute("endDate", endDate);
+			
+			return "modify/modifyTime";
+		} else {
+			return "error/error";
+		}
+	}
+	
+	@PostMapping("/modifyTimeData")
+	public ResponseEntity<String> modifyTimeDataPost(@RequestParam(value = "openTime") String openTime,
+			@RequestParam(value = "closeTime") String closeTime, RedirectAttributes reAttr) {
+		log.info("modifyTimeDataPost()");
 
+		startDate = openTime;
+		endDate = closeTime;
+		
+		String result = "FAIL";
+		if(openTime != null && closeTime != null) {
+			result = "SUCCESS";
+		}
+		
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
 	@GetMapping("/pageNotOpen")
 	public String pageNotOpenGET() {
 		log.info("pageNotOpenGET()");
@@ -64,17 +94,18 @@ public class UserMainController {
 	public String mainGET(HttpServletRequest request, Model model, RedirectAttributes reAttr) {
 		ZoneId zoneId = ZoneId.of("Asia/Seoul"); // 한국 시간
 		LocalDateTime currentDateTime = LocalDateTime.now(zoneId);
-		LocalDateTime targetDateTime;
+		LocalDateTime targetDateTimeOpen, targetDateTimeClose;
 		HttpSession session;
 
 		try {
-			targetDateTime = LocalDateTime.parse(setDate);
+			targetDateTimeOpen = LocalDateTime.parse(startDate);
+			targetDateTimeClose = LocalDateTime.parse(endDate);
 		} catch (DateTimeParseException e) {
 			log.info("날짜 형식 오류: " + e.getMessage());
 			return "error/error";
 		}
 
-		if (currentDateTime.isAfter(targetDateTime)) {
+		if (currentDateTime.isAfter(targetDateTimeOpen) && currentDateTime.isBefore(targetDateTimeClose)) {
 			session = request.getSession(false);
 			session = request.getSession();
 			session.setAttribute("hyfocus", "hyfocus");
