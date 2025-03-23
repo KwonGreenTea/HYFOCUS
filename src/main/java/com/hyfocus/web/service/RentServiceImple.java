@@ -171,4 +171,11 @@ public class RentServiceImple implements RentService {
 		return count;
 	}
 
+	@Transactional(value = "transactionManager")
+	@Override
+	public int updateBad(String bag, String stuInfo) {
+		int rentNo = rentMapper.getRentNo(stuInfo);
+		return rentMapper.modifyUserExtra(rentNo, bag);
+	}
+
 }

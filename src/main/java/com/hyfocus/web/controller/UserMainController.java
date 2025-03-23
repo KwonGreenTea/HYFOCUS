@@ -39,7 +39,7 @@ public class UserMainController {
 
 	private String startDate; // 오픈 시간
 	private String endDate; // 마감 시간
-	
+
 	@Autowired
 	private CameraService cameraService;
 
@@ -51,23 +51,23 @@ public class UserMainController {
 
 	@Autowired
 	private RentService rentService;
-	
+
 	@GetMapping("/modifyTime")
 	public String modifyTimeGET(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("admin") != null) {
 			log.info("modifyTimeGET()");
-			
+
 			// 현재 오픈 시간과 마감 시간을 넘겨줌
 			model.addAttribute("startDate", startDate);
 			model.addAttribute("endDate", endDate);
-			
+
 			return "modify/modifyTime";
 		} else {
 			return "error/error";
 		}
 	}
-	
+
 	@PostMapping("/modifyTimeData")
 	public ResponseEntity<String> modifyTimeDataPost(@RequestParam(value = "openTime") String openTime,
 			@RequestParam(value = "closeTime") String closeTime, RedirectAttributes reAttr) {
@@ -75,15 +75,15 @@ public class UserMainController {
 
 		startDate = openTime;
 		endDate = closeTime;
-		
+
 		String result = "FAIL";
-		if(openTime != null && closeTime != null) {
+		if (openTime != null && closeTime != null) {
 			result = "SUCCESS";
 		}
-		
+
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/pageNotOpen")
 	public String pageNotOpenGET() {
 		log.info("pageNotOpenGET()");
@@ -200,6 +200,20 @@ public class UserMainController {
 		model.addAttribute("extraList", extraList);
 		model.addAttribute("rentVO", rentVO);
 		return "main/success";
+	}
+
+	@PostMapping("/rentBag")
+	public ResponseEntity<String> rentBagPOST(@RequestParam(value = "stuInfo") String stuInfo,
+			@RequestParam(value = "bag") String bag, Model model, RedirectAttributes reAttr) {
+
+		log.info("rentBagPOST()");
+		String result = "fail";
+		
+		if(rentService.updateBad(bag, stuInfo) > 0) {
+			result = "success";
+		}
+
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@PostMapping("/rentListForStuInfo")

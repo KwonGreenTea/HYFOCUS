@@ -42,4 +42,6 @@ public interface RentMapper {
 
 	int modifyUserExtra(@Param("rentNo") Integer rentNo, @Param("bag") String extraName);
 
+	Integer getRentNo(String stuInfo);
+
 }

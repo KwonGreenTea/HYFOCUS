@@ -37,5 +37,7 @@ public interface RentService {
 
 	int updateUserExtra(Integer rentNo, String extraName, int extraCount);
 
+	int updateBad(String bag, String stuInfo);
+
 	
 }

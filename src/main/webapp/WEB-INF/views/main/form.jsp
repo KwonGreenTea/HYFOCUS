@@ -28,7 +28,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" id="homeBtn">홈으로</a></li>
 					<li class="nav-item"><a class="nav-link" id="rentList">신청내역</a></li>
-					<li class="nav-item"><a class="nav-link" id="NCamera">(렌즈/가방/삼각대)만</a></li>
+					<li class="nav-item"><a class="nav-link" id="NCamera">렌즈신청</a></li>
 				</ul>
 			</div>
 			<br>
@@ -283,51 +283,6 @@
 						</div>
 						<br>
 						<div class="mb-3">
-							<label class="form-label">가방 / 삼각대</label>
-							<div class="form-check">
-								<c:forEach var="extraVO" items="${extraList}">
-									<c:if test="${extraVO.extraNo == 1}">
-										<c:choose>
-											<c:when test="${extraVO.extraCount < 1}">
-												<input class="form-check-input" type="checkbox"
-													value="${extraVO.extraName}" id="bagCheckModal" disabled>
-												<label class="form-check-label">
-													🎒${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
-											</c:when>
-											<c:otherwise>
-												<input class="form-check-input" type="checkbox"
-													value="${extraVO.extraName}" id="bagCheckModal">
-												<label class="form-check-label" onclick="bagCheckModal()">
-													🎒${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
-											</c:otherwise>
-										</c:choose>
-									</c:if>
-								</c:forEach>
-							</div>
-							<br>
-							<div class="form-check">
-								<c:forEach var="extraVO" items="${extraList}">
-									<c:if test="${extraVO.extraNo == 2}">
-										<c:choose>
-											<c:when test="${extraVO.extraCount < 1}">
-												<input class="form-check-input" type="checkbox"
-													value="${extraVO.extraName}" id="tripodCheckModal" disabled>
-												<label class="form-check-label">
-													📐${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
-											</c:when>
-											<c:otherwise>
-												<input class="form-check-input" type="checkbox"
-													value="${extraVO.extraName}" id="tripodCheckModal">
-												<label class="form-check-label" onclick="tripodCheckModal()">
-													📐${extraVO.extraName} (${extraVO.extraCount}개 남음) </label>
-											</c:otherwise>
-										</c:choose>
-									</c:if>
-								</c:forEach>
-							</div>
-						</div>
-						<br>
-						<div class="mb-3">
 							<label for="stuInfo" class="form-label">학번 / 이름 입력</label> <input
 								type="text" class="form-control" placeholder="2023000000 권보성"
 								id="stuInfoModal" required>
@@ -336,7 +291,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-outline-primary"
-						id="subBtnModal">신청</button>
+						id="subBtnModal">다음</button>
 				</div>
 			</div>
 		</div>
