@@ -44,4 +44,10 @@ public interface RentMapper {
 
 	Integer getRentNo(String stuInfo);
 
+	int deleteAllRentForList();
+
+	int updateAllRentForList();
+
+	int updateAllReturnForList();
+
 }

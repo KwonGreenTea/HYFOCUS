@@ -63,9 +63,9 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th scope="col">이름</th>
-						<th scope="col">대여</th>
-						<th scope="col">반납</th>
+						<th scope="col" id="allDelList">이름</th>
+						<th scope="col" id="allChkRent">대여</th>
+						<th scope="col" id="allChkReturn">반납</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -279,7 +279,8 @@
 
 							listForm.submit();
 						});
-
+		
+		// 지난 내역 클릭
 		$("#allRentList").on("click", function(e) {
 			const allListForm = $("#allListForm");
 			e.preventDefault();
@@ -290,21 +291,88 @@
 
 			allListForm.submit();
 		});
-
+		
+		// 대여 목록 클릭
 		$("#homeBtn").on("click", function() {
 			window.location.href = "rentList";
 		});
 
+		// 장비 수정 클릭
 		$("#modifyList").on("click", function() {
 			window.location.href = "modifyList";
 		});
 		
+		// 시간 수정 클릭
 		$("#modifyTime").on("click", function() {
 			window.location.href = "modifyTime";
 		});
 
+		// 엑셀 클릭
 		$("#exportExcel").on("click", function() {
 			window.location.href = "exportExcel";
+		});
+		
+		// 테이블에서 상단 이름 클릭 - 전체 삭제 이벤트
+		$("#allDelList").on("click", function() {
+			if(confirm("현재 대여 목록에 있는 내역들을 전체 삭제 할까요?")){
+				$.ajax({
+					type : "POST",
+					url : "allDelList",
+					success : function(result) {
+						if (result === "success") {
+							alert("삭제 완료 되었습니다.");
+							window.location.href = "rentList";
+						} else {
+							alert("삭제할 데이터가 없습니다.");
+						}
+					},
+					error : function(xhr, status, error) {
+						console.error("Error details:", xhr, status, error);
+					}
+				});
+			}
+		});
+		
+		// 테이블에서 상단 대여 클릭 - 전제 대여 이벤트
+		$("#allChkRent").on("click", function() {
+			if(confirm("현재 대여 목록에 있는 내역들을 전체 대여로 변경 할까요?")){
+				$.ajax({
+					type : "POST",
+					url : "allChkRent",
+					success : function(result) {
+						if (result === "success") {
+							alert("변경 완료 되었습니다.");
+							window.location.href = "rentList";
+						} else {
+							alert("변경할 데이터가 없습니다.");
+						}
+					},
+					error : function(xhr, status, error) {
+						console.error("Error details:", xhr, status, error);
+					}
+				});
+			}
+		});
+		
+		// 테이블에서 상단 반납 클릭 - 전체 반납 이벤트
+		$("#allChkReturn").on("click", function() {
+			if(confirm("현재 대여 목록에 있는 내역들을 전체 반납으로 변경 할까요?")){
+				$.ajax({
+					type : "POST",
+					url : "allChkReturn",
+					success : function(result) {
+						if (result === "success") {
+							alert("변경 완료 되었습니다.");
+							window.location.href = "rentList";
+						} else {
+							alert("변경할 데이터가 없습니다.");
+						}
+					},
+					error : function(xhr, status, error) {
+						console.error("Error details:", xhr, status, error);
+					}
+				});
+			}
 		});
 	</script>
 

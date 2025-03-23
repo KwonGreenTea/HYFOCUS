@@ -178,4 +178,19 @@ public class RentServiceImple implements RentService {
 		return rentMapper.modifyUserExtra(rentNo, bag);
 	}
 
+	@Override
+	public int deleteAllRentForList() {
+		return rentMapper.deleteAllRentForList();
+	}
+
+	@Override
+	public int updateAllRentForList() {
+		return rentMapper.updateAllRentForList();
+	}
+
+	@Override
+	public int updateAllReturnForList() {
+		return rentMapper.updateAllReturnForList();
+	}
+
 }

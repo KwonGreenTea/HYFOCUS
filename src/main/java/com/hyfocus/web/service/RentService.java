@@ -39,5 +39,11 @@ public interface RentService {
 
 	int updateBad(String bag, String stuInfo);
 
+	int deleteAllRentForList();
+
+	int updateAllRentForList();
+
+	int updateAllReturnForList();
+
 	
 }

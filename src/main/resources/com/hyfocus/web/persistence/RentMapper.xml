@@ -135,9 +135,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE RENT SET BAG = #{bag} WHERE RENT_NO =
 		#{rentNo}
 	</update>
+	
+	<update id="updateAllRentForList">
+		UPDATE RENT SET RENT_CHK = 'O' WHERE RENT_CHK = 'X'
+	</update>
+	
+	<update id="updateAllReturnForList">
+		UPDATE RENT SET RETURN_CHK = 'O' WHERE RETURN_CHK = 'X'
+	</update>
 
 	<delete id="delete">
 		DELETE RENT WHERE RENT_NO = #{rentNo}
 	</delete>
-
+	
+	<delete id="deleteAllRentForList">
+		DELETE RENT WHERE RENT_CHK = 'X' AND RETURN_CHK = 'X'
+	</delete>
 </mapper>

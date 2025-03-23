@@ -168,4 +168,43 @@ public class AdminModifyController {
 
 		return new ResponseEntity<ExtraVO>(extraVO, HttpStatus.OK);
 	}
+	
+	@PostMapping("/allDelList")
+	public ResponseEntity<String> allDelListPost() {
+		log.info("allDelListPost()");
+		
+		String result = "fail";
+		
+		if(rentService.deleteAllRentForList() > 0) {
+			result = "success";
+		}
+		
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
+	@PostMapping("/allChkRent")
+	public ResponseEntity<String> allChkRentPost() {
+		log.info("allChkRentPost()");
+		
+		String result = "fail";
+		
+		if(rentService.updateAllRentForList() > 0) {
+			result = "success";
+		}
+		
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
+	@PostMapping("/allChkReturn")
+	public ResponseEntity<String> allChkReturnPost() {
+		log.info("allChkReturnPost()");
+		
+		String result = "fail";
+		
+		if(rentService.updateAllReturnForList() > 0) {
+			result = "success";
+		}
+		
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
 }
