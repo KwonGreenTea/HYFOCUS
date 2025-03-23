@@ -19,29 +19,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
 </head>
 <script>
-	//현재 날짜 및 시간 값을 받아오는 함수
-	function setCurrentDateTime() {
-		var now = new Date();
-
-		// 년, 월, 일, 시, 분 포맷팅
-		var year = now.getFullYear();
-		var month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더함
-		var day = String(now.getDate()).padStart(2, '0');
-		var hour = String(now.getHours()).padStart(2, '0');
-		var minute = String(now.getMinutes()).padStart(2, '0');
-
-		// 포맷에 맞게 날짜 및 시간 생성
-		var currentDateTime = year + '-' + month + '-' + day + 'T' + hour + ':'
-				+ minute;
-
-		// input 요소에 기본값으로 설정
-		document.getElementById('openTime').value = currentDateTime;
-		document.getElementById('closeTime').value = currentDateTime;
-	}
-
-	// 페이지가 로드되면 현재 날짜 및 시간을 설정
-	window.onload = setCurrentDateTime;
-	
 	$(document).ready(function() {
 		$("#homeBtn").on("click", function() {
 			window.location.href = "rentList";
@@ -107,11 +84,11 @@
 				<hr>
 				<form id="timeForm">
 					<label>오픈 시간 선택</label><br> <input type="datetime-local"
-						id="openTime">
+						id="openTime" value="${startDate}">
 					<br>
 					<br>
 					<label>마감 시간 선택</label><br> <input type="datetime-local"
-						id="closeTime">
+						id="closeTime" value="${endDate}">
 				</form>
 			</div>
 			<br>
