@@ -11,7 +11,11 @@ function bagCheck() {
 	$(document).ready(function() {
 		$("#subBtn").on("click", function() {
 			let stuInfo = $("#stuInfo").text();
-			let bag = $("#bagCheck").val();
+			let bag;
+			
+			if ($("#bagCheck").prop("checked") === true) { 
+    			bag = $("#bagCheck").val();  
+			}
 			
 			let data = {
 		    	stuInfo: stuInfo,

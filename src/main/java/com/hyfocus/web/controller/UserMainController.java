@@ -204,13 +204,17 @@ public class UserMainController {
 
 	@PostMapping("/rentBag")
 	public ResponseEntity<String> rentBagPOST(@RequestParam(value = "stuInfo") String stuInfo,
-			@RequestParam(value = "bag") String bag, Model model, RedirectAttributes reAttr) {
+			@RequestParam(value = "bag", required = false) String bag, Model model, RedirectAttributes reAttr) {
 
 		log.info("rentBagPOST()");
 		String result = "fail";
 		
-		if(rentService.updateBad(bag, stuInfo) > 0) {
+		if(bag == null) {
 			result = "success";
+		} else {
+			if(rentService.updateBad(bag, stuInfo) > 0) {
+				result = "success";
+			}
 		}
 
 		return new ResponseEntity<>(result, HttpStatus.OK);
