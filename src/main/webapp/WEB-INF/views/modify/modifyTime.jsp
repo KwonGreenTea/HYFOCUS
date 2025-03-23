@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="HY-FOCUS CAMERA FORM" />
-<meta name="author" content="46기 권보성" />
+<meta name="author" content="45기 권보성" />
 <title>하이포커스</title>
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 <link
@@ -23,9 +23,9 @@
 	function setCurrentDateTime() {
 		var now = new Date();
 
-		// 년, 월, 일, 시, 분을 적절하게 포맷팅
+		// 년, 월, 일, 시, 분 포맷팅
 		var year = now.getFullYear();
-		var month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줍니다
+		var month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더함
 		var day = String(now.getDate()).padStart(2, '0');
 		var hour = String(now.getHours()).padStart(2, '0');
 		var minute = String(now.getMinutes()).padStart(2, '0');
@@ -54,7 +54,7 @@
 		    let closeTime = $("#closeTime").val();
 		    
 		    if(!openTime || !closeTime) {
-		    	alert("날짜를 입려해 주세요");
+		    	alert("날짜를 입력해 주세요");
 		    } else if (openTime >= closeTime) {
 		    	alert("시간이 같거나 종료 시간이 더 빠를 순 없습니다.");
 		    } else {

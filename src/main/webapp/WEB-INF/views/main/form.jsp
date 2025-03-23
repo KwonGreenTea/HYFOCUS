@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="HY-FOCUS CAMERA FORM" />
-<meta name="author" content="46기 권보성" />
+<meta name="author" content="45기 권보성" />
 <title>하이포커스</title>
 <link href="resources/images/hyfocus_logo.png" rel="Shortcut Icon" />
 <link
@@ -227,13 +227,13 @@
 		</div>
 	</div>
 
-	<!-- 렌즈, 가방, 삼각대만 선택할 수 있는 모달 -->
+	<!-- 렌즈만 선택할 수 있는 모달 -->
 	<div class="modal fade" id="editModal" tabindex="-1"
 		aria-labelledby="editModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="editModalLabel">렌즈, 가방, 삼각대만 신청 시</h5>
+					<h5 class="modal-title" id="editModalLabel">렌즈만 신청 시</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>

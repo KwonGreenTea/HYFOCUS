@@ -36,7 +36,7 @@
 			    const lens = $('#onlyLensSelect option:selected').attr('id');
 			    
 				 if (confirm(`렌즈 : ${lens}(으)로 신청하시나요?`)) {
-				    formSubmit(null, lens, null, null, stuInfo);
+				    formSubmit(null, lens, stuInfo);
 				}
 				
 			});
